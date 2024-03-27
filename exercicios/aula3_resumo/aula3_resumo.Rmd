@@ -1,0 +1,88 @@
+---
+title: "Aula 3 - Amostra Aleatoria Simples c/ Reposicao"
+author: "Davi Wentrick Feijó"
+date: "2024-03-26"
+output: 
+  rmdformats::downcute:
+    self_contained: true
+    thumbnails: true
+    lightbox: true
+    gallery: true
+    highlight: tango
+    toc_depth : 4
+  html_document:
+    toc: false
+    toc_depth: 5
+    toc_float: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Definicao 1
+
+* Seja $f_i(s)$ a variável que indica o número de vezes que a i-ésima unidade populacional aparece na amostra $s$. Ou seja quantas vezes cada observacao especifica esta repetida na amostra
+
+* Seja $\delta_i(s)$ a variável binária que indica a presença ou não da i-ésima unidade na amostra $s$. Ou seja quantos tipos de observacoes diferentes e unicas existem na amostra. Isto é:
+
+
+$$
+\delta_i(s) = \left\{ \begin{array}{rcl}
+1, & \mbox{se} & i \in s \\ 
+0, & \mbox{se} & i \notin s \\  
+\end{array}\right.
+$$
+
+* Chama-se tamanho efetivo $n(s)$ da amostra $s$ a soma das frequências das unidades populacionais na amostra, ou seja é o total da amostra contando ate as observacoes que aparecem repetidas, isto é:
+
+
+$$
+n(s) = \sum_{i=1}^{N} f_i(s)
+$$
+
+* Chama-se tamanho fixo efetivo $v(s)$ da amostra $s$ o número de unidades populacionais distintas presentes na amostra s, aqui contaremos apenas as quantidades unicas de cada amostra coletada nao levando em conta suas repeticoes caso existam na amostra. isto é:
+
+
+$$
+v(s) = \sum_{i=1}^{N} \delta_i(s)
+$$
+
+## Definicao 2
+
+
+Indica-se por $\pi_i(A)$ , a probabilidade de o i-ésimo elemente de U pertencer à amostra segundo o planejamento A, e $\pi_{ij}(A)$ a probabilidade de o i-ésimo e j-ésimo elementos pertencerem simultaneamente à amostra. Aqui estamos interessados em formalizar uma forma de calcular a probabilidade de uma observacao (ou um conjunto) fazer parte da amostra. Deste modo,
+
+
+$$
+\pi_i(A) = P_A(\delta_i = 1) = \sum P_A(\delta_i = 1) = \sum P_A(s)
+$$
+
+$$
+\pi_{ij}(A) = P_A(\delta_{ij} = 1) = \sum P_A(\delta_i = 1) = \sum P_A(s)
+$$
+
+##  Descrição do Plano AASc
+
+1. A população é numerada de 1 a $N$, a partir do sistema de referência, i.e., $U = {1, 2, ..., N}$.
+2. Utilizando-se uma tabela de números aleatórios, ou um programa de computador, soteia-se com igual probabilidade uma das $N$ unidades da população.
+3. Repõe-se essa unidade na população e sorteia-se um elemento seguinte.
+4. Repete-se o procedimento até que $n$ unidades tenham sido sorteadas.
+
+## Teorema 1
+
+Para o plano AASc a variável $f_i$, número de vezes que a unidade $i$ aparece na amostra, segue uma distribuição binomial com parâmetros $n$ e $1/N$, denotado por:
+
+
+$$
+f_i ~ \text{Binomial}
+$$
+
+
+
+
+
+
+
+
+
