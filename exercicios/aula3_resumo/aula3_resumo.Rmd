@@ -75,12 +75,437 @@ Para o plano AASc a variável $f_i$, número de vezes que a unidade $i$ aparece 
 
 
 $$
-f_i ~ \text{Binomial}
+f_i \sim \text{Binomial} (n;\frac{1}{N})
+$$
+
+* $E(f_i) = \frac{n}{N}$
+
+* $Var(f_i) = \frac{n}{N}(1-\frac{n}{N})$
+
+* $Cov(f_i,f_j) = -\frac{n}{N^2}, i \neq j$
+
+* $Cov(f,f') = -\frac{Var(f)}{N-1}$
+
+* $\pi_i = 1-(1-\frac{1}{N})^n$
+
+* $\pi_{ij} = 1-2(1-\frac{1}{N})^n + (1-\frac{2}{N})^n$
+
+
+###  Prova - $E(f_i)$ e $Var(f_i)$
+
+O resultado vem do calculo da esperanca e variancia de uma $binomial(n,p)$
+
+$$
+P(X = k) = \left( \begin{array}{c} n \\ k \end{array} \right) p^k(1-p)^{n-k}
+$$
+
+Sabemos que a esperanca e a variancia de uma binomial sao:
+
+* $E(X) = np$
+
+* $Var(X) = np(1-p)$
+
+Logo na binomial da AASc temos $n = n$ e $p = \frac{1}{N}$
+
+
+* $E(X) = np = n\frac{1}{N} = \frac{n}{N}$
+
+* $Var(X) = np(1-p) = n\frac{1}{N}(1-\frac{1}{N}) = \frac{n}{N}(1-\frac{1}{N})$
+
+###  Prova - $Cov(f_i,f_j)$ 
+
+Considerando o plano AASc, cada tentativa é independente e qualquer um dos $N$ elementos populacionais tem a mesma probabilidade $1/N$ de ser sorteado. Portanto,
+
+$$
+(f_1,f_2,f_3,...,f_N) \sim \text{Multinomial}(n,\frac{1}{N},...,\frac{1}{N})
+$$
+Onde:
+
+* $E(f_i) = np_i = \frac{n}{N}$
+
+* $Var(f_i) = np_i(1-p_i) = \frac{n}{N}(1-\frac{1}{N})$
+
+* $Cov(f_i,f_j) = -np_ip_j = -n \frac{1}{N} \frac{1}{N} = -\frac{n}{N^2}, i \neq j$
+
+
+###  Prova - $Cov(f,f')$ 
+
+Seja o tamanho de um amostra $n(s) = \sum_{i=1}^N f_i(s)$. Fixado um  plano amostral, o tamanho esperado e a variância do tamanho  da amostra serão:
+
+* $E(n) = \sum_{i=1}^N E(f_i)$
+
+* $Var(n) = \sum_{i=1}^N Var(f_i) + \sum_{i\neq1}^N Cov(f_i,f_j)$
+
+Para encontrar a variancia de $n$ foi utilizado uma propriedade diistributiva da Covariancia, da seguinte forma:
+
+$$
+Var(n) = Cov(n,n) \\
+Var(n) = Cov(f_1+f_2+...,f_N,f_1+f_2+...,f_N) \\
+Var(n) = \sum_{i=1}^N Var(f_i) + \sum_{i\neq1}^N Cov(f_i,f_j)
+$$
+
+Para planos amostrais simétricos, isto é, cujas esperanças,  variâncias e covariâncias são as mesmas para todas as variáveis:
+
+
+* $E(f_i) = E(f)$
+
+* $Var(f_i) = Var(f)$
+
+* $Cov(f_i,f_j) = Cov(f,f')$ para $i = \overline{1,N}$
+
+Para planos com tamanho fixo:
+
+$$
+Var(n) = N Var(f) + N(N-1)Cov(f,f')
+$$
+
+mas como $Var(n) = 0$, então:              (obs: pq é $0$????????)
+
+
+$$
+\begin{align}
+Var(n) &= N Var(f) + N(N-1)Cov(f,f') \\
+0 &= N Var(f) + N(N-1)Cov(f,f') \\
+-N(N-1)Cov(f,f') &= N Var(f) \\
+Cov(f,f') &= - \frac{N Var(f)}{N(N-1)} \\
+Cov(f,f') &= - \frac{ Var(f)}{(N-1)} \\
+Cov(f,f') &= - \frac{1}{(N-1)} \frac{n}{N}(1-\frac{1}{N}) \\
+Cov(f,f') &= - \frac{n}{(N-1)N} (\frac{N-1}{N}) \\
+Cov(f,f') &= - \frac{n(N-1)}{(N-1)N^2} \\
+Cov(f,f') &= - \frac{n}{N^2} \\
+\end{align}
+$$
+
+obs: o slide que eu to vendo do professor esta com uma notacao bem estranha nao sei se é um erro tenho que perguntar, minha duvida é se nao deveria ser um somatorio duplo no calculo da covariancia
+
+###  Prova - $\pi_i$ 
+
+Queremos saber a probabilidade do i-ésimo elemento se parte da amostra, como estamos trabalhando com uma Amostra Aleatoria Simples com Reposicao (AASc) sabemos que em uma amostra de tamanho $n$ a chance de cada elemento fazer parte é $1/N$. Entao para fazer esse calculo vamos utilizar o complementar ou seja queremos calcular a chance de NAO fazer parte da amostra e isso significa calcular a probabilidade do i-ésimo elemento ser 0:
+
+$$
+\begin{align}
+\pi_i &= P(f_i \neq 0) \\
+      &= 1 - P(f_i=0) \\
+      &= 1 - \left( \begin{array}{c} n \\ 0 \end{array} \right) \frac{1}{N}^0(1-\frac{1}{N})^{n-0} \\
+      &= 1 -  (1-\frac{1}{N})^{n} \\
+      &=  \frac{N^n-(N-1)^n}{N^n} \\
+\end{align}
+
+$$
+
+###  Prova - $\pi_{i,j}$ 
+
+Para fazer esse segundo calculo temos que levar em conta como vamos calcular a probabilidade de 2 eventos ocorrerem, para isso estaremos usando o principio da inlcusao/exclusao:
+
+$$
+\begin{align}
+P(A  \ \ e \ \ B) &= P(A) + P(B) - P(A \ \ ou \ \ B) \\
+P(A \cap B) &= P(A) + P(B) - P(A \cup B)
+\end{align}
 $$
 
 
 
+$$
+\begin{align}
+\pi_{ij} &= P(f_i \neq 0) + P(f_j \neq 0)  - P(f_{ij} \neq 0) \\
+      &= [1 - P(f_i=0)] + [1- P(f_j=0)] - [1 - ( P(f_{ij} = 0))] \\
+\end{align}
+$$
+Como a probabilidade de $f_i = f_j = 1/N$ e tambem sabemos que:
 
+* $P(f_i=0) = (1-\frac{1}{N})^{n}$
+
+* $p_{ij} = p_i+p_j = p(f_i) + P(f_j) = \frac{1}{N}+\frac{1}{N} = \frac{2}{N}$ isso é possivel devido a idependencia da AASc
+
+Precisamos calcular $P(f_{ij} = 0) = ?$
+
+$$
+P(f_{ij} = 0) = \left( \begin{array}{c} n \\ 0 \end{array} \right) p_{ij}^0(1-p_{ij})^{n-0} \\
+P(f_{ij} = 0) = (1-\frac{2}{N})^{n} \\
+$$
+
+
+
+$$
+\begin{align}
+\pi_{ij} &= [1 - P(f_i=0)] + [1- P(f_j=0)] - [1 - ( P(f_{ij} = 0))] \\
+      &= [1 - (1-\frac{1}{N})^{n}] + [1- (1-\frac{1}{N})^{n}] - [1 - (1-\frac{2}{N})^{n}] \\
+      &= 2 - 2(1-\frac{1}{N})^{n} - 1 + (1-\frac{2}{N})^{n} \\
+      &= 2 - 1 - 2(1-\frac{1}{N})^{n} + (1-\frac{2}{N})^{n} \\
+      &= 1 - 2(1-\frac{1}{N})^{n} + (1-\frac{2}{N})^{n} \\
+\end{align}
+$$
+
+## Teorema - Propriedade das Estatisticas
+
+A estatistica $t(s) = \sum Y_i$ tem para o plano AASc as seguintes propriedades:
+
+
+* $E(t) = n\mu$
+
+* $Var(t) = n \sigma^2$
+
+
+
+###  Prova - $E(t)$ 
+
+$$
+\begin{align}
+t(s) &= \sum_{i \in s} Y_i \\
+     &= \sum_{i = 1}^N f_i(s)Y_i \\
+     &= \sum_{i = 1}^N f_iY_i \\
+\end{align}
+$$
+
+$$
+\begin{align}
+E(t) &= E(\sum_{i = 1}^N f_iY_i) \\
+     &= \sum_{i = 1}^N E(f_i)Y_i \\
+     &= E(f)\sum_{i = 1}^N Y_i \\
+     &= \frac{n}{N}\sum_{i = 1}^N Y_i \\
+     &= \frac{n}{N}t \\
+     &= n\frac{t}{N} \\
+     &= n\mu \\
+\end{align}
+$$
+
+
+
+###  Prova - $Var(t)$ 
+
+$$
+\begin{align}
+Var(t) &= Var(\sum_{i = 1}^N f_iY_i) \\
+       &= \sum_{i = 1}^N Y_i^2 Var(f_i) + \sum_{i = 1}^N Y_i Y_j Cov(f_i,f_j) \\
+       &= Var(f)\sum_{i = 1}^N Y_i^2 -\frac{Var(f)}{N-1} \sum_{i = 1}^N Y_i Y_j \\
+       &= Var(f)[\sum_{i = 1}^N Y_i^2 -\frac{1}{N-1} \sum_{i = 1}^N Y_i Y_j] \\
+\end{align}
+$$
+
+Porem podemos mostrar que:
+
+$$
+\begin{align}
+\sum_{i = 1}^N Y_i &= N\mu \\
+(\sum_{i = 1}^N Y_i)^2 &= (N\mu)^2 \\
+\sum_{i = 1}^N Y_i^2 + \sum_{i = 1}^N Y_i Y_j  &= N^2\mu^2 \\
+ \sum_{i = 1}^N Y_i Y_j  &= - \sum_{i = 1}^N Y_i^2 + N^2\mu^2 \\
+\end{align}
+$$
+
+Voltando para a conta da Variancia:
+
+
+$$
+\begin{align}
+Var(t) &= Var(f_i)[\sum_{i = 1}^N Y_i^2 -\frac{1}{N-1} \sum_{i = 1}^N Y_i Y_j] \\
+       &= Var(f_i)[\sum_{i = 1}^N Y_i^2 -\frac{1}{N-1} (- \sum_{i = 1}^N Y_i^2 + N^2\mu^2)] \\
+       &= Var(f_i)\frac{1}{N-1}[N\sum_{i = 1}^N Y_i^2 - N^2\mu^2] \\
+       &= Var(f_i)\frac{N}{N-1}[\sum_{i = 1}^N Y_i^2 - N^2\mu^2] \\
+       &= Var(f_i)\frac{N}{N-1}\sum_{i = 1}^N (Y_i - \mu)^2 \\
+       &= Var(f_i)NS^2 \\
+       &= Var(f)NS^2 \\
+       &= \frac{n}{N} \frac{N-1}{N} NS^2\\
+       &= n \frac{N-1}{N} S^2\\
+       &= n \sigma^2\\
+\end{align}
+$$
+
+## Teorema - Estimacao do total e da media populacional
+
+
+A media amostral é:
+
+$$
+\bar y = \frac{1}{n} \sum_{i \in s} Y_i = \frac{t(s)}{n} = \hat \mu
+$$
+
+é um estimador não viesado da média populacional $\mu$ dentro do plano AASc, e ainda
+
+$$
+Var(\bar y) = \frac{\sigma^2}{n}
+$$
+
+###  Prova - $E(\bar y)$ 
+
+$$
+E(\bar y) = E(\frac{t}{n}) = \frac{1}{n}E(t) = \frac{1}{n}n\mu = \mu
+$$
+
+###  Prova - $Var(\bar y)$ 
+
+$$
+Var(\bar y) = Var(\frac{1}{n} \sum_{i=1}^n y_i) = \frac{1}{n^2}n \sigma^2 = \frac{\sigma^2}{n}
+$$
+
+### Corolário
+
+Do plano AASc, a estatística:
+
+$$
+T(s) = \hat t = N \bar y = \frac{n}{N}t(s)
+$$
+
+é um estimador não viesado do total populacional,com
+
+$$
+Var(T) = N^2 \frac{\sigma^2}{n}
+$$
+
+O estimador $T(s)$ é conhecido por estimador expansão do total populacional. Note que o total pode ser escrito da seguinte forma:
+
+
+$$
+t = \sum_{i \in S} Y_i + \sum_{i \notin S} Y_i
+$$
+
+enquanto:
+
+$$
+\hat t = n \bar y + (N - n) \bar y
+$$
+
+Onde $(N - n) \bar y$ estima  a parte nao observada $\sum_{i \notin S} Y_i$ de $t$
+
+
+## Teorema - Estimacao da variancia populacional
+
+Dentro do plano AASc, a estatística:
+
+$$
+s^2 = \frac{1}{n-1} \sum_{i \in s} (y_i - \bar y)^2
+$$
+
+é um estimador não viesado para a variância populacional $\sigma^2$.
+
+
+###  Prova - $E(s^2)$ 
+
+
+$$
+\begin{align}
+s^2 &= \frac{\sum_{i \in s} (Y_i - \bar y)^2}{n-1} \\
+ (n-1)s^2 &= \sum_{i \in s} (Y_i - \bar y)^2 \\
+ &= \sum_{i \in s} (Y_i - \bar y) (Y_i - \bar y)\\
+ &= \sum_{i \in s} (Y_i^2 - 2Y_i\bar y + \bar y^2)\\
+ &= \sum_{i \in s} Y_i^2 - 2\bar y\sum_{i \in s}Y_i + \bar y^2\\
+ &= \sum_{i \in s} Y_i^2 - 2\bar yn\bar y + \bar y^2\\
+ &= \sum_{i \in s} Y_i^2 - 2\bar y^2n + \bar y^2\\
+ &= \sum_{i \in s} Y_i^2 - n\bar y^2 \\
+ &= \sum_{i \in s} Y_i^2 - n (\frac{t}{n})^2 \\
+ &= \sum_{i \in s} Y_i^2 - n \frac{t^2}{n^2} \\
+ &= \sum_{i \in s} Y_i^2 - \frac{t^2}{n} \\
+ &= \sum_{i \in s} Y_i^2 - \frac{t^2}{n} \\
+\end{align}
+$$
+
+Em seguida vamos aplicar a esperanca nos 2 lados da equacao:
+
+$$
+\begin{align}
+(n-1)s^2 &= \sum_{i \in s} Y_i^2 - \frac{t^2}{n} \\
+E((n-1)s^2) &= E(\sum_{i \in s} Y_i^2 - \frac{t^2}{n}) \\
+            &= E(\sum_{i \in s} Y_i^2) - E(\frac{t^2}{n}) \\
+            &= \sum_{i \in s} Y_i^2E(f_i) - \frac{1}{n}E(t^2) \\
+\end{align}
+$$
+
+Como sabemos que $\sum_{i=1}^N (Y_i - \mu)^2 = \sum_{i=1}^N Y_i^2 - N\mu^2$ e tambem $\sigma^2 = \frac{\sum_{i=1}^n (Y_i - \mu)^2}{N}  $ entao:
+
+$$
+\begin{align}
+\sum_{i=1}^N(Y_i - \mu)^2 &= \sum_{i=1}^N Y_i^2 - N\mu^2 \\
+\sum_{i=1}^N(Y_i - \mu)^2 + N\mu^2  &= \sum_{i=1}^N Y_i^2 \\
+\sum_{i=1}^N Y_i^2  &= \sum_{i=1}^N (Y_i - \mu)^2 + N\mu^2 \\
+                    &= N \sigma^2 + N\mu^2 \\
+                    &= N (\sigma^2 + \mu^2) \\
+                    
+\end{align}
+$$
+
+Importante lembrar que:
+
+$$
+Var(t) = E(t^2) + E(t)^2 \\
+E(t^2) = Var(t) - E(t)^2    
+$$
+
+Com isso tudo podemos seguir fazendo a conta:
+
+$$
+\begin{align}
+\sum_{i \in s} Y_i^2E(f_i) - \frac{1}{n}E(t^2) &= N (\sigma^2 + \mu^2) E(f_i) - \frac{1}{n} Var(t) - E(t)^2 \\
+                                               &= N (\sigma^2 + \mu^2) \frac{n}{N} - \frac{1}{n} (n\sigma^2 - n^2\mu^2) \\
+                                               &= n (\sigma^2 + \mu^2)  -  (\sigma^2 - n\mu^2) \\
+                                               &= n \sigma^2 + n \mu^2  -  \sigma^2 - n\mu^2 \\
+                                               &= n \sigma^2 -  \sigma^2  \\
+                                               &= \sigma^2 (n - 1)  \\
+\end{align}
+$$
+
+Portanto:
+
+$$
+\begin{align}
+E((n-1)s^2) &= \sigma^2 (n - 1) \\
+(n-1)E(s^2) &= \sigma^2 (n - 1) \\
+     E(s^2) &= \sigma^2  \\
+\end{align}
+$$
+### Corolário
+
+Para o plano AASc, a estatística
+
+$$
+Var(\bar y) = \frac{s^2}{n}
+$$
+
+é um estimador não viesado para a variância da média amostral, $Var(\bar y)$, e
+
+$$
+Var(T) = N^2\frac{s^2}{n}
+$$
+
+é um estimador não viesado de $Var(T)$
+
+### Resultado - Normalidade Assintótica
+
+Para um $n$ suficientemente grande :
+
+$$
+\frac{\hat \theta - E(\hat \theta)}{\sqrt{Var(\hat \theta)}} \sim \text{Normal}(0,1)
+$$
+
+Com relacao a AASc temos:
+
+$$
+\frac{\bar y - \mu}{\sqrt{\frac{\sigma^2}{n}}} \sim \text{Normal}(0,1)
+$$
+
+$$
+\frac{T - t}{N\sqrt{\frac{\sigma^2}{n}}} \sim \text{Normal}(0,1)
+$$
+
+## Intervalo de Confiança para a Média
+
+Com relação à média, para $n$ suficientemente grande:
+
+$$
+P\left( \frac{\bar y - \mu}{\sqrt{\frac{\sigma^2}{n}}} \right)  \cong 1- \alpha
+$$
+
+Como $\sigma^2$ é desconhecido, faz-se uso de $s^2$, então:
+
+$$
+P\left( \bar y - Z_{\alpha} \sqrt\frac{s^2}{n} \leq \mu \leq \bar y + Z_{\alpha} \sqrt\frac{s^2}{n} \right)  \cong 1- \alpha
+$$
+
+Onde segue que:
+
+$$
+
+$$
 
 
 
