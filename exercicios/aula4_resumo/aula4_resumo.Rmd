@@ -1,0 +1,286 @@
+---
+title: "Amostragem Aleatória Simples Sem Reposição"
+author: "Davi Wentrick Feijó"
+date: "2024-04-04"
+output: 
+  rmdformats::downcute:
+    self_contained: true
+    thumbnails: true
+    lightbox: true
+    gallery: true
+    highlight: tango
+    toc_depth : 4
+  html_document:
+    toc: false
+    toc_depth: 5
+    toc_float: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Descrição do Plano AASs
+
+1. A população é numerada de 1 a $N$, a partir do sistema de referência, i.e., $U = {1, 2, ..., N}$.
+
+2. Utilizando-se uma tabela de números aleatórios, ou um programa de computador, soteia-se com igual probabilidade uma das $N$ unidades da população.
+
+3. Sorteia-se um elemento seguinte, com o elemento anterior sendo retirado da população.
+
+4. Repete-se o procedimento até que $n$ unidades tenham sido sorteadas
+
+## Teorema
+Para o plano AASs a variável $f_i$,número de vezes que a unidade $i$ aparece na amostra, segue uma distribuição de Bernoulli com probabilidade de sucesso $n/N$,denotado por:
+
+
+
+$$
+f_i \sim \text{Binomial} (n;\frac{1}{N})
+$$
+
+e que satisfaz $P(f_i = 1) = \frac{1}{N}$ e $P(f_i = 0) = 1 - \frac{n}{N}$, de modo que:
+
+* $E(f_i) = \frac{n}{N}$
+
+* $Var(f_i) = \frac{n}{N}(1-\frac{n}{N})$
+
+* $Cov(f_i,f_j) = -\frac{n}{N^2} \cdot \frac{N-n}{N-1}, i \neq j$
+
+* $Cov(f,f') = -\frac{Var(f)}{N-1}$
+
+* $\pi_i = \frac{n}{N}$
+
+* $\pi_{ij} = \frac{n}{N} \cdot \frac{N-n}{N-1}$
+
+
+## Propriedades da Estatística $t(s)$
+
+
+### Teorema
+
+Com relação à AASs, a estatística $t(s) = \sum_{i \in s} Y_i$ tem as seguintes propriedades:
+
+$$
+E(t) = n \mu
+$$
+
+$$
+Var(t) = n(1-f)S^2
+$$
+
+onde $f = n/N$ é denominada fracao amostral
+
+
+
+### Prova $Var(t)$
+
+
+$$
+\begin{align}
+Var(t) &= Var(\sum_{i = 1}^N f_iY_i) \\
+       &= \sum_{i = 1}^N Y_i^2 Var(f_i) + \sum_{i = 1}^N Y_i Y_j Cov(f_i,f_j) \\
+       &= Var(f)\sum_{i = 1}^N Y_i^2 -\frac{Var(f)}{N-1} \sum_{i = 1}^N Y_i Y_j \\
+       &= Var(f)[\sum_{i = 1}^N Y_i^2 -\frac{1}{N-1} \sum_{i = 1}^N Y_i Y_j] \\
+\end{align}
+$$
+
+Porem podemos mostrar:
+
+
+$$
+\begin{align}
+\sum_{i = 1}^N Y_i &= N\mu \\
+(\sum_{i = 1}^N Y_i)^2 &= (N\mu)^2 \\
+\sum_{i = 1}^N Y_i^2 + \sum_{i = 1}^N Y_i Y_j  &= N^2\mu^2 \\
+ \sum_{i = 1}^N Y_i Y_j  &= - \sum_{i = 1}^N Y_i^2 + N^2\mu^2 \\
+\end{align}
+$$
+
+Com isso podemos segui a conta:
+
+$$
+\begin{align}
+Var(t) &= Var(f_i)[\sum_{i = 1}^N Y_i^2 -\frac{1}{N-1} \sum_{i = 1}^N Y_i Y_j] \\
+       &= Var(f_i)[\sum_{i = 1}^N Y_i^2 -\frac{1}{N-1} (- \sum_{i = 1}^N Y_i^2 + N^2\mu^2)] \\
+       &= Var(f_i)\frac{1}{N-1}[(N-1)\sum_{i = 1}^N Y_i^2 + \sum_{i = 1}^N Y_i^2 + N^2\mu^2)] \\
+       &= Var(f_i)\frac{1}{N-1}[ \sum_{i = 1}^N Y_i^2 + N\mu^2] \\
+       &= Var(f_i)\frac{1}{N-1} \sum_{i = 1}^N (Y_i + \mu)^2 \\
+       &= Var(f_i)NS^2 \\
+       &= \frac{n}{N} (1-\frac{n}{N})NS^2 \\
+       &= n(1=f)S^2 \\
+\end{align}
+$$
+
+## Estimação da média populacional
+
+
+### Corolário
+
+Do plano AASs, a média amostral
+
+
+$$
+\bar y  = \frac{1}{n} \sum_{i \in s}^n Y_i = \frac{t(s)}{n}
+$$
+
+é um estimador não viesado da média populacional $\mu$, com variância amostral dada por:
+
+$$
+Var(\bar y) = (1-f)\frac{s^2}{n}
+$$
+
+### Prova $E(\bar y)$
+
+
+$$
+E(\bar y) = \frac{1}{n} E(t(s)) = \frac{n \mu}{n} = \mu
+$$
+
+### Prova $Var(\bar y)$
+
+
+$$
+Var(\bar y) = \frac{1}{n^2} Var(t(s)) = \frac{1}{n^2}n(1-f)S^2 = (1-f) \frac{S^2}{n}
+$$
+
+## Estimação do total populacional
+
+### Corolário
+
+Com relação à ASSs, um estimador não viciado do total populacional é:
+
+$$
+T(s) = N \bar y = \frac{N}{n} t(s)
+$$
+
+cuja variância amostral é dada por:
+
+$$
+Var(T) = N^2(1-f) \frac{S^2}{n}
+$$
+
+### Prova $E(T(s))$
+
+$$
+E(T) = E(N \bar y) = NE(\bar y) = N \sum_{i=1}^N \frac{y_i}{N} = t
+$$
+
+### Prova $Var(T(s))$
+
+$$
+Var(T) = Var[\frac{N}{n}t(s)] = \frac{N^2}{n^2} Var(t(s)) \\
+= \frac{N^2}{n^2} n(1-f)S^2 = N^2(1-f)\frac{S^2}{n}
+$$
+
+## Estimação da variância populacional
+
+Avariância da amostra
+
+
+$$
+s^2 = \frac{1}{n-1} \sum_{i \in s} (Y_i- \bar y)^2
+$$
+
+é um estimador não viesado para a variância populacional $S^2$ para o planejamento ASSs.
+
+### Prova $s^2$
+
+Vale lembrar que $\bar y = \frac{\sum_{i=1}^{n} Y_i}{n}$ ou seja $\sum_{i=1}^{n} Y_i = n \bar y$
+
+$$
+\begin{align}
+E[s^2]  &= E[\frac{\sum_{i=1}^{n} (Y_i-\bar y)^2}{n-1}] \\
+        &= \frac{1}{n-1} \sum_{i=1}^{n} E[(Y_i-\bar y)^2] \\
+        &= \frac{1}{n-1} \sum_{i=1}^{n} E(Y_i^2-2Y_i\bar y+\bar y^2) \\
+        &= \frac{1}{n-1} [\sum_{i=1}^{n} E(Y_i^2)-2E(\bar y\sum_{i=1}^{n}Y_i)+E(\sum_{i=1}^{n}\bar y^2)] \\
+        &= \frac{1}{n-1} [\sum_{i=1}^{n} E(Y_i^2)-2E(\bar y n \bar y)+E(\sum_{i=1}^{n}\bar y^2)] \\
+        &= \frac{1}{n-1} [\sum_{i=1}^{n} E(Y_i^2)-2nE({\bar y}^2)+nE(\bar y^2)] \\
+        &= \frac{1}{n-1} [\sum_{i=1}^{n} E(Y_i^2)-nE({\bar y}^2) \\
+        &= \frac{1}{n-1} [E(\sum_{i=1}^{n}Y_i^2)-nE({\bar y}^2)
+\end{align}
+$$
+
+Para continuar precisamos encontrar $E(Y_i^2)$ e $E(\bar y^2)$ :
+
+$$
+\begin{align}
+Var(Y_i) &= E(Y_i^2)-[E(Y_i)]^2 \\
+\sigma^2 &= E(Y_i^2)-\mu^2 \\
+\therefore E(Y_i^2)&=\sigma^2 +\mu^2 \\
+\end{align}
+$$
+
+$$
+\begin{align}
+Var(\sum_{i = 1}^n Y_i) &= E(\sum_{i = 1}^n Y_i^2)-[E(\sum_{i = 1}^n Y_i)]^2 \\
+Var(t) &= E(\sum_{i = 1}^n Y_i^2)-[E(t)]^2 \\
+n(1-f)S^2 &= E(\sum_{i = 1}^n Y_i^2)-(n \mu)^2 \\
+\therefore E(\sum_{i = 1}^n Y_i^2) &=n(1-f)S^2 +(n \mu)^2 \\
+\end{align} 
+$$
+
+$$
+\begin{align}
+Var(\bar y) &= E(\bar y^2)-[E(\bar y)]^2 \\
+(1-f)\frac{s^2}{n} &= E(\bar y^2)-\mu ^2 \\
+\therefore E(\bar y^2) &= (1-f)\frac{s^2}{n} + \mu ^2
+\end{align}
+$$
+
+
+
+$$
+\begin{align}
+Var(\bar y) &= E(\bar y^2)-[E(\bar y)]^2 \\
+\frac{\sigma^2}{n} &= E(\bar y^2)-\mu ^2 \\
+\therefore E(\bar y^2) &= \frac{\sigma^2}{n}+\mu ^2
+\end{align}
+$$
+
+Agora podemos continuar a conta:
+
+$$
+\begin{align}
+E[s^2] &= \frac{1}{n-1} [n (\sigma^2 +\mu^2)-n((1-f)\frac{s^2}{n} + \mu ^2)) \\
+E[s^2] &= \frac{1}{n-1} [n (\sigma^2 +\mu^2)-{\sigma ^2}-n\mu ^2) \\
+E[s^2] &= \frac{1}{n-1} [ n\sigma^2 +n\mu^2-{\sigma ^2}-n\mu ^2] \\
+E[s^2] &= \frac{1}{n-1} [ n\sigma^2 -{\sigma ^2}] \\
+E[s^2] &= \frac{1}{n-1} \sigma ^2[n - 1] \\
+\therefore E[s^2] &= \sigma ^2 
+\end{align}
+$$
+
+
+$$
+\begin{align}
+E[s^2] &= \frac{1}{n-1} [(n(1-f)s^2 +(n \mu)^2)-n((1-f)\frac{s^2}{n} + \mu ^2)] \\
+       &= \frac{1}{n-1} [(s^2n-s^2nf +n^2 \mu^2)-(n(1-f)\frac{s^2}{n} + n\mu ^2)] \\
+       &= \frac{1}{n-1} [(s^2n-s^2nf +n^2 \mu^2)-(\frac{s^2}{n}n-\frac{s^2}{n}nf + n\mu ^2)] \\
+       &= \frac{1}{n-1} [s^2n-s^2nf +n^2 \mu^2-\frac{s^2}{n}n+\frac{s^2}{n}nf - n\mu ^2)] \\
+       &= \frac{1}{n-1} [s^2n-s^2nf +n^2 \mu^2-s^2+s^2f - n\mu ^2)] \\
+       &= \frac{1}{n-1} [s^2(n-nf) +n^2 \mu^2-s^2(1+f) - n\mu ^2)] \\
+       &= \frac{1}{n-1} [s^2((n-nf)-(1+f)) +n^2 \mu^2 - n\mu ^2)] \\
+       &= \frac{1}{n-1} [s^2(n(1-f)-(1+f)) +n\mu ^2(n - 1)] \\
+       &= \frac{s^2(n(1-f)-(1+f)) +n\mu ^2(n - 1)}{n-1}  \\
+       &= \frac{s^2(n(1-f)-(1+f)) }{n-1} + \frac{n\mu ^2(n - 1)}{n-1} \\
+       &= \frac{s^2(n(1-f)-(1+f)) }{n-1} + n\mu ^2 \\
+       
+       
+\end{align}
+$$
+
+Cara odeio minha vida essa prova ta uma porra to todo confuso vo ter que falar com o prof...
+
+
+Para o plano AASs, a estatística
+
+
+$$
+var(\bar y) = (1-f) \frac{s^2}{n}
+$$
+
+terminar..
+
+
+
