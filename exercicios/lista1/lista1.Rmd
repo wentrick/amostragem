@@ -20,20 +20,20 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## Questao 1
+### Questao 1
 
 Considerando uma AASs prove que $E[s^2] = S^2$
 
 
-## Questao 2 
+### Questao 2 
 
 Considerando uma AASc prove que $E[\hat P] = P$ e que $Var[p] = \frac{\hat P (1 - \hat P)}{n-1}$ é nao viesado de $Var[\hat P]$
 
-## Questao 3 
+### Questao 3 
 
 Prove que para um $C$ fixado o tamanho ótimo da amostra é dado por $n = C \frac{\sum_{h=1}^H N_h \sigma_h /\sqrt{c_h}}{\sum_{h=1}^H N_h \sigma_h \sqrt{c_h}}$
 
-## Questao 4
+### Questao 4
 
 Para $V_{es}$ fixado o tamanho otimo da amostra é dado por:
 
@@ -41,12 +41,58 @@ $$
 n = \frac{1}{V_{es}} \left( \sum_{h=1}^H W_h \sigma_h \sqrt{c_h}   \right) \left( \sum_{h=1}^H W_h \sigma_h /\sqrt{c_h}   \right)
 $$
 
-## Questao 5
+### Questao 5
 
 Prove que para o caso em que o custo por unidade observada em todos os estratos seja fixado em c, isto é, $C^{\prime}=C-c_0=n c$, a alocação ótima se reduz a $n_h=n \frac{N_h \sigma_h}{\sum_{h=1}^H N_h \sigma_h}$.  Neste caso, $V_{es}$ se reduz a $\operatorname{Var}_{o t}=\frac{1}{n}\left(\sum_{h=1}^H W_h \sigma_h\right)^2=\frac{\bar{\sigma}^2}{n}$ ,  onde  $\bar{\sigma}=\sum_{h=1}^H W_h \sigma_h$ é um desvio padrão médio dentro de cada estrato. 
 
 
+### Questao 6
 
+Suspeita-se que a renda familiar média dos moradores de uma cidade seja de aproximadamente 10 salários mínimos (SM) e o desvio padrão de 5 SM. Pretende-se usar uma amostra AAS como plano amostral.
+
+##### a) Que tamanho deve ter a amostra para que o erro padrão de $\bar{y}$ seja de 0,5 ?
+
+##### b) Como ficaria a resposta acima se $\mathrm{N}=20.000$ ? E se $\mathrm{N}=10.000$ ?
+
+##### c) Agora você quer planejar a amostra de tal modo que o coeficiente de variação de $\bar{y}, \operatorname{CV}[\bar{y}]$ seja inferior a $5 \%$. Qual deve ser o tamanho da amostra?
+
+### Questao 7
+
+Considere uma população com $N=6$, onde $D=(1,4,5,5,6,6)$. Adote um plano amostral AASs com $n=2$. Como estimador de $\mu$, considere
+
+$$
+\bar{y}_c=\left\{\begin{array}{l}
+\bar{y}+1, \text { se } d_s \text { contém } Y_1 \text { e não } Y_6 \\
+\bar{y}-1, \text { se } d_s \text { contém } Y_6 \text { e não } Y_1 \\
+\bar{y}, \text { caso contrário }
+\end{array}\right.
+$$
+
+##### a) Encontre as distribuições de $\bar{y}$ e $\bar{y}_c$. Verifique se estes estimadores são não viciados para $\mu$.
+
+##### b) Encontre $\operatorname{Var}[\bar{y}]$ e $\operatorname{Var}\left[\bar{y}_c\right]$. Qual é o melhor estimador? Justifique.
+
+### Questao 8
+
+Em uma população com $\mathrm{N}=6$, tem-se $\mathrm{D}=(8,2,2,11,4,7)$. Um plano amostral $A A S c$ de tamanho $\mathrm{n}=2$ é adotado.
+
+##### a) Encontre a distribuição de $\bar{y}$ e mostre que $E[\bar{y}]=\mu$.
+
+##### b) Encontre $\operatorname{Var}[\bar{y}]$ diretamente e utilizando o resultado $\operatorname{Var}[\bar{y}]=\frac{\sigma^2}{n}$.
+
+##### c) Suponha que uma AAS com reposição com tamanho $\mathrm{n}=10$ retirada da população apresenta $\bar{y}=5,435$ e $s^2=3,6$. Encontre um intervalo de confiança para $\mu \operatorname{com} \alpha=0,02$.
+
+### Questao 9
+
+Considere os dados da tabela abaixo como sendo uma população dividida em dois estratos. Para uma amostra estratificada AASs de tamanho $n_h=2$ em cada estrato, compare os $E M Q$ dos estimadores da razão estratificado e combinado do total da população.
+
+| Estrato 1 |  | Estrato 2 |  |
+| :---: | :---: | :---: | :---: |
+| $X_{i j}$ | $Y_{i j}$ | $X_{2 j}$ | $Y_{2 j}$ |
+| 2 | 0 | 10 | 7 |
+| 5 | 3 | 18 | 15 |
+| 9 | 7 | 21 | 10 |
+| 15 | 10 | 25 | 16 |
 
 
 

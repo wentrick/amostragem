@@ -1821,8 +1821,54 @@ margin-left: 0 !important;
             </ul></li>
             <li><a href="#parametros-de-interesse" id="toc-parametros-de-interesse">Parametros de
             interesse</a></li>
+            <li><a href="#planejamento-amostral" id="toc-planejamento-amostral">Planejamento Amostral</a>
+            <ul>
+            <li><a href="#exemplo-1" id="toc-exemplo-1">Exemplo:</a></li>
             </ul></li>
-            <li><a href="#aasc" id="toc-aasc">AASc</a></li>
+            <li><a href="#dados-da-amostra-s" id="toc-dados-da-amostra-s">Dados da amostra <span class="math inline">\(s\)</span></a></li>
+            <li><a href="#conjunto-de-todas-as-amostras-possíveis" id="toc-conjunto-de-todas-as-amostras-possíveis">Conjunto de
+            todas as amostras possíveis</a></li>
+            <li><a href="#estatística-ou-estimador" id="toc-estatística-ou-estimador">Estatística ou
+            Estimador</a></li>
+            <li><a href="#distribuição-amostral" id="toc-distribuição-amostral">Distribuição Amostral</a>
+            <ul>
+            <li><a href="#exemplo---plano-amostral-a-aasc" id="toc-exemplo---plano-amostral-a-aasc">Exemplo - Plano
+            Amostral A (AASc)</a></li>
+            </ul></li>
+            <li><a href="#esperanca-e-variancia" id="toc-esperanca-e-variancia">Esperanca e
+            Variancia</a></li>
+            <li><a href="#covariancia-e-correlacao" id="toc-covariancia-e-correlacao">Covariancia e
+            Correlacao</a></li>
+            <li><a href="#viés-e-erro-quadratico-medio-eqm" id="toc-viés-e-erro-quadratico-medio-eqm">Viés e Erro
+            Quadratico Medio (EQM)</a>
+            <ul>
+            <li><a href="#demonstracao-eqm" id="toc-demonstracao-eqm">Demonstracao <span class="math inline">\(EQM\)</span></a></li>
+            </ul></li>
+            <li><a href="#amostragem-aleatória-simples---aas" id="toc-amostragem-aleatória-simples---aas">Amostragem
+            Aleatória Simples - AAS</a></li>
+            </ul></li>
+            <li><a href="#aasc" id="toc-aasc">AASc</a>
+            <ul>
+            <li><a href="#variavel-f_i" id="toc-variavel-f_i">Variavel
+            <span class="math inline">\(f_i\)</span></a></li>
+            <li><a href="#variavel-ts" id="toc-variavel-ts">Variavel
+            <span class="math inline">\(t(s)\)</span></a></li>
+            <li><a href="#estimador-da-média-populacional-bar-y" id="toc-estimador-da-média-populacional-bar-y">Estimador da
+            média populacional <span class="math inline">\(\bar
+            y\)</span></a></li>
+            <li><a href="#estimador-do-total-populacional-ts" id="toc-estimador-do-total-populacional-ts">Estimador do
+            total populacional <span class="math inline">\(T(s)\)</span></a></li>
+            <li><a href="#estimador-da-variancia-populacional-s2" id="toc-estimador-da-variancia-populacional-s2">Estimador da
+            variancia populacional <span class="math inline">\(s^2\)</span></a></li>
+            <li><a href="#estimadores-para-varbar-y-e-vart" id="toc-estimadores-para-varbar-y-e-vart">Estimadores para
+            <span class="math inline">\(Var(\bar y)\)</span> e <span class="math inline">\(Var(T)\)</span></a></li>
+            <li><a href="#normalidade-assintotica" id="toc-normalidade-assintotica">Normalidade
+            Assintotica</a></li>
+            <li><a href="#intervalo-de-confiança-para-a-média" id="toc-intervalo-de-confiança-para-a-média">Intervalo de
+            Confiança para a Média</a></li>
+            <li><a href="#determinação-do-tamanho-da-amostra" id="toc-determinação-do-tamanho-da-amostra">Determinação do
+            Tamanho da Amostra</a></li>
+            </ul></li>
             <li><a href="#aass" id="toc-aass">AASs</a></li>
             <li><a href="#aasc-1" id="toc-aasc-1">AASc</a></li>
             </ul>
@@ -1924,9 +1970,388 @@ Y}=\frac{\sigma_{X Y}}{\sigma_X \sigma_Y}\)</span></p></li>
 \frac{Y_i}{X_i}\)</span></p></li>
 </ul>
 </div>
+<div id="planejamento-amostral" class="section level3">
+<h3>Planejamento Amostral</h3>
+<p>Mecanismo que associa a probabilidade de ocorrência de cada possível
+amostra, <span class="math inline">\(P(s)\)</span> definida em <span class="math inline">\(S(U)\)</span>, i.e.,</p>
+<p><span class="math display">\[
+P(.): S(U) \rightarrow[0,1]
+\]</span></p>
+<p>satisfazendo</p>
+<p><span class="math display">\[
+P(s) \geq 0, \forall s \in S(U)
+\]</span></p>
+<p>e tal que</p>
+<p><span class="math display">\[
+\sum_{s, s \in S} P(s)=1
+\]</span></p>
+<div id="exemplo-1" class="section level4">
+<h4>Exemplo:</h4>
+<p>Plano Amostral A: Sorteia-se com igual probabilidade um elemento de
+<span class="math inline">\(U\)</span> e anota-se a unidade sorteada.
+Este elemento é devolvido à população e sorteia-se um segundo elemento
+do mesmo modo.</p>
+<p><span class="math display">\[
+\begin{aligned}
+&amp; S_A(U)=\{11,12,13,21,22,23,31,32,33\} \\
+&amp; P_A=\left\{\begin{array}{cl}
+1 / 9, &amp; \text { se } i \in S \\
+0, &amp; \text { se } i \notin S
+\end{array}\right.
+\end{aligned}
+\]</span></p>
+</div>
+</div>
+<div id="dados-da-amostra-s" class="section level3">
+<h3>Dados da amostra <span class="math inline">\(s\)</span></h3>
+<p>Vetor ou a matriz das observações pertencentes à amostra, i.é.,</p>
+<p><span class="math display">\[
+\boldsymbol{d s}=\left(Y_{k 1}, Y_{k 2}, \ldots, Y_{k
+n}\right)=\left(Y_{k i}, k_i \in \boldsymbol{s}\right) .
+\]</span></p>
+<p>Quando <span class="math inline">\(s\)</span> percorre todos os
+pontos possíveis de um plano amostral <span class="math inline">\(S_A\)</span>, tem-se um vetor aleatório</p>
+<p><span class="math display">\[
+\boldsymbol{d}=\boldsymbol{y}=\left(y_1, \ldots, y_i, \ldots, y_n\right)
+\]</span> onde <span class="math inline">\(y_i\)</span> é a v.a. que
+indica os valores possíveis de ocorrer na i-ésima posição da
+amostra.</p>
+<p>Sao dados calculados a partir da amostra, por exemplo renda media ou
+renda pelo numero de pessoas que trabalham. Ambos sao informacoes que
+podem ser calculadas a partida da amostra num contexto onde as unidades
+amostradas contenham essa informacao. Logo ao calcular esses dados para
+todas as amostras possiveis e a partir deles poderemos calcular a
+probabilidade de cada um ocorrer (no caso do exemplo a probabilidade de
+cada media ocorrer)</p>
+</div>
+<div id="conjunto-de-todas-as-amostras-possíveis" class="section level3">
+<h3>Conjunto de todas as amostras possíveis</h3>
+<p>Nesse caso, tem-se um vetor (matriz) aleatório</p>
+<p><span class="math display">\[
+\boldsymbol{D} \boldsymbol{s}=\boldsymbol{Y}=\left(Y_1, \ldots, Y_i,
+\ldots, Y_n\right),
+\]</span></p>
+<p>em que <span class="math inline">\(Y_i\)</span> é a v.a. que
+representa os valores possíveis de ocorrerem na i-ésima posição da
+amostra.</p>
+</div>
+<div id="estatística-ou-estimador" class="section level3">
+<h3>Estatística ou Estimador</h3>
+<p>É qualquer função da amostra que relaciona as observações da
+amostra</p>
+<p><span class="math display">\[
+T=H(\boldsymbol{Y}), \quad t=h(\boldsymbol{y}) \text { (valor observado)
+}
+\]</span></p>
+</div>
+<div id="distribuição-amostral" class="section level3">
+<h3>Distribuição Amostral</h3>
+<p>A distribuicao de uma estatística segundo um plano amostral <span class="math inline">\(A\)</span> é a distribuição de probabilidades de
+<span class="math inline">\(H(\boldsymbol{d} \boldsymbol{s})\)</span>,
+definida sobre <span class="math inline">\(S_A\)</span>, com função de
+probabilidade dada por:</p>
+<p><span class="math display">\[
+p_h=P_A\left(\boldsymbol{s} \in S_A ; H(\boldsymbol{d}
+\boldsymbol{s})=h\right)=P(h)
+\]</span></p>
+<p>Nesse caso uma vez que a gente ja tenha calculado todas as amostras
+possiveis, e depois ter calculado, por exemplo, a media de cada amostra,
+teremos uma nocao dos valores que podem ser assumidos nessa amostra, ai
+poderemos partir para calcular a probabilidade de ocorrencia de cada
+valor.</p>
+<div id="exemplo---plano-amostral-a-aasc" class="section level4">
+<h4>Exemplo - Plano Amostral A (AASc)</h4>
+<p>Sorteia-se com igual probabilidade um elemento de <span class="math inline">\(U\)</span> e anota-se a unidade sorteada. Este
+elemento é devolvido à população e sorteia-se um segundo elemento do
+mesmo modo.</p>
+<table style="width:100%;">
+<colgroup>
+<col width="10%" />
+<col width="10%" />
+<col width="10%" />
+<col width="10%" />
+<col width="10%" />
+<col width="10%" />
+<col width="10%" />
+<col width="10%" />
+<col width="10%" />
+<col width="10%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center"><span class="math inline">\(s\)</span></th>
+<th align="center">11</th>
+<th align="center">12</th>
+<th align="center">13</th>
+<th align="center">21</th>
+<th align="center">22</th>
+<th align="center">23</th>
+<th align="center">31</th>
+<th align="center">32</th>
+<th align="center">33</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><span class="math inline">\(P(s)\)</span></td>
+<td align="center"><span class="math inline">\(1 / 9\)</span></td>
+<td align="center"><span class="math inline">\(1 / 9\)</span></td>
+<td align="center"><span class="math inline">\(1 / 9\)</span></td>
+<td align="center"><span class="math inline">\(1 / 9\)</span></td>
+<td align="center"><span class="math inline">\(1 / 9\)</span></td>
+<td align="center"><span class="math inline">\(1 / 9\)</span></td>
+<td align="center"><span class="math inline">\(1 / 9\)</span></td>
+<td align="center"><span class="math inline">\(1 / 9\)</span></td>
+<td align="center"><span class="math inline">\(1 / 9\)</span></td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(r\)</span></td>
+<td align="center">12,0</td>
+<td align="center">10,5</td>
+<td align="center">10,0</td>
+<td align="center">10,5</td>
+<td align="center">10,0</td>
+<td align="center">9,6</td>
+<td align="center">10,0</td>
+<td align="center">9,6</td>
+<td align="center">9,0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="esperanca-e-variancia" class="section level3">
+<h3>Esperanca e Variancia</h3>
+<p>Considere o <span class="math inline">\(P A(A)\)</span>, uma
+estatística <span class="math inline">\(H(\boldsymbol{d} s),
+\boldsymbol{s} \in S_A\)</span> e seja <span class="math inline">\(P(h)\)</span> a função de probabilidade
+correspondente ao plano amostral. Então, o valor esperado (média) da
+variável <span class="math inline">\(H\)</span> será:</p>
+<p><span class="math display">\[
+E_A[T]=\sum h p_h
+\]</span></p>
+<p>e sua variância</p>
+<p><span class="math display">\[
+V_A[T]=\sum_h\left(h-E_A(T)\right)^2=E_A\left(T^2\right)-E_A(T)^2
+\]</span></p>
+</div>
+<div id="covariancia-e-correlacao" class="section level3">
+<h3>Covariancia e Correlacao</h3>
+<p>Sejam T e G duas estatísticas, então a covariância e a correlação
+entre ambas são expressas a seguir:</p>
+<p><span class="math display">\[
+\begin{aligned}
+&amp; \operatorname{Cov}_A[T, G]=E_A(T, G)-E_A(T, G)^2 \\
+\\
+&amp; \operatorname{Corr}_A[T, G]=\frac{\operatorname{Cov}_A[T,
+G]}{\sqrt{V_A[T] \cdot V_A[G]}}
+\end{aligned}
+\]</span></p>
+</div>
+<div id="viés-e-erro-quadratico-medio-eqm" class="section level3">
+<h3>Viés e Erro Quadratico Medio (EQM)</h3>
+<p>Um estimador <span class="math inline">\(\hat{\theta}\left(d_s\right)\)</span> é dito não
+viciado segundo um plano amostral <span class="math inline">\(A\)</span>, se:</p>
+<p><span class="math display">\[
+E_A[\hat{\theta}]=\theta
+\]</span></p>
+<p>O viés (ou vício) do estimador <span class="math inline">\(\hat{\theta}\left(d_s\right)\)</span>, segundo o
+plano amostral <span class="math inline">\(A\)</span>, é dado por</p>
+<p><span class="math display">\[
+B_A[\hat{\theta}]=E_A[\hat{\theta}-\theta]=E_A[\hat{\theta}]-\theta
+\]</span></p>
+<p>e o Erro Quadrático Médio por</p>
+<p><span class="math display">\[
+E Q
+M_A[\hat{\theta}]=E_A[\hat{\theta}-\theta]^2=\operatorname{Var}_A[\hat{\theta}]+B_A^2[\hat{\theta}]
+\]</span></p>
+<div id="demonstracao-eqm" class="section level4">
+<h4>Demonstracao <span class="math inline">\(EQM\)</span></h4>
+<p><span class="math display">\[
+\begin{aligned}
+&amp; E Q
+M_A[\hat{\theta}]=\operatorname{Var}_A[\hat{\theta}]+B_A^2[\hat{\theta}]
+\\ &amp; E Q M_A[\hat{\theta}]=E_A(\hat{\theta}-\theta)^2 \\
+&amp;
+=E_A\left[\left(\hat{\theta}-E_A(\hat{\theta})\right)+\left(E_A(\hat{\theta})-\theta\right)\right]^2
+\\
+&amp;
+=E_A\left[\hat{\theta}-E_A(\hat{\theta})\right]^2+\left(E_A(\hat{\theta})-\theta\right)^2
+\\
+&amp; =\operatorname{Var}_A[\hat{\theta}]+B_A^2[\hat{\theta}]
+\end{aligned}
+\]</span></p>
+</div>
+</div>
+<div id="amostragem-aleatória-simples---aas" class="section level3">
+<h3>Amostragem Aleatória Simples - AAS</h3>
+<p>Chama-se tamanho efetivo <span class="math inline">\(n(s)\)</span> da
+amostra <span class="math inline">\(s\)</span> a soma das frequências
+das unidades populacionais na amostra, isto é,</p>
+<p><span class="math display">\[
+n(s)=\sum_{i=1}^N f_i(s)
+\]</span></p>
+<p>Chama-se tamanho fixo efetivo <span class="math inline">\(v(\boldsymbol{s})\)</span> da amostra <span class="math inline">\(\boldsymbol{s}\)</span> o número de unidades
+populacionais distintas presentes na amostra <span class="math inline">\(s\)</span>, isto é,</p>
+<p><span class="math display">\[
+v(s)=\sum_{i=1}^N \delta_i(s)
+\]</span></p>
+<p>Indica-se por <span class="math inline">\(\pi_i(A)\)</span>, a
+probabilidade de o <span class="math inline">\(i\)</span>-ésimo elemente
+de <span class="math inline">\(U\)</span> pertencer à amostra segundo o
+planejamento <span class="math inline">\(A\)</span>, e <span class="math inline">\(\pi_{i j}(A)\)</span> a probabilidade de o <span class="math inline">\(i\)</span>-ésimo e <span class="math inline">\(j\)</span>-ésimo elementos pertencerem
+simultaneamente à amostra. Deste modo,</p>
+<p><span class="math display">\[
+\pi_i(A)=P_A\left(\delta_i=1\right)=\sum_{\left\{s ; s \in S_A\right\}}
+P_A\left(\delta_i=1\right)=\sum_{\{s ; s \supset i\}} P_A(s)
+\]</span></p>
+<p>e</p>
+<p><span class="math display">\[
+\pi_{i j}(A)=P_A\left(\delta_{i j}=1\right)=\sum_{\{s ; s \supset\{i,
+j\}\}} P_A(s)
+\]</span></p>
+</div>
 </div>
 <div id="aasc" class="section level2">
 <h2>AASc</h2>
+<div id="variavel-f_i" class="section level3">
+<h3>Variavel <span class="math inline">\(f_i\)</span></h3>
+<p>Para o plano <span class="math inline">\(AASc\)</span> a variável
+<span class="math inline">\(f_i\)</span>, número de vezes que a unidade
+<span class="math inline">\(i\)</span> aparece na amostra, segue uma
+distribuição binomial com parâmetros <span class="math inline">\(n\)</span> e <span class="math inline">\(1/N\)</span>, denotado por</p>
+<p><span class="math display">\[
+f_i \sim \operatorname{Bin}\left(n ; \frac{1}{N}\right)
+\]</span></p>
+<p>de modo que</p>
+<p><span class="math display">\[
+\begin{aligned}
+&amp; E\left[f_i\right]=\frac{n}{N} \quad  \\
+&amp;
+\operatorname{Var}\left[f_i\right]=\frac{n}{N}\left(1-\frac{1}{N}\right)
+\quad \\
+&amp; \operatorname{Cov}\left[f_i, f_j\right]=-\frac{n}{N^2}, i \neq j
+\quad i, j=\overline{1, N} \\
+&amp; \pi_i=1-\left(1-\frac{1}{N}\right)^n \\
+&amp; \pi_{i
+j}=1-2\left(1-\frac{1}{N}\right)^n+\left(1-\frac{2}{N}\right)^n
+\end{aligned}
+\]</span></p>
+</div>
+<div id="variavel-ts" class="section level3">
+<h3>Variavel <span class="math inline">\(t(s)\)</span></h3>
+<p>A estatística <span class="math inline">\(t(s)\)</span>, total da
+amostra, definida por:</p>
+<p><span class="math display">\[
+t(s)=\sum_{i \in s} Y_i
+\]</span></p>
+<p>tem, para o plano <span class="math inline">\(AASc\)</span>, as
+seguinte propriedades:</p>
+<p><span class="math display">\[
+\begin{gathered}
+E[t]=n \mu \\
+\operatorname{Var}[t]=n \sigma^2
+\end{gathered}
+\]</span></p>
+</div>
+<div id="estimador-da-média-populacional-bar-y" class="section level3">
+<h3>Estimador da média populacional <span class="math inline">\(\bar
+y\)</span></h3>
+<p>A média amostral</p>
+<p><span class="math display">\[
+\bar{y}=\frac{1}{n} \sum_{i \in s} Y_i=\frac{t(s)}{n}=\hat{\mu}
+\]</span></p>
+<p>é um estimador não viesado da média populacional <span class="math inline">\(\mu\)</span> dentro do plano <span class="math inline">\(A A S C\)</span>, e ainda</p>
+<p><span class="math display">\[
+\operatorname{Var}[\bar{y}]=\frac{\sigma^2}{n}
+\]</span></p>
+</div>
+<div id="estimador-do-total-populacional-ts" class="section level3">
+<h3>Estimador do total populacional <span class="math inline">\(T(s)\)</span></h3>
+<p>Do plano <span class="math inline">\(A A S c\)</span>, a
+estatística</p>
+<p><span class="math display">\[
+T(s)=\hat{t}=N \bar{y}=\frac{N}{n} t(s)
+\]</span></p>
+<p>é um estimador não viesado do total populacional, com</p>
+<p><span class="math display">\[
+\operatorname{Var}[T]=N^2 \frac{\sigma^2}{n}
+\]</span></p>
+</div>
+<div id="estimador-da-variancia-populacional-s2" class="section level3">
+<h3>Estimador da variancia populacional <span class="math inline">\(s^2\)</span></h3>
+<p>Dentro do plano <span class="math inline">\(A A S c\)</span>, a
+estatística</p>
+<p><span class="math display">\[
+s^2=\frac{1}{n-1} \sum_{i \in s}\left(Y_i-\bar{y}\right)^2
+\]</span></p>
+<p>é um estimador não viesado para a variância populacional <span class="math inline">\(\sigma^2\)</span>.</p>
+</div>
+<div id="estimadores-para-varbar-y-e-vart" class="section level3">
+<h3>Estimadores para <span class="math inline">\(Var(\bar y)\)</span> e
+<span class="math inline">\(Var(T)\)</span></h3>
+<p>Para o plano <span class="math inline">\(AASc\)</span>, a
+estatística</p>
+<p><span class="math display">\[
+\operatorname{var}[\bar{y}]=\widehat{\operatorname{Var}[\bar{y}}]=\frac{s^2}{n}
+\]</span></p>
+<p>é um estimador não viesado para a variância da média amostral, <span class="math inline">\(\operatorname{Var}[\bar{y}]\)</span>, e</p>
+<p><span class="math display">\[
+\operatorname{var}[T]=\widehat{\operatorname{Var}[T]}=N^2 \frac{s^2}{n}
+\]</span></p>
+<p>é um estimador não viesado de <span class="math inline">\(\operatorname{Var}[T]\)</span>. Tudo o que foi
+feito foi a substituicao da variancia populacional <span class="math inline">\((\sigma^2)\)</span> pelo seu estimador <span class="math inline">\(s^2\)</span></p>
+</div>
+<div id="normalidade-assintotica" class="section level3">
+<h3>Normalidade Assintotica</h3>
+<p>Para <span class="math inline">\(n\)</span> suficientemente grande,
+<span class="math inline">\(\frac{\widehat{\theta}-E(\widehat{\theta})}{\sqrt{\operatorname{Var}(\widehat{\theta})}}
+\sim N(0,1)\)</span> Com relação à <span class="math inline">\(AASc\)</span></p>
+<p><span class="math display">\[
+\frac{\bar{y}-\mu}{\sqrt{\sigma^2 / n}} \sim N(0,1) \text { e }
+\frac{T-\tau}{N \sqrt{\sigma^2 / n}} \sim N(0,1)
+\]</span></p>
+</div>
+<div id="intervalo-de-confiança-para-a-média" class="section level3">
+<h3>Intervalo de Confiança para a Média</h3>
+<p>Com relação à média, para <span class="math inline">\(n\)</span>
+suficientemente grande,</p>
+<p><span class="math display">\[
+P\left(\frac{|\bar{y}-\mu|}{\sqrt{\sigma^2 / n}} \leq z_\alpha\right)
+\cong 1-\alpha
+\]</span></p>
+<p>Como <span class="math inline">\(\sigma^2\)</span> é desconhecido,
+faz-se uso de <span class="math inline">\(s^2\)</span>, então</p>
+<p><span class="math display">\[
+P\left(\bar{y}-z_\alpha \sqrt{s^2 / n} \leq \mu \leq \bar{y}+z_\alpha
+\sqrt{s^2 / n}\right) \cong 1-\alpha
+\]</span></p>
+<p>Onde segue que</p>
+<p><span class="math display">\[
+I C(\mu ;(1-\alpha) 100 \%)=\left(\bar{y}-z_\alpha \sqrt{\frac{s^2}{n}}
+; \bar{y}+z_\alpha \sqrt{\frac{s^2}{n}}\right)
+\]</span></p>
+</div>
+<div id="determinação-do-tamanho-da-amostra" class="section level3">
+<h3>Determinação do Tamanho da Amostra</h3>
+<p>O objetivo determinar <span class="math inline">\(n\)</span>, de modo
+que o estimador obtido tenha um erro máximo de estimação igual a <span class="math inline">\(B\)</span>, isto é,</p>
+<p><span class="math display">\[
+P(|\bar{y}-\mu| \leq B) \cong 1-\alpha
+\]</span></p>
+<p>Mas</p>
+<p><span class="math display">\[
+P\left(|\bar{y}-\mu| \leq z_\alpha \sqrt{\sigma^2 / n}\right) \cong
+1-\alpha
+\]</span></p>
+<p>Então,</p>
+<p><span class="math display">\[
+B=z_\alpha \sqrt{\sigma^2 / n} \rightarrow n=\frac{\sigma^2}{\left(B /
+z_\alpha\right)^2}
+\]</span></p>
+<p>Obs: O <span class="math inline">\(\sigma^2\)</span> é obtida de uma
+amostra piloto, de pesquisas anteriores, ou IC <span class="math inline">\((\mu ; 95 \%)=4 \sigma\)</span>.</p>
+</div>
 </div>
 <div id="aass" class="section level2">
 <h2>AASs</h2>

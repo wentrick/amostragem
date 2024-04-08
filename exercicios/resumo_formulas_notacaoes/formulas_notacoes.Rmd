@@ -172,21 +172,243 @@ $$
 Nesse caso uma vez que a gente ja tenha calculado todas as amostras possiveis, e depois ter calculado, por exemplo, a media de cada amostra, teremos uma nocao dos valores que podem ser assumidos nessa amostra, ai poderemos partir para calcular a probabilidade de ocorrencia de cada valor.
 
 
+#### Exemplo - Plano Amostral A (AASc)
+
+Sorteia-se com igual probabilidade um elemento de $U$ e anota-se a unidade sorteada. Este elemento é devolvido à população e sorteia-se um segundo elemento do mesmo modo.
+
+| $s$ | 11 | 12 | 13 | 21 | 22 | 23 | 31 | 32 | 33 |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| $P(s)$ | $1 / 9$ | $1 / 9$ | $1 / 9$ | $1 / 9$ | $1 / 9$ | $1 / 9$ | $1 / 9$ | $1 / 9$ | $1 / 9$ |
+| $r$ | 12,0 | 10,5 | 10,0 | 10,5 | 10,0 | 9,6 | 10,0 | 9,6 | 9,0 |
 
 
+### Esperanca e Variancia 
 
+Considere o $P A(A)$, uma estatística $H(\boldsymbol{d} s), \boldsymbol{s} \in S_A$ e seja $P(h)$ a função de probabilidade correspondente ao plano amostral. Então, o valor esperado (média) da variável $H$ será:
 
+$$
+E_A[T]=\sum h p_h
+$$
 
+e sua variância
 
+$$
+V_A[T]=\sum_h\left(h-E_A(T)\right)^2=E_A\left(T^2\right)-E_A(T)^2
+$$
 
+### Covariancia e Correlacao
 
+Sejam T e G duas estatísticas, então a covariância e a correlação entre ambas são expressas a seguir:
 
+$$
+\begin{aligned}
+& \operatorname{Cov}_A[T, G]=E_A(T, G)-E_A(T, G)^2 \\
+\\
+& \operatorname{Corr}_A[T, G]=\frac{\operatorname{Cov}_A[T, G]}{\sqrt{V_A[T] \cdot V_A[G]}}
+\end{aligned}
+$$
+ 
+### Viés e Erro Quadratico Medio (EQM)
 
+Um estimador $\hat{\theta}\left(d_s\right)$ é dito não viciado segundo um plano amostral $A$, se:
 
+$$
+E_A[\hat{\theta}]=\theta
+$$
 
+O viés (ou vício) do estimador $\hat{\theta}\left(d_s\right)$, segundo o plano amostral $A$, é dado por
+
+$$
+B_A[\hat{\theta}]=E_A[\hat{\theta}-\theta]=E_A[\hat{\theta}]-\theta
+$$
+
+e o Erro Quadrático Médio por
+
+$$
+E Q M_A[\hat{\theta}]=E_A[\hat{\theta}-\theta]^2=\operatorname{Var}_A[\hat{\theta}]+B_A^2[\hat{\theta}]
+$$
+
+#### Demonstracao $EQM$
+
+$$
+\begin{aligned} 
+& E Q M_A[\hat{\theta}]=\operatorname{Var}_A[\hat{\theta}]+B_A^2[\hat{\theta}] \\ & E Q M_A[\hat{\theta}]=E_A(\hat{\theta}-\theta)^2 \\ 
+& =E_A\left[\left(\hat{\theta}-E_A(\hat{\theta})\right)+\left(E_A(\hat{\theta})-\theta\right)\right]^2 \\ 
+& =E_A\left[\hat{\theta}-E_A(\hat{\theta})\right]^2+\left(E_A(\hat{\theta})-\theta\right)^2 \\
+& =\operatorname{Var}_A[\hat{\theta}]+B_A^2[\hat{\theta}]
+\end{aligned} 
+$$
+
+### Amostragem Aleatória Simples - AAS
+
+Chama-se tamanho efetivo $n(s)$ da amostra $s$ a soma das frequências das unidades populacionais na amostra, isto é,
+
+$$
+n(s)=\sum_{i=1}^N f_i(s)
+$$
+
+Chama-se tamanho fixo efetivo $v(\boldsymbol{s})$ da amostra $\boldsymbol{s}$ o número de unidades populacionais distintas presentes na amostra $s$, isto é,
+
+$$
+v(s)=\sum_{i=1}^N \delta_i(s)
+$$
+
+Indica-se por $\pi_i(A)$, a probabilidade de o $i$-ésimo elemente de $U$ pertencer à amostra segundo o planejamento $A$, e $\pi_{i j}(A)$ a probabilidade de o $i$-ésimo e $j$-ésimo elementos pertencerem simultaneamente à amostra. Deste modo,
+
+$$
+\pi_i(A)=P_A\left(\delta_i=1\right)=\sum_{\left\{s ; s \in S_A\right\}} P_A\left(\delta_i=1\right)=\sum_{\{s ; s \supset i\}} P_A(s)
+$$
+
+e
+
+$$
+\pi_{i j}(A)=P_A\left(\delta_{i j}=1\right)=\sum_{\{s ; s \supset\{i, j\}\}} P_A(s)
+$$
 
 
 ## AASc
+
+### Variavel $f_i$
+
+Para o plano $AASc$ a variável $f_i$, número de vezes que a unidade $i$ aparece na amostra, segue uma distribuição binomial com parâmetros $n$ e $1/N$, denotado por
+
+$$
+f_i \sim \operatorname{Bin}\left(n ; \frac{1}{N}\right)
+$$
+
+de modo que
+
+$$
+\begin{aligned}
+& E\left[f_i\right]=\frac{n}{N} \quad  \\
+& \operatorname{Var}\left[f_i\right]=\frac{n}{N}\left(1-\frac{1}{N}\right) \quad \\
+& \operatorname{Cov}\left[f_i, f_j\right]=-\frac{n}{N^2}, i \neq j \quad i, j=\overline{1, N} \\
+& \pi_i=1-\left(1-\frac{1}{N}\right)^n \\
+& \pi_{i j}=1-2\left(1-\frac{1}{N}\right)^n+\left(1-\frac{2}{N}\right)^n
+\end{aligned}
+$$
+
+### Variavel $t(s)$ 
+
+A estatística $t(s)$, total da amostra, definida por:
+
+$$
+t(s)=\sum_{i \in s} Y_i
+$$
+
+tem, para o plano $AASc$, as seguinte propriedades:
+
+$$
+\begin{gathered}
+E[t]=n \mu \\
+\operatorname{Var}[t]=n \sigma^2
+\end{gathered}
+$$
+
+### Estimador da média populacional $\bar y$
+
+A média amostral
+
+$$
+\bar{y}=\frac{1}{n} \sum_{i \in s} Y_i=\frac{t(s)}{n}=\hat{\mu}
+$$
+
+é um estimador não viesado da média populacional $\mu$ dentro do plano $A A S C$, e ainda
+
+$$
+\operatorname{Var}[\bar{y}]=\frac{\sigma^2}{n}
+$$
+
+### Estimador do total populacional $T(s)$
+
+Do plano $A A S c$, a estatística
+
+$$
+T(s)=\hat{t}=N \bar{y}=\frac{N}{n} t(s)
+$$
+
+é um estimador não viesado do total populacional, com
+
+$$
+\operatorname{Var}[T]=N^2 \frac{\sigma^2}{n}
+$$
+
+### Estimador da variancia populacional $s^2$
+
+Dentro do plano $A A S c$, a estatística
+
+$$
+s^2=\frac{1}{n-1} \sum_{i \in s}\left(Y_i-\bar{y}\right)^2
+$$
+
+é um estimador não viesado para a variância populacional $\sigma^2$.
+
+### Estimadores para $Var(\bar y)$ e $Var(T)$
+
+Para o plano $AASc$, a estatística
+
+$$
+\operatorname{var}[\bar{y}]=\widehat{\operatorname{Var}[\bar{y}}]=\frac{s^2}{n}
+$$
+
+é um estimador não viesado para a variância da média amostral, $\operatorname{Var}[\bar{y}]$, e
+
+$$
+\operatorname{var}[T]=\widehat{\operatorname{Var}[T]}=N^2 \frac{s^2}{n}
+$$
+
+é um estimador não viesado de $\operatorname{Var}[T]$. Tudo o que foi feito foi a substituicao da variancia populacional $(\sigma^2)$ pelo seu estimador $s^2$
+
+### Normalidade Assintotica 
+
+Para $n$ suficientemente grande, $\frac{\widehat{\theta}-E(\widehat{\theta})}{\sqrt{\operatorname{Var}(\widehat{\theta})}} \sim N(0,1)$
+Com relação à $AASc$
+
+$$
+\frac{\bar{y}-\mu}{\sqrt{\sigma^2 / n}} \sim N(0,1) \text { e } \frac{T-\tau}{N \sqrt{\sigma^2 / n}} \sim N(0,1)
+$$
+
+### Intervalo de Confiança para a Média
+
+Com relação à média, para $n$ suficientemente grande,
+
+$$
+P\left(\frac{|\bar{y}-\mu|}{\sqrt{\sigma^2 / n}} \leq z_\alpha\right) \cong 1-\alpha
+$$
+
+Como $\sigma^2$ é desconhecido, faz-se uso de $s^2$, então
+
+$$
+P\left(\bar{y}-z_\alpha \sqrt{s^2 / n} \leq \mu \leq \bar{y}+z_\alpha \sqrt{s^2 / n}\right) \cong 1-\alpha
+$$
+
+Onde segue que
+
+$$
+I C(\mu ;(1-\alpha) 100 \%)=\left(\bar{y}-z_\alpha \sqrt{\frac{s^2}{n}} ; \bar{y}+z_\alpha \sqrt{\frac{s^2}{n}}\right)
+$$
+
+### Determinação do Tamanho da Amostra
+
+O objetivo determinar $n$, de modo que o estimador obtido tenha um erro máximo de estimação igual a $B$, isto é,
+
+$$
+P(|\bar{y}-\mu| \leq B) \cong 1-\alpha
+$$
+
+Mas
+
+$$
+P\left(|\bar{y}-\mu| \leq z_\alpha \sqrt{\sigma^2 / n}\right) \cong 1-\alpha
+$$
+
+Então,
+
+$$
+B=z_\alpha \sqrt{\sigma^2 / n} \rightarrow n=\frac{\sigma^2}{\left(B / z_\alpha\right)^2}
+$$
+
+Obs: O $\sigma^2$ é obtida de uma amostra piloto, de pesquisas anteriores, ou IC $(\mu ; 95 \%)=4 \sigma$.
 
 ## AASs
 
