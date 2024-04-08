@@ -1,0 +1,52 @@
+---
+title: "Lista 1 Amostragem"
+author: "Davi Wentrick Feijó"
+date: "2024-04-06"
+output: 
+  rmdformats::downcute:
+    self_contained: true
+    thumbnails: true
+    lightbox: true
+    gallery: true
+    highlight: tango
+    toc_depth : 4
+  html_document:
+    toc: false
+    toc_depth: 5
+    toc_float: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Questao 1
+
+Considerando uma AASs prove que $E[s^2] = S^2$
+
+
+## Questao 2 
+
+Considerando uma AASc prove que $E[\hat P] = P$ e que $Var[p] = \frac{\hat P (1 - \hat P)}{n-1}$ é nao viesado de $Var[\hat P]$
+
+## Questao 3 
+
+Prove que para um $C$ fixado o tamanho ótimo da amostra é dado por $n = C \frac{\sum_{h=1}^H N_h \sigma_h /\sqrt{c_h}}{\sum_{h=1}^H N_h \sigma_h \sqrt{c_h}}$
+
+## Questao 4
+
+Para $V_{es}$ fixado o tamanho otimo da amostra é dado por:
+
+$$
+n = \frac{1}{V_{es}} \left( \sum_{h=1}^H W_h \sigma_h \sqrt{c_h}   \right) \left( \sum_{h=1}^H W_h \sigma_h /\sqrt{c_h}   \right)
+$$
+
+## Questao 5
+
+Prove que para o caso em que o custo por unidade observada em todos os estratos seja fixado em c, isto é, $C^{\prime}=C-c_0=n c$, a alocação ótima se reduz a $n_h=n \frac{N_h \sigma_h}{\sum_{h=1}^H N_h \sigma_h}$.  Neste caso, $V_{es}$ se reduz a $\operatorname{Var}_{o t}=\frac{1}{n}\left(\sum_{h=1}^H W_h \sigma_h\right)^2=\frac{\bar{\sigma}^2}{n}$ ,  onde  $\bar{\sigma}=\sum_{h=1}^H W_h \sigma_h$ é um desvio padrão médio dentro de cada estrato. 
+
+
+
+
+
+

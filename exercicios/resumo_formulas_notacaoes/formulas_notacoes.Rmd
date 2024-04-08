@@ -1,0 +1,195 @@
+---
+title: "Formulas e Notacoes - Amostragem"
+author: "Davi Wentrick Feijó"
+date: "2024-04-06"
+output: 
+  rmdformats::downcute:
+    self_contained: true
+    thumbnails: true
+    lightbox: true
+    gallery: true
+    highlight: tango
+    toc_depth : 4
+  html_document:
+    toc: false
+    toc_depth: 5
+    toc_float: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Conceitos Básicos
+
+### População ou Universo - $U$
+
+É o conjunto de todas as unidades elementares de interesse, podendo ser denotada por: 
+
+$$
+U=\{1,2, \ldots, N\}
+$$
+onde $N$ é o tamanho fixo e, as vezes, desconhecido da população.
+
+### Característica(s) de interesse - $Y_i$
+
+É a nomenclatura para denotar a variável ou o vetor de informações associado a cada elemento da população.
+
+$$
+Y_i \ \ \text{com} \ \ i \in U
+$$
+
+### Amostra - $s$,$S$ e $S_n$
+
+Uma sequência qualquer de $n$ unidades de $U$ é denominada uma amostra aleatória de $U$, isto é,
+
+$$
+s=\left(k_1, k_2, \ldots, k_n\right)
+$$
+tal que $k_i \in U$
+
+Seja $S(U)$, ou simplesmente $S$, o conjunto de todas as amostras (sequências ordenadas) de $U$, de qualquer tamanho. E seja $S_n(U)$ a subclasse de todas as amostras de tamanho $n$.
+
+*  $S(U)$ é denominado espaço amostral.
+
+#### Exemplo:
+
+Seja U = {1, 2, 3}. Então,
+
+$$
+\begin{gathered}
+S(U)=\{(1),(2),(3),(1,1),(1,2),(1,3),(2,1),
+\ldots,(2,2,1,3,2), \ldots\}
+\end{gathered}
+$$
+
+Ou seja $S(U)$ contem todas as possiveis amostras que podem ser retiradas de todos os $n$ possiveis
+
+$$
+\begin{gathered}
+S_2(U)=\{(1,1),(1,2),(1,3),(2,1),(2,2),(2,3),(3,1),(3,2),(3,3)\}
+\end{gathered}
+$$
+
+Quando queremos todas as amostras de tamanho 2 (n=2) usamos $S_2(U)$
+
+### Parametros de interesse
+
+* Total populacional: $\tau=\sum_{i=1}^N Y_i$
+
+* Média populacional: $\mu=\frac{\tau}{N}=\frac{1}{N} \sum_{i=1}^N Y_i$
+
+* Proporção populacional: $p=\frac{1}{N} \sum_{i=1}^N Y_i$, quando $Y_i \in 0,1, \forall i$
+
+* Variância populacional: $\sigma^2=\frac{1}{N} \sum_{i=1}^N\left(Y_i-\mu\right)^2$
+
+* Covariância populacional: $\sigma_{X Y}=\frac{1}{N} \sum_{i=1}^N\left(X_i-\mu_X\right)\left(Y_i-\mu_Y\right)$
+
+* Correlação populacional: $\rho_{X Y}=\frac{\sigma_{X Y}}{\sigma_X \sigma_Y}$
+
+* Razão populacional: $R=\frac{\tau_Y}{\tau_X}=\frac{\mu_Y}{\mu_X}$
+
+* Razão média populacional: $\bar{R}=\frac{1}{N} \sum_{i=1}^N \frac{Y_i}{X_i}$
+
+
+### Planejamento Amostral
+
+Mecanismo que associa a probabilidade de ocorrência de cada possível amostra, $P(s)$ definida em $S(U)$, i.e.,
+
+$$
+P(.): S(U) \rightarrow[0,1]
+$$
+
+satisfazendo
+
+$$
+P(s) \geq 0, \forall s \in S(U)
+$$
+
+e tal que
+
+$$
+\sum_{s, s \in S} P(s)=1
+$$
+
+#### Exemplo:
+
+Plano Amostral A: Sorteia-se com igual probabilidade um elemento de $U$ e anota-se a unidade sorteada. Este elemento é devolvido à população e sorteia-se um segundo elemento do mesmo modo.
+
+$$
+\begin{aligned}
+& S_A(U)=\{11,12,13,21,22,23,31,32,33\} \\
+& P_A=\left\{\begin{array}{cl}
+1 / 9, & \text { se } i \in S \\
+0, & \text { se } i \notin S
+\end{array}\right.
+\end{aligned}
+$$
+
+### Dados da amostra $s$
+
+Vetor ou a matriz das observações pertencentes à amostra, i.é.,
+
+$$
+\boldsymbol{d s}=\left(Y_{k 1}, Y_{k 2}, \ldots, Y_{k n}\right)=\left(Y_{k i}, k_i \in \boldsymbol{s}\right) .
+$$
+
+Quando $s$ percorre todos os pontos possíveis de um plano amostral $S_A$, tem-se um vetor aleatório
+
+$$
+\boldsymbol{d}=\boldsymbol{y}=\left(y_1, \ldots, y_i, \ldots, y_n\right)
+$$
+onde $y_i$ é a v.a. que indica os valores possíveis de ocorrer na i-ésima posição da amostra.
+
+Sao dados calculados a partir da amostra, por exemplo renda media ou renda pelo numero de pessoas que trabalham. Ambos sao informacoes que podem ser calculadas a partida da amostra num contexto onde as unidades amostradas contenham essa informacao. Logo ao calcular esses dados para todas as amostras possiveis e a partir deles poderemos calcular a probabilidade de cada um ocorrer (no caso do exemplo a probabilidade de cada media ocorrer)
+
+### Conjunto de todas as amostras possíveis
+
+Nesse caso, tem-se um vetor (matriz) aleatório
+
+$$
+\boldsymbol{D} \boldsymbol{s}=\boldsymbol{Y}=\left(Y_1, \ldots, Y_i, \ldots, Y_n\right),
+$$
+
+em que $Y_i$ é a v.a. que representa os valores possíveis de ocorrerem na i-ésima posição da amostra.
+
+### Estatística ou Estimador 
+
+É qualquer função da amostra que relaciona as observações da amostra
+
+$$
+T=H(\boldsymbol{Y}), \quad t=h(\boldsymbol{y}) \text { (valor observado) }
+$$
+
+### Distribuição Amostral 
+
+A distribuicao de uma estatística segundo um plano amostral $A$ é a distribuição de probabilidades de $H(\boldsymbol{d} \boldsymbol{s})$, definida sobre $S_A$, com função de probabilidade dada por:
+
+$$
+p_h=P_A\left(\boldsymbol{s} \in S_A ; H(\boldsymbol{d} \boldsymbol{s})=h\right)=P(h)
+$$
+
+Nesse caso uma vez que a gente ja tenha calculado todas as amostras possiveis, e depois ter calculado, por exemplo, a media de cada amostra, teremos uma nocao dos valores que podem ser assumidos nessa amostra, ai poderemos partir para calcular a probabilidade de ocorrencia de cada valor.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## AASc
+
+## AASs
+
+## AASc
+
+

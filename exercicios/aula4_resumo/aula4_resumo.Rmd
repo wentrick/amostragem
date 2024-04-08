@@ -277,10 +277,155 @@ Para o plano AASs, a estatística
 
 
 $$
-var(\bar y) = (1-f) \frac{s^2}{n}
+Var(\bar y) = (1-f) \frac{s^2}{n}
 $$
 
-terminar..
+é um estimador não viesado para a variância da média amostral, $Var[\bar y]$, e:
+
+$$
+Var[T] = N^2 (1-f) \frac{s^2}{n}
+$$
+
+é um estimador não viesado de $Var[T]$ 
+
+
+## Normalidade Assintótica
+
+
+
+## Intervalo de Confiança para a Média
+
+Para $n$ suficientemente grande, tem-se com relação à AASs
+
+$$
+\frac{\bar{y}-\mu}{\sqrt{(1-f) s^2 / n}} \sim N(0,1)
+$$
+
+e
+
+$$
+\frac{T-\tau}{N \sqrt{(1-f) s^2 / n}} \sim N(0,1)
+$$
+
+## Intervalo de Confiança para a Média
+
+Com relação à média, para $n$ suficientemente grande,
+
+$$
+P\left(\frac{|\bar{y}-\mu|}{\sqrt{(1-f) s^2 / n}} \leq z_\alpha\right) \cong 1-\alpha
+$$
+
+Como $S^2$ édesconhecido, faz-se uso de $s^2$, então
+
+$$
+P\left(\bar{y}-z_\alpha \sqrt{(1-f) s^2 / n} \leq \mu \leq \bar{y}+z_\alpha \sqrt{(1-f) s^2 / n}\right) \cong 1-\alpha
+$$
+
+Onde segue que:
+ 
+$$
+I C(\mu ; \gamma)=\left(\bar{y}-z_\alpha \sqrt{\frac{(1-f) s^2}{n}} ; \bar{y}+z_\alpha \sqrt{\frac{(1-f) s^2}{n}}\right)
+$$
+ 
+## Determinação do Tamanho da Amostra
+ 
+Foi visto que
+ 
+$$
+\operatorname{Var}[\bar{y}]=(1-f) \frac{S^2}{n}=\frac{(1-f)}{n}S^2=\frac{S^2}{n /(1-f)}=\frac{S^2}{n^{\prime}}
+$$
+ 
+Como
+
+$$
+\begin{align}
+B &= z_{\alpha / 2} \sqrt{(1-f) \frac{S^2}{n}} \\
+\frac{B}{z_{\alpha / 2}} &= \sqrt{(1-f) \frac{S^2}{n}} \\
+\left( \frac{B}{z_{\alpha / 2}} \right)^2 &= \left(\sqrt{(1-f) \frac{S^2}{n}}\right)^2 \\
+\left( \frac{B}{z_{\alpha / 2}} \right)^2 &= (1-f) \frac{S^2}{n} \\
+\end{align}
+$$
+
+Vamos chamar $D = \left( \frac{B}{z_{\alpha / 2}} \right)^2$
+
+
+$$
+\begin{align}
+\left( \frac{B}{z_{\alpha / 2}} \right)^2 &= (1-f) \frac{S^2}{n} \\
+D &= (1-f) \frac{S^2}{n} \\
+D &= \frac{S^2}{n^{\prime}} \\
+n^{\prime} &= \frac{S^2}{D} \\
+\end{align}
+$$
+
+Logo
+
+$$
+n^{\prime}=\frac{n}{1-n / N} \rightarrow n=\frac{n^{\prime}}{1+n^{\prime} / N}=\frac{\frac{S^2}{D}}{1+\frac{S^2}{D} / N}=\frac{1}{\frac{D}{S^2}+\frac{1}{N}}
+$$
+Nao entendi como ele chegou nesse resultado...
+
+
+## Comparação entre AASc e AASs
+
+O critério mais adotado em amostragem para comparar planos amostrais baseia-se no Efeito do Planejamento (EPA), que compara a variância de um plano qualquer com relação a um plano que é considerado padrão.
+
+
+$$
+E P A=\frac{\operatorname{Var}_{\text {plano amostral A} }[\bar{y}]}{\operatorname{Var}_{\text{plano amostral B} } [\bar{y}]}
+$$
+
+Quando o $EPA > 1$ tem-se que o plano do numerador é menos eficiente que o padrão. Quando $EPA < 1$ a situação é inversa.
+
+Comparando-se os planos amostrais AASc com AASs, tem-se que
+
+$$
+E P A=\frac{\operatorname{Var}_{A A S s}[\bar{y}]}{\operatorname{Var}_{A A S c}[\bar{y}]}=\frac{(1-f) S^2 / n}{\sigma^2 / n}=\frac{N-n}{N-1}
+$$
+
+Da expressão percebe-se que o $EPA \leq 1$, a menos que $n = 1$. Portanto, pode-se concluir que o planos amostral AASs é sempre melhor do que o AASc.
+
+
+## Estimação de Proporções em AASs
+
+Dado que
+
+$$
+Y_i= \begin{cases}1, & \text { se o elemento i possui a característica } \\ 0, & \text { caso contrário }\end{cases}
+$$
+
+Então,
+
+$$
+\begin{align}
+S^2 &= \frac{1}{N-1} \sum_{i=1}^N (Y_i-P)^2 \\
+    &= \frac{1}{N-1} \sum_{i=1}^N (Y_i-P) (Y_i-P)\\
+    &= \frac{1}{N-1} \sum_{i=1}^N (Y_i^2-2PY_i+P) \\
+    &= \frac{1}{N-1} \sum_{i=1}^NY_i^2-\sum_{i=1}^N2PY_i+\sum_{i=1}^NP \\
+    &= \frac{1}{N-1} \sum_{i=1}^NY_i^2-2P\sum_{i=1}^NY_i+\sum_{i=1}^NP \\
+    &=\frac{N}{N-1} P(1-P) \\
+\end{align}
+$$
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
