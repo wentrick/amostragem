@@ -410,8 +410,316 @@ $$
 
 Obs: O $\sigma^2$ é obtida de uma amostra piloto, de pesquisas anteriores, ou IC $(\mu ; 95 \%)=4 \sigma$.
 
+## AASc - Proporcao
+
+### Estimação de Proporções em AASc
+
+Considere que o característico de interesse tenha natureza dicotômica e que, portanto, cada elemento da população esteja associado a uma variável
+$$
+Y_i= \begin{cases}1, & \text { se o elemento i possui a característica } \\ 0, & \text { caso contrário }\end{cases}
+$$
+
+Então,
+$$
+P=\frac{1}{N} \sum_{i=1}^N Y_i=\mu
+$$
+é a proporção de unidades na população com as características de interesse.
+
+Desde que os possíveis valores de $Y_i$ são 0 ou 1 , então,
+$$
+\sigma^2=\frac{1}{N} \sum_{i=1}^N\left(Y_i-P\right)^2=P(1-P)
+$$
+pois sendo $Y_i \sim$ Bernoulli, $E\left[Y_i\right]=P$
+e
+$$
+\operatorname{Var}\left[Y_i\right]=P(1-P)
+$$
+
+Teorema. Dada uma amostra observada $s$ de tamanho $n$, e seja $m$ o número de elementos da amostra que possuem a determinada característica. Um estimador não viciado de $P$ baseado numa $A A S c$ é dado por
+
+$$
+p=\hat{P}=\bar{y}=\frac{m}{n} \text { com } \operatorname{Var}[\hat{P}]=\frac{P(1-P)}{n} .
+$$
+
+$$
+E[\hat P] = P
+$$
+
+Além disso,
+
+$$
+\operatorname{var}[p]=\frac{\hat{P}(1-\hat{P})}{n-1}
+$$
+
+é um estimador não viesado de $\operatorname{Var}[\hat{P}]$.
+
+
+### Intervalo de Confiança para a Proporção
+
+Com relação à proporção, para $n$ suficientemente grande,
+
+$$
+I C(P ; \gamma)=\left(\hat{P}-z_\alpha \sqrt{\frac{\hat{P} \hat{Q}}{n-1}} ; \hat{P}+z_\alpha \sqrt{\frac{\hat{P} \hat{Q}}{n-1}}\right)
+$$
+
+Um $I C$ de confiança conservador é dado por
+
+$$
+I C(P ; \gamma)=\left(\hat{P}-z_\alpha \sqrt{\frac{1}{4(n-1)}} ; \hat{P}+z_\alpha \sqrt{\frac{1}{4(n-1)}}\right)
+$$
+
+### Determinação do Tamanho da Amostra
+
+Para determinar $n$, de modo que o estimador obtido tenha um erro máximo de estimação igual a $B$,
+$$
+P(|\hat{P}-P| \leq B) \cong 1-\alpha
+$$
+
+Como,
+$$
+B=z_\alpha \sqrt{P Q / n} \rightarrow n=\frac{P Q}{\left(B / z_\alpha\right)^2}
+$$
+
+Sendo conservador
+$$
+n=\frac{1}{4\left(B / z_\alpha\right)^2}
+$$
+
+
 ## AASs
 
-## AASc
+### Variavel $f_i$
+
+Para o plano $A A S s$ a variável $f i$, número de vezes que a unidade $i$ aparece na amostra, segue uma distribuição de Bernoulli com probabilidade de sucesso $\mathrm{n} / N$, denotado por
+
+$$
+f_i \sim \operatorname{Bernoulli}\left(1 ; \frac{1}{N}\right)
+$$
+
+e que satisfaz $P\left(f_i=1\right)=\frac{n}{N}$ e $P\left(f_i=0\right)=1-\frac{n}{N}$, de modo que
+
+$$
+\begin{aligned}
+& E\left[f_i\right]=\frac{n}{N} \\
+& \operatorname{Var}\left[f_i\right]=\frac{n}{N}\left(1-\frac{n}{N}\right)  \\
+& \operatorname{Cov}\left[f_i, f_j\right]=-\frac{n}{N^2} \cdot \frac{N-n}{N-1}, i \neq j \\
+& \pi_i=\frac{n}{N} \\
+& \pi_{i j}=\frac{n}{N} \cdot \frac{n-1}{N-1}, i, j=\overline{1, N}
+\end{aligned}
+$$
+
+### Variavel $t(s)$
+
+Com relação à $A A S s$, a estatística $t(s), t(s)=\sum_{i \in s} Y_i$ tem as seguinte propriedades:
+
+$$
+\begin{gathered}
+E[t]=n \mu \\
+\operatorname{Var}[t]=n(1-f) S^2
+\end{gathered}
+$$
+
+onde $f=n / N$ é denominada fração amostral.
+
+### Estimador da média populacional $\bar y$
+
+Do plano $A A S s$, a média amostral
+
+$$
+\bar{y}=\frac{1}{n} \sum_{i \in \boldsymbol{s}}^n Y_i=\frac{t(\boldsymbol{s})}{n}
+$$
+
+é um estimador não viesado da média populacional $\mu$ 
+
+$$
+E[\bar y] = \mu
+$$
+
+com variância amostral dada por
+
+$$
+\operatorname{Var}[\bar{y}]=(1-f) \frac{S^2}{n}
+$$
+
+### Estimador do total populacional $T(s)$
+
+Com relação à $A S S s$, um estimador não viciado do total populacional é
+
+$$
+T(\boldsymbol{s})=N \bar{y}=\frac{N}{n} t(\boldsymbol{s})
+$$
+
+$$
+E[T(s)]= t
+$$
+
+cuja variância amostral é dada por
+
+$$
+\operatorname{Var}[T]=N^2(1-f) \frac{S^2}{n}
+$$
+
+### Estimador da variancia populacional $s^2$
+
+A variância da amostra
+
+$$
+s^2=\frac{1}{n-1} \sum_{i \in s}\left(Y_i-\bar{y}\right)^2
+$$
+
+é um estimador não viesado para a variância populacional $S^2$ para o planejamento $ASSs$.
+
+### Estimadores para $Var(\bar y)$ e $Var(T)$
+
+Para o plano $A A S s$, a estatística
+
+$$
+\operatorname{var}[\bar{y}]=\widehat{\operatorname{Var}[\bar{y}}]=(1-f) \frac{s^2}{n}
+$$
+
+é um estimador não viesado para a variância da média amostral, $\operatorname{Var}[\bar{y}]$, e
+
+$$
+\operatorname{var}[T]=\widehat{\operatorname{Var}[T]}=N^2(1-f) \frac{s^2}{n}
+$$
+
+é um estimador não viesado de $\operatorname{Var}[T]$.
+
+Obs: substituimos o $\sigma^2$ pelo seu estimador $s^2$ nas formulas da variancia da media populaciona $\bar y$ e do total populaciona $t(s)$
+
+### Normalidade Assintotica
+
+Para $n$ suficientemente grande, tem-se com relação à AASs
+
+$$
+\frac{\bar{y}-\mu}{\sqrt{(1-f) s^2 / n}} \sim N(0,1)
+$$
+
+e
+
+$$
+\frac{T-\tau}{N \sqrt{(1-f) s^2 / n}} \sim N(0,1)
+$$
+
+### Intervalo de Confiança para a Média
+
+Com relação à média, para $n$ suficientemente grande,
+
+$$
+P\left(\frac{|\bar{y}-\mu|}{\sqrt{(1-f) s^2 / n}} \leq z_\alpha\right) \cong 1-\alpha
+$$
+
+Como $S^2$ é desconhecido, faz-se uso de $s^2$, então
+
+$$
+P\left(\bar{y}-z_\alpha \sqrt{(1-f) s^2 / n} \leq \mu \leq \bar{y}+z_\alpha \sqrt{(1-f) s^2 / n}\right) \cong 1-\alpha
+$$
+
+Onde segue que
+
+$$
+I C(\mu ; \gamma)=\left(\bar{y}-z_\alpha \sqrt{\frac{(1-f) s^2}{n}} ; \bar{y}+z_\alpha \sqrt{\frac{(1-f) s^2}{n}}\right)
+$$
+
+### Determinação do Tamanho da Amostra
+
+Foi visto que $\operatorname{Var}[\bar{y}]=(1-f) \frac{S^2}{n}=\frac{S^2}{n /(1-f)}=\frac{S^2}{n^{\prime}}$
+Como $B=z_{\alpha / 2} \sqrt{(1-f) \frac{S^2}{n}}$
+
+$$
+\therefore D=\left(\frac{B}{z_{\alpha / 2}}\right)^2=(1-f) \frac{S^2}{n}=\frac{S^2}{n^{\prime}} \rightarrow n^{\prime}=\frac{S^2}{D}
+$$
+
+Então,
+$$
+n^{\prime}=\frac{n}{1-n / N} \rightarrow n=\frac{n^{\prime}}{1+n^{\prime} / N}=\frac{\frac{S^2}{D}}{1+\frac{S^2}{D} / N}=\frac{1}{\frac{D}{S^2}+\frac{1}{N}}
+$$
+
+## AASs - Proporcao
+
+### Estimação de Proporções em AASs
+
+Dado que
+$$
+Y_i= \begin{cases}1, & \text { se o elemento i possui a característica } \\ 0, & \text { caso contrário }\end{cases}
+$$
+
+Então,
+$$
+S^2=\frac{1}{N-1} \sum_{i=1}^N\left(Y_i-P\right)^2=\frac{N}{N-1} P(1-P)
+$$
+
+Dada uma amostra observada $s$ de tamanho $n$, e seja $m$ o número de elementos da amostra que possuem a determinada característica. Com relação a uma $A A S s$, tem-se que um estimador não viesado de $P$ é dado por
+
+$$
+p=\hat{P}=\bar{y}=\frac{1}{n} \sum_{i \in s} Y_i=\frac{m}{n}
+$$
+
+e que
+
+$$
+\operatorname{Var}[\hat{P}]=(1-f) \frac{S^2}{n}=\left(\frac{N-n}{N}\right) \frac{N P(1-P)}{(N-1) n}=\frac{N-n}{N-1} \frac{P(1-P)}{n}
+$$
+
+Tem-se que um estimador não viesado de $S^2$ e dado por
+
+$$
+s^2=\frac{n}{n-1} \cdot \hat{P} \hat{Q}=\frac{n}{n-1} \cdot p q
+$$
+
+Então, um estimador não viciado de $\operatorname{Var}[\hat{P}]$ é dado por
+
+$$
+\operatorname{var}[\hat{P}]=(1-f) \cdot \frac{s^2}{n}=(1-f) \cdot \frac{\hat{P} \hat{Q}}{n-1}
+$$
+
+### Intervalo de Confiança para a Proporção
+
+Um $I C$ aproximado para $P$ é dado por
+
+$$
+\left(\hat{P}-z_\alpha \sqrt{(1-f) \cdot \frac{\hat{P} \hat{Q}}{n-1}} ; \hat{P}+z_\alpha \sqrt{(1-f) \cdot \frac{\hat{P} \hat{Q}}{n-1}}\right)
+$$
+
+Um IC de confiança conservador é dado por
+
+$$
+\left(\hat{P}-z_\alpha \sqrt{\frac{1-f}{4(n-1)}} ; \hat{P}+z_\alpha \sqrt{\frac{1-f}{4(n-1)}}\right)
+$$
+
+### Determinação do Tamanho da Amostra
+
+Como no caso anterior, para determinar $n$
+
+$$
+P(|\widehat{P}-P| \leq B) \cong 1-\alpha
+$$
+
+Como,
+
+$$
+\begin{aligned}
+B=z_\alpha \sqrt{(1-f) \cdot \frac{P Q}{n-1}} \rightarrow D & =\left(\frac{B}{z_\alpha}\right)^2 \\
+n & =\frac{N}{\frac{(N-1) D}{P Q}+1}
+\end{aligned}
+$$
+
+Sendo conservador
+
+$$
+n=\frac{N}{4(N-1) D+1}
+$$
+
+
+
+
+
+
+
+
+
+
+
+## Estratificada
 
 
