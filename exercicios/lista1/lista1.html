@@ -1895,9 +1895,44 @@ seja de aproximadamente 10 salários mínimos (SM) e o desvio padrão de 5
 SM. Pretende-se usar uma amostra AAS como plano amostral.</p>
 <div id="a-que-tamanho-deve-ter-a-amostra-para-que-o-erro-padrão-de-bary-seja-de-05" class="section level5">
 <h5>a) Que tamanho deve ter a amostra para que o erro padrão de <span class="math inline">\(\bar{y}\)</span> seja de 0,5 ?</h5>
+<pre class="r"><code>ybar = 10
+dp = 5
+s2 = dp^2
+b = 0.5
+alpha = 0.05 #ele nao fala mas eu assumi um alpha de 0.05
+z = qnorm(1-(alpha/2))
+
+
+n = (s2/(b/z)^2)</code></pre>
+<pre class="r"><code>paste(&quot;O tamanho da amostra teria que ser:&quot;, n)</code></pre>
+<pre><code>## [1] &quot;O tamanho da amostra teria que ser: 384.145882069412&quot;</code></pre>
 </div>
 <div id="b-como-ficaria-a-resposta-acima-se-mathrmn20.000-e-se-mathrmn10.000" class="section level5">
 <h5>b) Como ficaria a resposta acima se <span class="math inline">\(\mathrm{N}=20.000\)</span> ? E se <span class="math inline">\(\mathrm{N}=10.000\)</span> ?</h5>
+<p>Esse é o intervalo com n = 10000</p>
+<pre class="r"><code>n=10000
+ybar = 10
+dp = 5
+s2 = dp^2
+alpha = 0.05
+z = qnorm(1-(alpha/2))
+
+ic_inf = ybar - z*sqrt((s2/n))
+ic_sup = ybar + z*sqrt((s2/n))</code></pre>
+<pre class="r"><code>paste(&quot;O intervalo de confianca é:(&quot;,ic_inf,&quot;,&quot;,ic_sup,&quot;)&quot;)</code></pre>
+<pre><code>## [1] &quot;O intervalo de confianca é:( 9.902001800773 , 10.097998199227 )&quot;</code></pre>
+<p>n = 20000</p>
+<pre class="r"><code>n=20000
+ybar = 10
+dp = 5
+s2 = dp^2
+alpha = 0.05
+z = qnorm(1-(alpha/2))
+
+ic_inf = ybar - z*sqrt((s2/n))
+ic_sup = ybar + z*sqrt((s2/n))</code></pre>
+<pre class="r"><code>paste(&quot;O intervalo de confianca é:(&quot;,ic_inf,&quot;,&quot;,ic_sup,&quot;)&quot;)</code></pre>
+<pre><code>## [1] &quot;O intervalo de confianca é:( 9.93070480878252 , 10.0692951912175 )&quot;</code></pre>
 </div>
 <div id="c-agora-você-quer-planejar-a-amostra-de-tal-modo-que-o-coeficiente-de-variação-de-bary-operatornamecvbary-seja-inferior-a-5-.-qual-deve-ser-o-tamanho-da-amostra" class="section level5">
 <h5>c) Agora você quer planejar a amostra de tal modo que o coeficiente
@@ -1922,10 +1957,70 @@ estimador de <span class="math inline">\(\mu\)</span>, considere</p>
 <div id="a-encontre-as-distribuições-de-bary-e-bary_c.-verifique-se-estes-estimadores-são-não-viciados-para-mu." class="section level5">
 <h5>a) Encontre as distribuições de <span class="math inline">\(\bar{y}\)</span> e <span class="math inline">\(\bar{y}_c\)</span>. Verifique se estes estimadores
 são não viciados para <span class="math inline">\(\mu\)</span>.</h5>
+<p>Iremos fazer em um dataframe pois sao 30 amostras possiveis.</p>
+<pre class="r"><code># Definições Iniciais
+N = 6 #Número total de elementos
+d = c(1,2,3,4,5,6) #Vetor de valores de 1 a 6
+D = c(1,4,5,5,6,6) #Vetor de dados específicos
+n = 2 #Tamanho da amostra (permutações) a serem geradas
+
+# Geração de Permutações
+dados = as.data.frame(permutations(N, n, d, repeats.allowed = FALSE))
+
+# Extração de Variáveis
+dados = dados %&gt;%
+  mutate(var1 = D[V1], # Aqui estmaos substituindo os vetores que representam as
+         var2 = D[V2]) # combinacoes amostrais 2 a 2 pelo seu respectivo valor do
+                       # vetor D
+# Cálculo de Média e Variância amostral
+dados = dados %&gt;%
+  rowwise() %&gt;%
+  mutate(bar_y = mean(c(var1, var2)),
+         s2 = var(c(var1, var2)))
+
+# Criação de Colunas Calculadas para obter E(bar_y) e E(bar_y^2)
+dados = dados %&gt;%
+  mutate(p = 1/30,
+         esp_bar_y = bar_y * p,
+         esp_bar_y_quad = (bar_y^2) * p,
+         esp_s2 = s2 * p)
+
+# Condicional e Cálculo Adicional para encontrar a media bar_yc de cada amostra
+dados = dados %&gt;%
+  rowwise() %&gt;%
+  mutate(bar_yc = ifelse(1 %in% c(V1, V2) &amp; !6 %in% c(V1, V2), bar_y + 1,
+                         ifelse(6 %in% c(V1, V2) &amp; !1 %in% c(V1, V2), bar_y - 1, bar_y)))
+
+# Cálculos Finais para encontrar E(bar_yc) e E(bar_yc^2)
+dados = dados %&gt;%
+  ungroup() %&gt;%
+  mutate(esp_bar_yc = bar_yc * p,
+         esp_bar_yc_quad = (bar_y^2) * p)
+
+# Estatísticas Finais
+# Aqui vamos calcular as esperancas e as variancias de cada um, os nossos calculos no dataframe dera a distribuicao mas para o calculo da esperanca ainda precisamos somar o vetor.
+
+sigma2 = var(D)
+mu = mean(D)
+esp_bar_y = sum(dados$esp_bar_y)
+esp_bar_y2 = sum(dados$esp_bar_y_quad)
+esp_bar_yc = sum(dados$esp_bar_yc)
+esp_bar_yc2 = sum(dados$esp_bar_yc_quad)
+esp_s2 = sum(dados$esp_s2)
+var_bar_y = esp_bar_y2 - esp_bar_y^2
+var_bar_yc = esp_bar_yc2 - esp_bar_yc^2</code></pre>
+<p>O problema nos pergunta se sao enviesados ou nao e nos sabemos
+que:</p>
+<pre><code>## [1] &quot;A media populacional é: 4.5&quot;</code></pre>
+<pre><code>## [1] &quot;A esperanca da media amostral (bar_y) é: 4.5&quot;</code></pre>
+<pre><code>## [1] &quot;A esperanca da media amostral C (bar_yc) é: 4.5&quot;</code></pre>
 </div>
 <div id="b-encontre-operatornamevarbary-e-operatornamevarleftbary_cright.-qual-é-o-melhor-estimador-justifique." class="section level5">
 <h5>b) Encontre <span class="math inline">\(\operatorname{Var}[\bar{y}]\)</span> e <span class="math inline">\(\operatorname{Var}\left[\bar{y}_c\right]\)</span>.
 Qual é o melhor estimador? Justifique.</h5>
+<pre><code>## [1] &quot;A variancia populacional é: 3.5&quot;</code></pre>
+<pre><code>## [1] &quot;A variancia da media amostral (bar_y) é: 1.16666666666667&quot;</code></pre>
+<pre><code>## [1] &quot;A variancia da media amostral C (bar_yc) é: 1.16666666666667&quot;</code></pre>
 </div>
 </div>
 <div id="questao-8" class="section level3">
@@ -1934,16 +2029,68 @@ Qual é o melhor estimador? Justifique.</h5>
 amostral <span class="math inline">\(A A S c\)</span> de tamanho <span class="math inline">\(\mathrm{n}=2\)</span> é adotado.</p>
 <div id="a-encontre-a-distribuição-de-bary-e-mostre-que-ebarymu." class="section level5">
 <h5>a) Encontre a distribuição de <span class="math inline">\(\bar{y}\)</span> e mostre que <span class="math inline">\(E[\bar{y}]=\mu\)</span>.</h5>
+<pre class="r"><code># Definições Iniciais
+N = 6 #Número total de elementos
+d = c(1,2,3,4,5,6) #Vetor de valores de 1 a 6
+D = c(8,2,2,11,4,7) #Vetor de dados específicos
+n = 2 #Tamanho da amostra (permutações) a serem geradas
+
+# Geração de Permutações
+dados = as.data.frame(permutations(N, n, d, repeats.allowed = FALSE))
+
+# Extração de Variáveis
+dados = dados %&gt;%
+  mutate(var1 = D[V1], # Aqui estmaos substituindo os vetores que representam as
+         var2 = D[V2]) # combinacoes amostrais 2 a 2 pelo seu respectivo valor do
+                       # vetor D
+# Cálculo de Média e Variância amostral
+dados = dados %&gt;%
+  rowwise() %&gt;%
+  mutate(bar_y = mean(c(var1, var2)),
+         s2 = var(c(var1, var2)))
+
+# Criação de Colunas Calculadas para obter E(bar_y) e E(bar_y^2)
+dados = dados %&gt;%
+  mutate(p = 1/30,
+         esp_bar_y = bar_y * p,
+         esp_bar_y_quad = (bar_y^2) * p,
+         esp_s2 = s2 * p)
+
+# Estatísticas Finais
+# Aqui vamos calcular as esperancas e as variancias de cada um, os nossos calculos no dataframe dera a distribuicao mas para o calculo da esperanca ainda precisamos somar o vetor.
+
+sigma2 = var(D)
+mu = mean(D)
+esp_bar_y = sum(dados$esp_bar_y)
+esp_bar_y2 = sum(dados$esp_bar_y_quad)
+esp_s2 = sum(dados$esp_s2)
+var_bar_y = esp_bar_y2 - esp_bar_y^2</code></pre>
+<pre><code>## [1] &quot;A media populacional é: 5.66666666666667&quot;</code></pre>
+<pre><code>## [1] &quot;A esperanca da media amostral (bar_y) é: 5.66666666666667&quot;</code></pre>
 </div>
 <div id="b-encontre-operatornamevarbary-diretamente-e-utilizando-o-resultado-operatornamevarbaryfracsigma2n." class="section level5">
 <h5>b) Encontre <span class="math inline">\(\operatorname{Var}[\bar{y}]\)</span> diretamente e
 utilizando o resultado <span class="math inline">\(\operatorname{Var}[\bar{y}]=\frac{\sigma^2}{n}\)</span>.</h5>
+<pre><code>## [1] &quot;A variancia populacional é: 13.0666666666667&quot;</code></pre>
+<pre><code>## [1] &quot;A variancia da media amostral (bar_y) é: 4.35555555555555&quot;</code></pre>
+<pre class="r"><code>sigma2/n</code></pre>
+<pre><code>## [1] 6.533333</code></pre>
 </div>
 <div id="c-suponha-que-uma-aas-com-reposição-com-tamanho-mathrmn10-retirada-da-população-apresenta-bary5435-e-s236.-encontre-um-intervalo-de-confiança-para-mu-operatornamecom-alpha002." class="section level5">
 <h5>c) Suponha que uma AAS com reposição com tamanho <span class="math inline">\(\mathrm{n}=10\)</span> retirada da população
 apresenta <span class="math inline">\(\bar{y}=5,435\)</span> e <span class="math inline">\(s^2=3,6\)</span>. Encontre um intervalo de
 confiança para <span class="math inline">\(\mu \operatorname{com}
 \alpha=0,02\)</span>.</h5>
+<pre class="r"><code>n=10
+ybar = 5.435
+s2 = 3.6
+alpha = 0.02
+z = qnorm(1-(alpha/2))
+
+ic_inf = ybar - z*sqrt((s2/n))
+ic_sup = ybar + z*sqrt((s2/n))</code></pre>
+<pre class="r"><code>paste(&quot;O intervalo de confianca é:(&quot;,ic_inf,&quot;,&quot;,ic_sup,&quot;)&quot;)</code></pre>
+<pre><code>## [1] &quot;O intervalo de confianca é:( 4.0391912755755 , 6.8308087244245 )&quot;</code></pre>
 </div>
 </div>
 <div id="questao-9" class="section level3">

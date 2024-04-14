@@ -18,6 +18,7 @@ output:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+pacman::p_load(tidyverse,utils,RcppAlgos,gtools,matrixStats)
 ```
 
 ### Questao 1
@@ -52,7 +53,59 @@ Suspeita-se que a renda familiar média dos moradores de uma cidade seja de apro
 
 ##### a) Que tamanho deve ter a amostra para que o erro padrão de $\bar{y}$ seja de 0,5 ?
 
+
+```{r}
+ybar = 10
+dp = 5
+s2 = dp^2
+b = 0.5
+alpha = 0.05 #ele nao fala mas eu assumi um alpha de 0.05
+z = qnorm(1-(alpha/2))
+
+
+n = (s2/(b/z)^2)
+```
+```{r}
+paste("O tamanho da amostra teria que ser:", n)
+```
+
+
 ##### b) Como ficaria a resposta acima se $\mathrm{N}=20.000$ ? E se $\mathrm{N}=10.000$ ?
+
+Esse é o intervalo com n = 10000
+
+```{r}
+n=10000
+ybar = 10
+dp = 5
+s2 = dp^2
+alpha = 0.05
+z = qnorm(1-(alpha/2))
+
+ic_inf = ybar - z*sqrt((s2/n))
+ic_sup = ybar + z*sqrt((s2/n))
+```
+
+```{r}
+paste("O intervalo de confianca é:(",ic_inf,",",ic_sup,")")
+```
+n = 20000
+
+```{r}
+n=20000
+ybar = 10
+dp = 5
+s2 = dp^2
+alpha = 0.05
+z = qnorm(1-(alpha/2))
+
+ic_inf = ybar - z*sqrt((s2/n))
+ic_sup = ybar + z*sqrt((s2/n))
+```
+
+```{r}
+paste("O intervalo de confianca é:(",ic_inf,",",ic_sup,")")
+```
 
 ##### c) Agora você quer planejar a amostra de tal modo que o coeficiente de variação de $\bar{y}, \operatorname{CV}[\bar{y}]$ seja inferior a $5 \%$. Qual deve ser o tamanho da amostra?
 
@@ -70,7 +123,78 @@ $$
 
 ##### a) Encontre as distribuições de $\bar{y}$ e $\bar{y}_c$. Verifique se estes estimadores são não viciados para $\mu$.
 
+Iremos fazer em um dataframe pois sao 30 amostras possiveis.
+
+```{r warning=FALSE}
+# Definições Iniciais
+N = 6 #Número total de elementos
+d = c(1,2,3,4,5,6) #Vetor de valores de 1 a 6
+D = c(1,4,5,5,6,6) #Vetor de dados específicos
+n = 2 #Tamanho da amostra (permutações) a serem geradas
+
+# Geração de Permutações
+dados = as.data.frame(permutations(N, n, d, repeats.allowed = FALSE))
+
+# Extração de Variáveis
+dados = dados %>%
+  mutate(var1 = D[V1], # Aqui estmaos substituindo os vetores que representam as
+         var2 = D[V2]) # combinacoes amostrais 2 a 2 pelo seu respectivo valor do
+                       # vetor D
+# Cálculo de Média e Variância amostral
+dados = dados %>%
+  rowwise() %>%
+  mutate(bar_y = mean(c(var1, var2)),
+         s2 = var(c(var1, var2)))
+
+# Criação de Colunas Calculadas para obter E(bar_y) e E(bar_y^2)
+dados = dados %>%
+  mutate(p = 1/30,
+         esp_bar_y = bar_y * p,
+         esp_bar_y_quad = (bar_y^2) * p,
+         esp_s2 = s2 * p)
+
+# Condicional e Cálculo Adicional para encontrar a media bar_yc de cada amostra
+dados = dados %>%
+  rowwise() %>%
+  mutate(bar_yc = ifelse(1 %in% c(V1, V2) & !6 %in% c(V1, V2), bar_y + 1,
+                         ifelse(6 %in% c(V1, V2) & !1 %in% c(V1, V2), bar_y - 1, bar_y)))
+
+# Cálculos Finais para encontrar E(bar_yc) e E(bar_yc^2)
+dados = dados %>%
+  ungroup() %>%
+  mutate(esp_bar_yc = bar_yc * p,
+         esp_bar_yc_quad = (bar_y^2) * p)
+
+# Estatísticas Finais
+# Aqui vamos calcular as esperancas e as variancias de cada um, os nossos calculos no dataframe dera a distribuicao mas para o calculo da esperanca ainda precisamos somar o vetor.
+
+sigma2 = var(D)
+mu = mean(D)
+esp_bar_y = sum(dados$esp_bar_y)
+esp_bar_y2 = sum(dados$esp_bar_y_quad)
+esp_bar_yc = sum(dados$esp_bar_yc)
+esp_bar_yc2 = sum(dados$esp_bar_yc_quad)
+esp_s2 = sum(dados$esp_s2)
+var_bar_y = esp_bar_y2 - esp_bar_y^2
+var_bar_yc = esp_bar_yc2 - esp_bar_yc^2
+```
+
+O problema nos pergunta se sao enviesados ou nao e nos sabemos que:
+
+```{r echo=FALSE}
+paste("A media populacional é:",mu)
+paste("A esperanca da media amostral (bar_y) é:",esp_bar_y)
+paste("A esperanca da media amostral C (bar_yc) é:",esp_bar_yc)
+```
+
 ##### b) Encontre $\operatorname{Var}[\bar{y}]$ e $\operatorname{Var}\left[\bar{y}_c\right]$. Qual é o melhor estimador? Justifique.
+
+```{r echo=FALSE}
+paste("A variancia populacional é:",sigma2)
+paste("A variancia da media amostral (bar_y) é:",var_bar_y)
+paste("A variancia da media amostral C (bar_yc) é:",var_bar_yc)
+```
+
 
 ### Questao 8
 
@@ -78,9 +202,83 @@ Em uma população com $\mathrm{N}=6$, tem-se $\mathrm{D}=(8,2,2,11,4,7)$. Um pl
 
 ##### a) Encontre a distribuição de $\bar{y}$ e mostre que $E[\bar{y}]=\mu$.
 
+```{r}
+# Definições Iniciais
+N = 6 #Número total de elementos
+d = c(1,2,3,4,5,6) #Vetor de valores de 1 a 6
+D = c(8,2,2,11,4,7) #Vetor de dados específicos
+n = 2 #Tamanho da amostra (permutações) a serem geradas
+
+# Geração de Permutações
+dados = as.data.frame(permutations(N, n, d, repeats.allowed = FALSE))
+
+# Extração de Variáveis
+dados = dados %>%
+  mutate(var1 = D[V1], # Aqui estmaos substituindo os vetores que representam as
+         var2 = D[V2]) # combinacoes amostrais 2 a 2 pelo seu respectivo valor do
+                       # vetor D
+# Cálculo de Média e Variância amostral
+dados = dados %>%
+  rowwise() %>%
+  mutate(bar_y = mean(c(var1, var2)),
+         s2 = var(c(var1, var2)))
+
+# Criação de Colunas Calculadas para obter E(bar_y) e E(bar_y^2)
+dados = dados %>%
+  mutate(p = 1/30,
+         esp_bar_y = bar_y * p,
+         esp_bar_y_quad = (bar_y^2) * p,
+         esp_s2 = s2 * p)
+
+# Estatísticas Finais
+# Aqui vamos calcular as esperancas e as variancias de cada um, os nossos calculos no dataframe dera a distribuicao mas para o calculo da esperanca ainda precisamos somar o vetor.
+
+sigma2 = var(D)
+mu = mean(D)
+esp_bar_y = sum(dados$esp_bar_y)
+esp_bar_y2 = sum(dados$esp_bar_y_quad)
+esp_s2 = sum(dados$esp_s2)
+var_bar_y = esp_bar_y2 - esp_bar_y^2
+```
+
+
+```{r echo=FALSE}
+paste("A media populacional é:",mu)
+paste("A esperanca da media amostral (bar_y) é:",esp_bar_y)
+```
+
 ##### b) Encontre $\operatorname{Var}[\bar{y}]$ diretamente e utilizando o resultado $\operatorname{Var}[\bar{y}]=\frac{\sigma^2}{n}$.
 
+```{r echo=FALSE}
+paste("A variancia populacional é:",sigma2)
+paste("A variancia da media amostral (bar_y) é:",var_bar_y)
+```
+
+
+```{r}
+sigma2/n
+```
+
+
 ##### c) Suponha que uma AAS com reposição com tamanho $\mathrm{n}=10$ retirada da população apresenta $\bar{y}=5,435$ e $s^2=3,6$. Encontre um intervalo de confiança para $\mu \operatorname{com} \alpha=0,02$.
+
+```{r}
+n=10
+ybar = 5.435
+s2 = 3.6
+alpha = 0.02
+z = qnorm(1-(alpha/2))
+
+ic_inf = ybar - z*sqrt((s2/n))
+ic_sup = ybar + z*sqrt((s2/n))
+```
+
+```{r}
+paste("O intervalo de confianca é:(",ic_inf,",",ic_sup,")")
+```
+
+
+
 
 ### Questao 9
 

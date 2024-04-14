@@ -39,30 +39,30 @@ Sabemos que nossa populacao é $U=\{1,2,3\}$ e estamos interessados em tirar amo
 
 ```{r}
 renda <- c(12, 30, 18)
-resultsF <- c()
+resultsM <- c()
 amostra <- c(1, 1, 1, 2, 1, 3, 2, 1, 2, 2, 2, 3, 3, 1, 3, 2, 3, 3)
 t= 0
 for (i in seq(1, length(amostra)/2)) {
   r <- mean(c(renda[amostra[i+t]],renda[amostra[i+t+1]]))
-  resultsF <- append(resultsF, r)
+  resultsM <- append(resultsM, r)
   t=t+1
 }
 
-print(resultsF)
+print(resultsM)
 ```
 
 ```{r}
 renda <- c(12, 30, 18)
-resultsF <- c()
+resultsV <- c()
 amostra <- c(1, 1, 1, 2, 1, 3, 2, 1, 2, 2, 2, 3, 3, 1, 3, 2, 3, 3)
 t= 0
 for (i in seq(1, length(amostra)/2)) {
   r <- var(c(renda[amostra[i+t]],renda[amostra[i+t+1]]))
-  resultsF <- append(resultsF, r)
+  resultsV <- append(resultsV, r)
   t=t+1
 }
 
-print(resultsF)
+print(resultsV)
 ```
 
 com isso temos a seguinte tabela:
@@ -76,16 +76,39 @@ com isso temos a seguinte tabela:
 
 #### 2. Construa as distribuições amostrais de $\bar{y}$ e $s^2$.
 
-| $h(d s)=\bar y$ | 12 | 15 | 18 | 21 | 24 | 30
+| $h(d s)=\bar y$ | $12$ | $15$ | $18$ | $21$ | $24$ | $30$
 | :---: | :---: | :---: | :---: | :---: | :---: | 
 | $P(\bar y)$ | $1 / 9$ | $2 / 9$ | $1 / 9$ | $2 / 9$ | $2 / 9$ | $1 / 9$ |
 
 
 
-| $h(d s)=s^2$ | 0 | 18 | 72 | 162 | 
+| $h(d s)=s^2$ | $0$ | $18$ | $72$ | $162$ | 
 | :---: | :---: | :---: | :---: | :---: | 
 | $P(s^2)$ | $3 / 9$ | $2 / 9$ | $2 / 9$ | $2 / 9$ | 
 
 
 #### 3. Verifique a não tendenciosidade de $E[\bar{y}], \operatorname{Var}[\bar{y}] \mathrm{e}$ $E\left[s^2\right]$.
+
+
+```{r}
+espM = sum(resultsM * 1/9)
+esp_quadM = sum((resultsM^2) * 1/9)
+
+varM = esp_quadM - espM^2
+print(varM)
+print(espM)
+```
+
+```{r}
+espV = sum(resultsV * 1/9)
+esp_quadV = sum((resultsV^2) * 1/9)
+
+varV = esp_quadV - espV^2
+print(varV)
+print(espV)
+```
+
+
+
+
 
