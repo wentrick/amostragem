@@ -307,7 +307,20 @@ Var(t) &= Var(f_i)[\sum_{i = 1}^N Y_i^2 -\frac{1}{N-1} \sum_{i = 1}^N Y_i Y_j] \
        &= Var(f_i)\frac{1}{N-1}[ \sum_{i = 1}^N Y_i^2N- Y_i^2 + Y_i^2 - N^2\mu^2)] \\
        &= Var(f_i)\frac{1}{N-1}[ \sum_{i = 1}^N Y_i^2N - N^2\mu^2)] \\
        &= Var(f_i)\frac{1}{N-1}[N\sum_{i = 1}^N Y_i^2 - N^2\mu^2] \\
-       &= Var(f_i)\frac{N}{N-1}[\sum_{i = 1}^N Y_i^2 - N^2\mu^2] \\
+       &= Var(f_i)\frac{N}{N-1}[\sum_{i = 1}^N Y_i^2 - N\mu^2] \\
+\end{align}
+$$
+
+Aqui temos que fazer um caminho onde temos que ir completando os polinomios para chegar no resultado que queremos mas nem sempre fica claro que temos que fazer isso entao mais a frente temos outra opcao, contudo deixarei as duas aqui:
+
+$$
+\begin{align}
+       &= Var(f_i)\frac{N}{N-1}[\sum_{i = 1}^N Y_i^2 - N\mu^2] \\
+       &= Var(f_i)\frac{N}{N-1} [\sum_{i = 1}^N Y_i^2 -  2\mu^2 N  + N \mu^2] \\
+       &= Var(f_i)\frac{N}{N-1} [\sum_{i = 1}^N Y_i^2 -  2\mu N\mu  + N \mu^2] \\
+       &= Var(f_i)\frac{N}{N-1} [\sum_{i = 1}^N Y_i^2 -  2\mu \sum_{i = 1}^NY_i + \sum_{i = 1}^N \mu^2] \\
+       &= Var(f_i)\frac{N}{N-1}\sum_{i = 1}^N (Y_i^2 - 2\mu Y_i + \mu^2) \\
+       &= Var(f_i)\frac{N}{N-1}\sum_{i = 1}^N (Y_i - \mu)(Y_i - \mu) \\
        &= Var(f_i)\frac{N}{N-1}\sum_{i = 1}^N (Y_i - \mu)^2 \\
        &= Var(f_i)NS^2 \\
        &= Var(f)NS^2 \\
@@ -316,6 +329,33 @@ Var(t) &= Var(f_i)[\sum_{i = 1}^N Y_i^2 -\frac{1}{N-1} \sum_{i = 1}^N Y_i Y_j] \
        &= n \sigma^2\\
 \end{align}
 $$
+ou podemos mostrar que (basicamente o caminho inverso):
+
+$$
+\begin{align}
+  \sum_{i = 1}^N (Y_i - \mu)^2 &= \sum_{i = 1}^N (Y_i - \mu)(Y_i - \mu) \\
+                               &= \sum_{i = 1}^N (Y_i^2 - 2\mu Y_i + \mu^2) \\
+                               &= \sum_{i = 1}^N Y_i^2 -  2\mu \sum_{i = 1}^NY_i + \sum_{i = 1}^N \mu^2 \\
+                               &= \sum_{i = 1}^N Y_i^2 -  2\mu N\mu  + N \mu^2 \\
+                               &= \sum_{i = 1}^N Y_i^2 -  2\mu^2 N  + N \mu^2 \\
+                               &= \sum_{i = 1}^N Y_i^2 - N\mu^2
+\end{align}
+$$
+
+e em seguida:
+
+$$
+\begin{align}
+       &= Var(f_i)\frac{N}{N-1}[\sum_{i = 1}^N Y_i^2 - N\mu^2] \\
+       &= Var(f_i)\frac{N}{N-1}\sum_{i = 1}^N (Y_i - \mu)^2 \\
+       &= Var(f_i)NS^2 \\
+       &= Var(f)NS^2 \\
+       &= \frac{n}{N} \frac{N-1}{N} NS^2\\
+       &= n \frac{N-1}{N} S^2\\
+       &= n \sigma^2\\
+\end{align}
+$$
+
 
 ## Teorema - Estimacao do total e da media populacional
 
@@ -394,9 +434,9 @@ s^2 &= \frac{\sum_{i \in s} (Y_i - \bar y)^2}{n-1} \\
  (n-1)s^2 &= \sum_{i \in s} (Y_i - \bar y)^2 \\
  &= \sum_{i \in s} (Y_i - \bar y) (Y_i - \bar y)\\
  &= \sum_{i \in s} (Y_i^2 - 2Y_i\bar y + \bar y^2)\\
- &= \sum_{i \in s} Y_i^2 - 2\bar y\sum_{i \in s}Y_i + \bar y^2\\
- &= \sum_{i \in s} Y_i^2 - 2\bar yn\bar y + \bar y^2\\
- &= \sum_{i \in s} Y_i^2 - 2\bar y^2n + \bar y^2\\
+ &= \sum_{i \in s} Y_i^2 - 2\bar y\sum_{i \in s}Y_i + \sum_{i \in s}\bar y^2\\
+ &= \sum_{i \in s} Y_i^2 - 2\bar yn\bar y + n\bar y^2\\
+ &= \sum_{i \in s} Y_i^2 - 2\bar y^2n + n\bar y^2\\
  &= \sum_{i \in s} Y_i^2 - n\bar y^2 \\
  &= \sum_{i \in s} Y_i^2 - n (\frac{t}{n})^2 \\
  &= \sum_{i \in s} Y_i^2 - n \frac{t^2}{n^2} \\
@@ -474,7 +514,7 @@ $$
 
 é um estimador não viesado de $Var(T)$
 
-### Resultado - Normalidade Assintótica
+## Resultado - Normalidade Assintótica
 
 Para um $n$ suficientemente grande :
 
@@ -509,10 +549,29 @@ $$
 Onde segue que:
 
 $$
-
+I C(\mu ;(1-\alpha) 100 \%)=\left(\bar{y}-z_\alpha \sqrt{\frac{s^2}{n}} ; \bar{y}+z_\alpha \sqrt{\frac{s^2}{n}}\right)
 $$
 
 
+## Determinação do Tamanho da Amostra
+
+O objetivo determinar $n$, de modo que o estimador obtido tenha um erro máximo de estimação igual a $B$, isto é,
+
+$$
+P(|\bar{y}-\mu| \leq B) \cong 1-\alpha
+$$
+
+Mas
+
+$$
+P\left(|\bar{y}-\mu| \leq z_\alpha \sqrt{\sigma^2 / n}\right) \cong 1-\alpha
+$$
+
+Então,
+
+$$
+B=z_\alpha \sqrt{\sigma^2 / n} \rightarrow n=\frac{\sigma^2}{\left(B / z_\alpha\right)^2}
+$$
 
 
-
+obs: $\sigma^2$ é obrido atraves de uma amostra piloto, de pesquisas anteriores ou $IC(\mu,95\%) = 4\sigma$
