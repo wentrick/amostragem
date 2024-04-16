@@ -1898,28 +1898,28 @@ e suas respectivas probabilidades de ocorrencia iguais a:</p>
 </tbody>
 </table>
 <pre class="r"><code>renda &lt;- c(12, 30, 18)
-resultsF &lt;- c()
+resultsM &lt;- c()
 amostra &lt;- c(1, 1, 1, 2, 1, 3, 2, 1, 2, 2, 2, 3, 3, 1, 3, 2, 3, 3)
 t= 0
 for (i in seq(1, length(amostra)/2)) {
   r &lt;- mean(c(renda[amostra[i+t]],renda[amostra[i+t+1]]))
-  resultsF &lt;- append(resultsF, r)
+  resultsM &lt;- append(resultsM, r)
   t=t+1
 }
 
-print(resultsF)</code></pre>
+print(resultsM)</code></pre>
 <pre><code>## [1] 12 21 15 21 30 24 15 24 18</code></pre>
 <pre class="r"><code>renda &lt;- c(12, 30, 18)
-resultsF &lt;- c()
+resultsV &lt;- c()
 amostra &lt;- c(1, 1, 1, 2, 1, 3, 2, 1, 2, 2, 2, 3, 3, 1, 3, 2, 3, 3)
 t= 0
 for (i in seq(1, length(amostra)/2)) {
   r &lt;- var(c(renda[amostra[i+t]],renda[amostra[i+t+1]]))
-  resultsF &lt;- append(resultsF, r)
+  resultsV &lt;- append(resultsV, r)
   t=t+1
 }
 
-print(resultsF)</code></pre>
+print(resultsV)</code></pre>
 <pre><code>## [1]   0 162  18 162   0  72  18  72   0</code></pre>
 <p>com isso temos a seguinte tabela:</p>
 <table style="width:100%;">
@@ -2038,6 +2038,26 @@ y\)</span></th>
 <div id="verifique-a-não-tendenciosidade-de-ebary-operatornamevarbary-mathrme-elefts2right." class="section level4">
 <h4>3. Verifique a não tendenciosidade de <span class="math inline">\(E[\bar{y}], \operatorname{Var}[\bar{y}]
 \mathrm{e}\)</span> <span class="math inline">\(E\left[s^2\right]\)</span>.</h4>
+<p>Sabemos que os valores populacionais sao:</p>
+<pre class="r"><code>D=c(12,30,18)
+n = length(D)
+
+mu = mean(D)
+
+sigma2 = var(D) * (n - 1) / n #correcao pois a funcao var() calcula a variancia amostral</code></pre>
+<pre><code>## [1] &quot;A media populacional de D é: 20&quot;</code></pre>
+<pre><code>## [1] &quot;A variancia populacional de D é: 56&quot;</code></pre>
+<p>Esperanca e Variancia de <span class="math inline">\(\bar
+y\)</span></p>
+<pre class="r"><code>espM = sum(resultsM * 1/9) #Esperanca
+esp_quadM = sum((resultsM^2) * 1/9)
+
+varM = esp_quadM - espM^2 #Variancia</code></pre>
+<pre><code>## [1] &quot;A esperanca da media amostral é: 20&quot;</code></pre>
+<pre><code>## [1] &quot;A variancia da media amostral é: 28&quot;</code></pre>
+<p>Esperanca de <span class="math inline">\(s^2\)</span></p>
+<pre class="r"><code>espV = sum(resultsV * 1/9) #Esperanca</code></pre>
+<pre><code>## [1] &quot;A esperanca da variancia amostral é: 20&quot;</code></pre>
 </div>
 </div>
 </div>

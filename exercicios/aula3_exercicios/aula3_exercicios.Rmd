@@ -89,23 +89,45 @@ com isso temos a seguinte tabela:
 
 #### 3. Verifique a não tendenciosidade de $E[\bar{y}], \operatorname{Var}[\bar{y}] \mathrm{e}$ $E\left[s^2\right]$.
 
+Sabemos que os valores populacionais sao:
 
 ```{r}
-espM = sum(resultsM * 1/9)
-esp_quadM = sum((resultsM^2) * 1/9)
+D=c(12,30,18)
+n = length(D)
 
-varM = esp_quadM - espM^2
-print(varM)
-print(espM)
+mu = mean(D)
+
+sigma2 = var(D) * (n - 1) / n #correcao pois a funcao var() calcula a variancia amostral
+
+```
+```{r echo=FALSE}
+paste("A media populacional de D é:",mu)
+paste("A variancia populacional de D é:",sigma2)
 ```
 
-```{r}
-espV = sum(resultsV * 1/9)
-esp_quadV = sum((resultsV^2) * 1/9)
 
-varV = esp_quadV - espV^2
-print(varV)
-print(espV)
+Esperanca e Variancia de $\bar y$
+
+```{r}
+espM = sum(resultsM * 1/9) #Esperanca
+esp_quadM = sum((resultsM^2) * 1/9)
+
+varM = esp_quadM - espM^2 #Variancia
+```
+
+```{r echo=FALSE}
+paste("A esperanca da media amostral é:",espM)
+paste("A variancia da media amostral é:",varM)
+```
+
+Esperanca de $s^2$
+
+```{r}
+espV = sum(resultsV * 1/9) #Esperanca
+```
+
+```{r echo=FALSE}
+paste("A esperanca da variancia amostral é:",espM)
 ```
 
 
