@@ -7,9 +7,9 @@
 
         <meta name="author" content="Davi Wentrick Feijó" />
     
-        <meta name="date" content="2024-03-26" />
+        <meta name="date" content="2024-04-17" />
     
-    <title>Aula 3 - Amostra Aleatoria Simples c/ Reposicao</title>
+    <title>Aula 5 - Amostragem Estratificada</title>
 
         <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -1809,46 +1809,42 @@ margin-left: 0 !important;
         <div class="Sidebar">
           <div class="SidebarItems" id="toc">
             <ul>
-            <li><a href="#definicao-1" id="toc-definicao-1">Definicao
+            <li><a href="#motivação" id="toc-motivação">Motivação</a></li>
+            <li><a href="#notação-e-relações-entre-os-parâmetros" id="toc-notação-e-relações-entre-os-parâmetros">Notação e
+            relações entre os parâmetros</a>
+            <ul>
+            <li><a href="#resultado" id="toc-resultado">Resultado</a></li>
+            </ul></li>
+            <li><a href="#funções-paramétricas" id="toc-funções-paramétricas">Funções paramétricas</a></li>
+            <li><a href="#teorema-1" id="toc-teorema-1">Teorema
             1</a></li>
-            <li><a href="#definicao-2" id="toc-definicao-2">Definicao
-            2</a></li>
-            <li><a href="#descrição-do-plano-aasc" id="toc-descrição-do-plano-aasc">Descrição do Plano
-            AASc</a></li>
-            <li><a href="#teorema-1" id="toc-teorema-1">Teorema 1</a>
+            <li><a href="#amostragem-estratificada-proporcional---aepr" id="toc-amostragem-estratificada-proporcional---aepr">Amostragem
+            Estratificada Proporcional - AEpr</a>
             <ul>
-            <li><a href="#prova---ef_i-e-varf_i" id="toc-prova---ef_i-e-varf_i">Prova - <span class="math inline">\(E(f_i)\)</span> e <span class="math inline">\(Var(f_i)\)</span></a></li>
-            <li><a href="#prova---covf_if_j" id="toc-prova---covf_if_j">Prova - <span class="math inline">\(Cov(f_i,f_j)\)</span></a></li>
-            <li><a href="#prova---covff" id="toc-prova---covff">Prova -
-            <span class="math inline">\(Cov(f,f&#39;)\)</span></a></li>
-            <li><a href="#prova---pi_i" id="toc-prova---pi_i">Prova -
-            <span class="math inline">\(\pi_i\)</span></a></li>
-            <li><a href="#prova---pi_ij" id="toc-prova---pi_ij">Prova -
-            <span class="math inline">\(\pi_{i,j}\)</span></a></li>
+            <li><a href="#prova---media" id="toc-prova---media">Prova -
+            Media</a></li>
+            <li><a href="#prova---variancia" id="toc-prova---variancia">Prova - Variancia</a></li>
             </ul></li>
-            <li><a href="#teorema---propriedade-das-estatisticas" id="toc-teorema---propriedade-das-estatisticas">Teorema -
-            Propriedade das Estatisticas</a>
+            <li><a href="#amostragem-estratificada-uniforme---aeun" id="toc-amostragem-estratificada-uniforme---aeun">Amostragem
+            Estratificada Uniforme - AEun</a>
             <ul>
-            <li><a href="#prova---et" id="toc-prova---et">Prova - <span class="math inline">\(E(t)\)</span></a></li>
-            <li><a href="#prova---vart" id="toc-prova---vart">Prova -
-            <span class="math inline">\(Var(t)\)</span></a></li>
-            </ul></li>
-            <li><a href="#teorema---estimacao-do-total-e-da-media-populacional" id="toc-teorema---estimacao-do-total-e-da-media-populacional">Teorema
-            - Estimacao do total e da media populacional</a>
-            <ul>
-            <li><a href="#prova---ebar-y" id="toc-prova---ebar-y">Prova
-            - <span class="math inline">\(E(\bar y)\)</span></a></li>
-            <li><a href="#prova---varbar-y" id="toc-prova---varbar-y">Prova - <span class="math inline">\(Var(\bar y)\)</span></a></li>
             <li><a href="#corolário" id="toc-corolário">Corolário</a></li>
             </ul></li>
-            <li><a href="#teorema---estimacao-da-variancia-populacional" id="toc-teorema---estimacao-da-variancia-populacional">Teorema
-            - Estimacao da variancia populacional</a>
+            <li><a href="#amostragem-ótima-de-neyman" id="toc-amostragem-ótima-de-neyman">Amostragem Ótima de
+            Neyman</a>
             <ul>
-            <li><a href="#prova---es2" id="toc-prova---es2">Prova -
-            <span class="math inline">\(E(s^2)\)</span></a></li>
+            <li><a href="#teorema" id="toc-teorema">Teorema</a></li>
+            <li><a href="#prova" id="toc-prova">Prova</a></li>
+            <li><a href="#prova-1" id="toc-prova-1">Prova</a></li>
+            <li><a href="#conclusão" id="toc-conclusão">Conclusão</a></li>
+            <li><a href="#corolário-1" id="toc-corolário-1">Corolário</a></li>
             </ul></li>
-            <li><a href="#resultado---normalidade-assintótica" id="toc-resultado---normalidade-assintótica">Resultado -
-            Normalidade Assintótica</a></li>
+            <li><a href="#efeito-do-planejamento" id="toc-efeito-do-planejamento">Efeito do
+            Planejamento</a></li>
+            <li><a href="#comparação-entre-aasc-e-aepr" id="toc-comparação-entre-aasc-e-aepr">Comparação entre AASc
+            e AEpr</a></li>
+            <li><a href="#normalidade-assintótica" id="toc-normalidade-assintótica">Normalidade
+            Assintótica</a></li>
             <li><a href="#intervalo-de-confiança-para-a-média" id="toc-intervalo-de-confiança-para-a-média">Intervalo de
             Confiança para a Média</a></li>
             <li><a href="#determinação-do-tamanho-da-amostra" id="toc-determinação-do-tamanho-da-amostra">Determinação do
@@ -1862,14 +1858,13 @@ margin-left: 0 !important;
    
    
         
-      <h1 class="title">Aula 3 - Amostra Aleatoria Simples c/
-Reposicao</h1>
+      <h1 class="title">Aula 5 - Amostragem Estratificada</h1>
       
       <p class="authors">
            <span class="glyphicon glyphicon-user"></span> Davi Wentrick
 Feijó
       </p>
-         <p class="date"><span class="glyphicon glyphicon-calendar"></span> 2024-03-26</p>
+         <p class="date"><span class="glyphicon glyphicon-calendar"></span> 2024-04-17</p>
            
 
    
@@ -1877,566 +1872,487 @@ Feijó
    
 <!-- Don't indent these lines or it will mess pre blocks indentation --> 
 <div class="page-content has-page-title">
-<div id="definicao-1" class="section level2">
-<h2>Definicao 1</h2>
+<div id="motivação" class="section level2">
+<h2>Motivação</h2>
 <ul>
-<li><p>Seja <span class="math inline">\(f_i(s)\)</span> a variável que
-indica o número de vezes que a i-ésima unidade populacional aparece na
-amostra <span class="math inline">\(s\)</span>. Ou seja quantas vezes
-cada observacao especifica esta repetida na amostra</p></li>
-<li><p>Seja <span class="math inline">\(\delta_i(s)\)</span> a variável
-binária que indica a presença ou não da i-ésima unidade na amostra <span class="math inline">\(s\)</span>. Ou seja quantos tipos de observacoes
-diferentes e unicas existem na amostra. Isto é:</p></li>
+<li>Para uma <span class="math inline">\(A A S c\)</span> de tamanho n,
+a variância do estimador média amostral, é dada por <span class="math inline">\(\operatorname{Var}[\bar{y}]=\frac{\sigma^{2}}{n}\)</span>.</li>
+<li>Aumentando-se <span class="math inline">\(n\)</span>, o erro padrão
+diminui.</li>
+<li>Se a população é muito heterogênea e as razões de custo limitam o
+aumento da amostra, torna-se impossível definir uma <span class="math inline">\(A A S c\)</span> da população toda com precisão
+razoável.</li>
+</ul>
+</div>
+<div id="notação-e-relações-entre-os-parâmetros" class="section level2">
+<h2>Notação e relações entre os parâmetros</h2>
+<ul>
+<li><p><span class="math inline">\(N_{h}\)</span> : tamanho do estrato
+<span class="math inline">\(h\)</span></p></li>
+<li><p><span class="math inline">\(\tau_{h}=\sum_{i=1}^{N_{h}} Y_{h
+i}:\)</span> total do estrato <span class="math inline">\(h\)</span></p></li>
+<li><p><span class="math inline">\(\mu_{h}=\bar{Y}_{h}=\frac{1}{N_{h}}
+\sum_{i=1}^{N_{h}} Y_{h i}:\)</span> média do estrato <span class="math inline">\(h\)</span></p></li>
+<li><p><span class="math inline">\(S_{h}^{2}=\frac{1}{N_{h}-1}
+\sum_{i=1}^{N_{h}}\left(Y_{h i}-\mu_{h}\right)^{2}:\)</span> variância
+do estrato <span class="math inline">\(h\)</span></p></li>
+<li><p><span class="math inline">\(\sigma_{h}^{2}=\frac{1}{N_{h}}
+\sum_{i=1}^{N_{h}}\left(Y_{h i}-\mu_{h}\right)^{2}:\)</span> variância
+do estrato <span class="math inline">\(h\)</span></p></li>
+<li><p><span class="math inline">\(N=\sum_{h=1}^{H} N_{h}:\)</span>
+tamanho do universo</p></li>
+<li><p><span class="math inline">\(W_{h}=\frac{N_{h}}{N}\)</span> : peso
+do estrato <span class="math inline">\(h\)</span>, com <span class="math inline">\(\sum_{h=1}^{H} W_{h}=1\)</span></p></li>
+<li><p><span class="math inline">\(\tau=\sum_{i=1}^{N_{h}}
+\tau_{h}=\sum_{h=1}^{H} \sum_{i=1}^{N_{h}} Y_{h i}=\sum_{h=1}^{H} N_{h}
+\mu_{h}\)</span> : total populacional</p></li>
+<li><p><span class="math inline">\(\mu=\bar{Y}=\frac{\tau}{N}=\frac{1}{N}
+\sum_{h=1}^{H} \sum_{i=1}^{N_{h}} Y_{h i}=\frac{1}{N} \sum_{h=1}^{H}
+N_{h} \mu_{h}\)</span></p></li>
 </ul>
 <p><span class="math display">\[
-\delta_i(s) = \left\{ \begin{array}{rcl}
-1, &amp; \mbox{se} &amp; i \in s \\
-0, &amp; \mbox{se} &amp; i \notin s \\  
-\end{array}\right.
+\mu=\sum_{h=1}^{H} W_{h} \mu_{h}: \text { média populacional }
 \]</span></p>
-<ul>
-<li>Chama-se tamanho efetivo <span class="math inline">\(n(s)\)</span>
-da amostra <span class="math inline">\(s\)</span> a soma das frequências
-das unidades populacionais na amostra, ou seja é o total da amostra
-contando ate as observacoes que aparecem repetidas, isto é:</li>
-</ul>
+<p>(média ponderada dos estratos)</p>
+<div id="resultado" class="section level3">
+<h3>Resultado</h3>
 <p><span class="math display">\[
-n(s) = \sum_{i=1}^{N} f_i(s)
+\begin{aligned}
+&amp; \sum_{h=1}^{H} \sum_{i=1}^{N_{h}}\left(Y_{h
+i}-\mu\right)^{2}=\sum_{h=1}^{H} \sum_{i=1}^{N_{h}}\left(Y_{h
+i}-\mu_{h}\right)^{2}+\sum_{h=1}^{H} N_{h}\left(\mu_{h}-\mu\right)^{2}
+\\
+\end{aligned}
 \]</span></p>
-<ul>
-<li>Chama-se tamanho fixo efetivo <span class="math inline">\(v(s)\)</span> da amostra <span class="math inline">\(s\)</span> o número de unidades populacionais
-distintas presentes na amostra s, aqui contaremos apenas as quantidades
-unicas de cada amostra coletada nao levando em conta suas repeticoes
-caso existam na amostra. isto é:</li>
-</ul>
 <p><span class="math display">\[
-v(s) = \sum_{i=1}^{N} \delta_i(s)
+\begin{aligned}
+\sigma^{2} &amp;= \frac{1}{N} \sum_{h=1}^{H}
+\sum_{i=1}^{N_{h}}\left(Y_{h i}-\mu\right)^{2} \\
+            &amp;= \frac{1}{N}\left\{\sum_{h=1}^{H}
+\sum_{i=1}^{N_{h}}\left(Y_{h i}-\mu_{h}\right)^{2}+\sum_{h=1}^{H}
+N_{h}\left(\mu_{h}-\mu\right)^{2}\right\} \\
+      \quad &amp;=\frac{1}{N}\left\{\sum_{h=1}^{H} N_{h}
+\sigma_{h}^{2}+\sum_{h=1}^{H} N_{h}\left(\mu_{h}-\mu\right)^{2}\right\}
+\\
+            &amp;=\sum_{h=1}^{H} W_{h} \sigma_{h}^{2}+\sum_{h=1}^{H}
+W_{h}\left(\mu_{h}-\mu\right)^{2}  \quad \rightarrow \quad
+\sigma^{2}=\sigma_{d}^{2}+\sigma_{e}^{2}
+\end{aligned}
+\]</span> ou seja :</p>
+<p><span class="math display">\[
+\sigma^{2}=\sigma_{d}^{2}+\sigma_{e}^{2}
+\]</span></p>
+<p><span class="math inline">\(\sigma_{d}^{2}=\sum_{h=1}^{H} W_{h}
+\sigma_{h}^{2} \rightarrow\)</span> mede a variància dentro dos
+estratos</p>
+<p><span class="math inline">\(\sigma_{e}^{2}=\sum_{h=1}^{H}
+W_{h}\left(\mu_{h}-\mu\right)^{2} \rightarrow\)</span> mede a variância
+entre os estratos</p>
+<p>Para estratos relativamente grandes</p>
+<p><span class="math display">\[
+\sigma^{2}=\sigma_{d}^{2}+\sigma_{e}^{2} \cong S_{d}^{2}+\sigma_{e}^{2}
+\]</span></p>
+<p>onde</p>
+<p><span class="math display">\[
+S_{d}^{2}=\sum_{h=1}^{H} W_{h} S_{h}^{2}
+\]</span></p>
+<p>Quando todos os estratos têm a mesma média,</p>
+<p><span class="math display">\[
+\sigma^{2}=\sigma_{d}^{2}
+\]</span></p>
+<p>pois</p>
+<p><span class="math display">\[
+\sigma_{e}^{2}=\sum_{h=1}^{H} W_{h}\left(\mu_{h}-\mu\right)^{2}=0
 \]</span></p>
 </div>
-<div id="definicao-2" class="section level2">
-<h2>Definicao 2</h2>
-<p>Indica-se por <span class="math inline">\(\pi_i(A)\)</span> , a
-probabilidade de o i-ésimo elemente de U pertencer à amostra segundo o
-planejamento A, e <span class="math inline">\(\pi_{ij}(A)\)</span> a
-probabilidade de o i-ésimo e j-ésimo elementos pertencerem
-simultaneamente à amostra. Aqui estamos interessados em formalizar uma
-forma de calcular a probabilidade de uma observacao (ou um conjunto)
-fazer parte da amostra. Deste modo,</p>
-<p><span class="math display">\[
-\pi_i(A) = P_A(\delta_i = 1) = \sum P_A(\delta_i = 1) = \sum P_A(s)
-\]</span></p>
-<p><span class="math display">\[
-\pi_{ij}(A) = P_A(\delta_{ij} = 1) = \sum P_A(\delta_i = 1) = \sum
-P_A(s)
-\]</span></p>
 </div>
-<div id="descrição-do-plano-aasc" class="section level2">
-<h2>Descrição do Plano AASc</h2>
-<ol style="list-style-type: decimal">
-<li>A população é numerada de 1 a <span class="math inline">\(N\)</span>, a partir do sistema de referência,
-i.e., <span class="math inline">\(U = {1, 2, ..., N}\)</span>.</li>
-<li>Utilizando-se uma tabela de números aleatórios, ou um programa de
-computador, soteia-se com igual probabilidade uma das <span class="math inline">\(N\)</span> unidades da população.</li>
-<li>Repõe-se essa unidade na população e sorteia-se um elemento
-seguinte.</li>
-<li>Repete-se o procedimento até que <span class="math inline">\(n\)</span> unidades tenham sido sorteadas.</li>
-</ol>
+<div id="funções-paramétricas" class="section level2">
+<h2>Funções paramétricas</h2>
+<ul>
+<li><p><span class="math inline">\(\bar{y}_{h}=\frac{1}{n_{h}} \sum_{i
+\in s_{h}} Y_{h i}\)</span> : média amostral do estrato <span class="math inline">\(h\)</span></p></li>
+<li><p><span class="math inline">\(t_{h}=\sum_{i \in s_{h}} Y_{h
+i}\)</span> :total amostral do estrato <span class="math inline">\(h\)</span></p></li>
+<li><p><span class="math inline">\(s_{h}^{2}=\frac{1}{n_{h}-1} \sum_{i
+\in s_{h}}\left(Y_{h i}-\bar{y}_{h}\right)^{2}:\)</span> variância
+amostral do estrato <span class="math inline">\(h\)</span></p></li>
+</ul>
+<p>Sendo <span class="math inline">\(\boldsymbol{s}=\bigcup_{h=1}^{H}
+s_{h}\)</span> de tamanho <span class="math inline">\(n=\sum_{h=1}^{H}
+n_{h}\)</span></p>
+<ul>
+<li><p><span class="math inline">\(\bar{y}=\frac{1}{n} \sum_{h=1}^{H}
+\sum_{i \in s_{h}} Y_{h i}:\)</span> média amostral</p></li>
+<li><p><span class="math inline">\(t=\sum_{h=1}^{H} \sum_{i \in s_{h}}
+Y_{h i}:\)</span> total amostral</p></li>
+<li><p><span class="math inline">\(s^{2}=\frac{1}{n-1} \sum_{h=1}^{H}
+\sum_{i \in s_{h}}\left(Y_{h i}-\bar{y}\right)^{2}:\)</span> variância
+amostral</p></li>
+</ul>
 </div>
 <div id="teorema-1" class="section level2">
 <h2>Teorema 1</h2>
-<p>Para o plano AASc a variável <span class="math inline">\(f_i\)</span>, número de vezes que a unidade <span class="math inline">\(i\)</span> aparece na amostra, segue uma
-distribuição binomial com parâmetros <span class="math inline">\(n\)</span> e <span class="math inline">\(1/N\)</span>, denotado por:</p>
+<p>O estimador</p>
 <p><span class="math display">\[
-f_i \sim \text{Binomial} (n;\frac{1}{N})
+T_{e s}=\sum_{h=1}^{H} N_{h} \hat{\mu}_{h}
 \]</span></p>
-<ul>
-<li><p><span class="math inline">\(E(f_i) =
-\frac{n}{N}\)</span></p></li>
-<li><p><span class="math inline">\(Var(f_i) =
-\frac{n}{N}(1-\frac{n}{N})\)</span></p></li>
-<li><p><span class="math inline">\(Cov(f_i,f_j) = -\frac{n}{N^2}, i \neq
-j\)</span></p></li>
-<li><p><span class="math inline">\(Cov(f,f&#39;) =
--\frac{Var(f)}{N-1}\)</span></p></li>
-<li><p><span class="math inline">\(\pi_i =
-1-(1-\frac{1}{N})^n\)</span></p></li>
-<li><p><span class="math inline">\(\pi_{ij} = 1-2(1-\frac{1}{N})^n +
-(1-\frac{2}{N})^n\)</span></p></li>
-</ul>
-<div id="prova---ef_i-e-varf_i" class="section level3">
-<h3>Prova - <span class="math inline">\(E(f_i)\)</span> e <span class="math inline">\(Var(f_i)\)</span></h3>
-<p>O resultado vem do calculo da esperanca e variancia de uma <span class="math inline">\(binomial(n,p)\)</span></p>
+<p>é não viesado para o total populacional <span class="math inline">\(\tau\)</span>, com</p>
 <p><span class="math display">\[
-P(X = k) = \left( \begin{array}{c} n \\ k \end{array} \right)
-p^k(1-p)^{n-k}
+\operatorname{Var}_{A}\left[T_{e s}\right]=\sum_{h=1}^{H} N_{h}^{2}
+\operatorname{Var}_{A}\left[\hat{\mu}_{h}\right]
 \]</span></p>
-<p>Sabemos que a esperanca e a variancia de uma binomial sao:</p>
-<ul>
-<li><p><span class="math inline">\(E(X) = np\)</span></p></li>
-<li><p><span class="math inline">\(Var(X) = np(1-p)\)</span></p></li>
-</ul>
-<p>Logo na binomial da AASc temos <span class="math inline">\(n =
-n\)</span> e <span class="math inline">\(p = \frac{1}{N}\)</span></p>
-<ul>
-<li><p><span class="math inline">\(E(X) = np = n\frac{1}{N} =
-\frac{n}{N}\)</span></p></li>
-<li><p><span class="math inline">\(Var(X) = np(1-p) =
-n\frac{1}{N}(1-\frac{1}{N}) =
-\frac{n}{N}(1-\frac{1}{N})\)</span></p></li>
-</ul>
+<p>O estimador</p>
+<p><span class="math display">\[
+\bar{y}_{e s}=\frac{1}{N} \sum_{h=1}^{H} N_{h}
+\hat{\mu}_{h}=\sum_{h=1}^{H} W_{h} \hat{\mu}_{h}
+\]</span></p>
+<p>é um não viesado para a média populacional <span class="math inline">\(\mu\)</span>, com</p>
+<p><span class="math display">\[
+\operatorname{Var}_{A}\left[\bar{y}_{e s}\right]=\sum_{h=1}^{H}
+W_{h}^{2} \operatorname{Var}_{A}\left[\hat{\mu}_{h}\right]
+\]</span></p>
+<p>Considere um plano amostral de uma AASc que <span class="math inline">\(\hat{\mu}_{h}=\bar{y}_{h}\)</span>. Então,</p>
+<p><span class="math display">\[
+\begin{array}{ll}
+T_{e s}=\sum_{h=1}^{H} N_{h} \bar{y}_{h} &amp;
+\operatorname{Var}\left[T_{e s}\right]=\sum_{h=1}^{H} N_{h}^{2}
+\frac{\sigma_{h}^{2}}{n_{h}} \\
+\bar{y}_{e s}=\sum_{h=1}^{H} W_{h} \bar{y}_{h} &amp;
+\operatorname{Var}\left[\bar{y}_{e s}\right]=\sum_{h=1}^{H} W_{h}^{2}
+\frac{\sigma_{h}^{2}}{n_{h}}
+\end{array}
+\]</span></p>
+<p>Com estimadores não viesados dados por</p>
+<p><span class="math display">\[
+\operatorname{var}\left[T_{e s}\right]=\sum_{h=1}^{H} N_{h}^{2}
+\frac{s_{h}^{2}}{n_{h}}
+\]</span></p>
+<p><span class="math display">\[
+\operatorname{var}\left[\bar{y}_{e s}\right]=\sum_{h=1}^{H} W_{h}^{2}
+\frac{s_{h}^{2}}{n_{h}}
+\]</span></p>
 </div>
-<div id="prova---covf_if_j" class="section level3">
-<h3>Prova - <span class="math inline">\(Cov(f_i,f_j)\)</span></h3>
-<p>Considerando o plano AASc, cada tentativa é independente e qualquer
-um dos <span class="math inline">\(N\)</span> elementos populacionais
-tem a mesma probabilidade <span class="math inline">\(1/N\)</span> de
-ser sorteado. Portanto,</p>
+<div id="amostragem-estratificada-proporcional---aepr" class="section level2">
+<h2>Amostragem Estratificada Proporcional - AEpr</h2>
+<p>O plano amostral estratificado proporcional equivale a estudar as
+propriedades do estimador <span class="math inline">\(\bar{y}\)</span>
+associado à <span class="math inline">\(A A S c\)</span>, retirada de
+uma população com variância <span class="math inline">\(\sigma_{d}^{2}\)</span>.</p>
+<p>Neste procedimento a amostra de tamanho <span class="math inline">\(n\)</span> é distribuída proporcionalmente ao
+tamanho dos estratos, i. e.,</p>
 <p><span class="math display">\[
-(f_1,f_2,f_3,...,f_N) \sim
-\text{Multinomial}(n,\frac{1}{N},...,\frac{1}{N})
-\]</span> Onde:</p>
-<ul>
-<li><p><span class="math inline">\(E(f_i) = np_i =
-\frac{n}{N}\)</span></p></li>
-<li><p><span class="math inline">\(Var(f_i) = np_i(1-p_i) =
-\frac{n}{N}(1-\frac{1}{N})\)</span></p></li>
-<li><p><span class="math inline">\(Cov(f_i,f_j) = -np_ip_j = -n
-\frac{1}{N} \frac{1}{N} = -\frac{n}{N^2}, i \neq j\)</span></p></li>
-</ul>
+n_{h}=n W_{h}=n \frac{N_{h}}{N}
+\]</span></p>
+<p>Teorema. Com relação à <span class="math inline">\(A E p r\)</span>,
+o estimador <span class="math inline">\(\bar{y}_{e s}\)</span> é igual à
+média amostral simples <span class="math inline">\(\bar{y}\)</span>,
+com</p>
+<p><span class="math display">\[
+\operatorname{Var}_{p r}=\operatorname{Var}\left[\bar{y}_{e
+s}\right]=\sum_{h=1}^{H} W_{h}
+\frac{\sigma_{h}^{2}}{n}=\frac{\sigma_{d}^{2}}{n}
+\]</span></p>
+<p>que é estimada por</p>
+<p><span class="math display">\[
+\operatorname{var}\left[\bar{y}_{e s}\right]=\sum_{h=1}^{H} W_{h}
+\frac{s_{h}^{2}}{n} .
+\]</span></p>
+<div id="prova---media" class="section level3">
+<h3>Prova - Media</h3>
+<p><span class="math display">\[
+\begin{aligned}
+\bar{y}_{e s} &amp;= \sum_{h=1}^{H} W_{h} \bar{y}_{h} \\
+               &amp;=\sum_{h=1}^{H} W_{h} \frac{1}{n_{h}} \sum_{i \in
+s_{h}} Y_{h i} \\
+               &amp; =\sum_{h=1}^{H} W_{h} \frac{1}{n W_{h}} \sum_{i \in
+s_{h}} Y_{h i} \\
+               &amp;=\frac{1}{n} \sum_{h=1}^{H} \sum_{i \in s_{h}} Y_{h
+i} \\
+               &amp;=\bar{y} \\
+\end{aligned}
+\]</span></p>
 </div>
-<div id="prova---covff" class="section level3">
-<h3>Prova - <span class="math inline">\(Cov(f,f&#39;)\)</span></h3>
-<p>Seja o tamanho de um amostra <span class="math inline">\(n(s) =
-\sum_{i=1}^N f_i(s)\)</span>. Fixado um plano amostral, o tamanho
-esperado e a variância do tamanho da amostra serão:</p>
-<ul>
-<li><p><span class="math inline">\(E(n) = \sum_{i=1}^N
-E(f_i)\)</span></p></li>
-<li><p><span class="math inline">\(Var(n) = \sum_{i=1}^N Var(f_i) +
-\sum_{i\neq1}^N Cov(f_i,f_j)\)</span></p></li>
-</ul>
-<p>Para encontrar a variancia de <span class="math inline">\(n\)</span>
-foi utilizado uma propriedade diistributiva da Covariancia, da seguinte
-forma:</p>
+<div id="prova---variancia" class="section level3">
+<h3>Prova - Variancia</h3>
+<p>Considerando que</p>
 <p><span class="math display">\[
-Var(n) = Cov(n,n) \\
-Var(n) = Cov(f_1+f_2+...,f_N,f_1+f_2+...,f_N) \\
-Var(n) = \sum_{i=1}^N Var(f_i) + \sum_{i\neq1}^N Cov(f_i,f_j)
+f_{h}=\frac{n_{h}}{N_{h}}=\frac{n_{h} W_{h}}{N_{h} W_{h}}=\frac{n}{N}
 \]</span></p>
-<p>Para planos amostrais simétricos, isto é, cujas esperanças,
-variâncias e covariâncias são as mesmas para todas as variáveis:</p>
-<ul>
-<li><p><span class="math inline">\(E(f_i) = E(f)\)</span></p></li>
-<li><p><span class="math inline">\(Var(f_i) = Var(f)\)</span></p></li>
-<li><p><span class="math inline">\(Cov(f_i,f_j) = Cov(f,f&#39;)\)</span>
-para <span class="math inline">\(i = \overline{1,N}\)</span></p></li>
-</ul>
-<p>Para planos com tamanho fixo:</p>
+<p>e que</p>
 <p><span class="math display">\[
-Var(n) = N Var(f) + N(N-1)Cov(f,f&#39;)
+\begin{gathered}
+\frac{W_{h}^{2}}{n_{h}}=\frac{W_{h}^{2}}{n W_{h}}=\frac{W_{h}}{n} \\
+\operatorname{Var}\left[\bar{y}_{e s}\right]=\sum_{h=1}^{H} W_{h}^{2}
+\frac{\sigma_{h}^{2}}{n_{h}}=\sum_{h=1}^{H} W_{h}
+\frac{\sigma_{h}^{2}}{n}=\frac{\sigma_{d}^{2}}{n}
+\end{gathered}
 \]</span></p>
-<p>mas como <span class="math inline">\(Var(n) = 0\)</span>, então:
-(obs: pq é <span class="math inline">\(0\)</span>????????)</p>
+<p>Como dentro de cada estrato <span class="math inline">\(s_{h}^{2}\)</span> é um estimador não viesado de
+<span class="math inline">\(\sigma_{h}^{2}\)</span>, então</p>
 <p><span class="math display">\[
-\begin{align}
-Var(n) &amp;= N Var(f) + N(N-1)Cov(f,f&#39;) \\
-0 &amp;= N Var(f) + N(N-1)Cov(f,f&#39;) \\
--N(N-1)Cov(f,f&#39;) &amp;= N Var(f) \\
-Cov(f,f&#39;) &amp;= - \frac{N Var(f)}{N(N-1)} \\
-Cov(f,f&#39;) &amp;= - \frac{ Var(f)}{(N-1)} \\
-Cov(f,f&#39;) &amp;= - \frac{1}{(N-1)} \frac{n}{N}(1-\frac{1}{N}) \\
-Cov(f,f&#39;) &amp;= - \frac{n}{(N-1)N} (\frac{N-1}{N}) \\
-Cov(f,f&#39;) &amp;= - \frac{n(N-1)}{(N-1)N^2} \\
-Cov(f,f&#39;) &amp;= - \frac{n}{N^2} \\
-\end{align}
-\]</span></p>
-<p>obs: o slide que eu to vendo do professor esta com uma notacao bem
-estranha nao sei se é um erro tenho que perguntar, minha duvida é se nao
-deveria ser um somatorio duplo no calculo da covariancia</p>
-</div>
-<div id="prova---pi_i" class="section level3">
-<h3>Prova - <span class="math inline">\(\pi_i\)</span></h3>
-<p>Queremos saber a probabilidade do i-ésimo elemento se parte da
-amostra, como estamos trabalhando com uma Amostra Aleatoria Simples com
-Reposicao (AASc) sabemos que em uma amostra de tamanho <span class="math inline">\(n\)</span> a chance de cada elemento fazer parte é
-<span class="math inline">\(1/N\)</span>. Entao para fazer esse calculo
-vamos utilizar o complementar ou seja queremos calcular a chance de NAO
-fazer parte da amostra e isso significa calcular a probabilidade do
-i-ésimo elemento ser 0:</p>
-<p>$$ <span class="math display">\[\begin{align}
-\pi_i &amp;= P(f_i \neq 0) \\
-      &amp;= 1 - P(f_i=0) \\
-      &amp;= 1 - \left( \begin{array}{c} n \\ 0 \end{array} \right)
-\frac{1}{N}^0(1-\frac{1}{N})^{n-0} \\
-      &amp;= 1 -  (1-\frac{1}{N})^{n} \\
-      &amp;=  \frac{N^n-(N-1)^n}{N^n} \\
-\end{align}\]</span></p>
-<p>$$</p>
-</div>
-<div id="prova---pi_ij" class="section level3">
-<h3>Prova - <span class="math inline">\(\pi_{i,j}\)</span></h3>
-<p>Para fazer esse segundo calculo temos que levar em conta como vamos
-calcular a probabilidade de 2 eventos ocorrerem, para isso estaremos
-usando o principio da inlcusao/exclusao:</p>
-<p><span class="math display">\[
-\begin{align}
-P(A  \ \ e \ \ B) &amp;= P(A) + P(B) - P(A \ \ ou \ \ B) \\
-P(A \cap B) &amp;= P(A) + P(B) - P(A \cup B)
-\end{align}
-\]</span></p>
-<p><span class="math display">\[
-\begin{align}
-\pi_{ij} &amp;= P(f_i \neq 0) + P(f_j \neq 0)  - P(f_{ij} \neq 0) \\
-      &amp;= [1 - P(f_i=0)] + [1- P(f_j=0)] - [1 - ( P(f_{ij} = 0))] \\
-\end{align}
-\]</span> Como a probabilidade de <span class="math inline">\(f_i = f_j
-= 1/N\)</span> e tambem sabemos que:</p>
-<ul>
-<li><p><span class="math inline">\(P(f_i=0) =
-(1-\frac{1}{N})^{n}\)</span></p></li>
-<li><p><span class="math inline">\(p_{ij} = p_i+p_j = p(f_i) + P(f_j) =
-\frac{1}{N}+\frac{1}{N} = \frac{2}{N}\)</span> isso é possivel devido a
-idependencia da AASc</p></li>
-</ul>
-<p>Precisamos calcular <span class="math inline">\(P(f_{ij} = 0) =
-?\)</span></p>
-<p><span class="math display">\[
-P(f_{ij} = 0) = \left( \begin{array}{c} n \\ 0 \end{array} \right)
-p_{ij}^0(1-p_{ij})^{n-0} \\
-P(f_{ij} = 0) = (1-\frac{2}{N})^{n} \\
-\]</span></p>
-<p><span class="math display">\[
-\begin{align}
-\pi_{ij} &amp;= [1 - P(f_i=0)] + [1- P(f_j=0)] - [1 - ( P(f_{ij} = 0))]
-\\
-      &amp;= [1 - (1-\frac{1}{N})^{n}] + [1- (1-\frac{1}{N})^{n}] - [1 -
-(1-\frac{2}{N})^{n}] \\
-      &amp;= 2 - 2(1-\frac{1}{N})^{n} - 1 + (1-\frac{2}{N})^{n} \\
-      &amp;= 2 - 1 - 2(1-\frac{1}{N})^{n} + (1-\frac{2}{N})^{n} \\
-      &amp;= 1 - 2(1-\frac{1}{N})^{n} + (1-\frac{2}{N})^{n} \\
-\end{align}
+\operatorname{var}\left[\bar{y}_{e s}\right]=\sum_{h=1}^{H} W_{h}
+\frac{s_{h}^{2}}{n}
 \]</span></p>
 </div>
 </div>
-<div id="teorema---propriedade-das-estatisticas" class="section level2">
-<h2>Teorema - Propriedade das Estatisticas</h2>
-<p>A estatistica <span class="math inline">\(t(s) = \sum Y_i\)</span>
-tem para o plano AASc as seguintes propriedades:</p>
-<ul>
-<li><p><span class="math inline">\(E(t) = n\mu\)</span></p></li>
-<li><p><span class="math inline">\(Var(t) = n \sigma^2\)</span></p></li>
-</ul>
-<div id="prova---et" class="section level3">
-<h3>Prova - <span class="math inline">\(E(t)\)</span></h3>
+<div id="amostragem-estratificada-uniforme---aeun" class="section level2">
+<h2>Amostragem Estratificada Uniforme - AEun</h2>
+<p>No plano amostral estratificado uniforme atribui-se o mesmo tamanho
+de amostra para cada estrato.</p>
+<p>É o procedimento indicado quando se pretende apresentar estimativas
+separadas para cada estrato. Para cada um dos <span class="math inline">\(H\)</span> estratos tem-se,</p>
 <p><span class="math display">\[
-\begin{align}
-t(s) &amp;= \sum_{i \in s} Y_i \\
-     &amp;= \sum_{i = 1}^N f_i(s)Y_i \\
-     &amp;= \sum_{i = 1}^N f_iY_i \\
-\end{align}
+n_{h}=\frac{n}{H}=k
 \]</span></p>
+<p>e</p>
 <p><span class="math display">\[
-\begin{align}
-E(t) &amp;= E(\sum_{i = 1}^N f_iY_i) \\
-     &amp;= \sum_{i = 1}^N E(f_i)Y_i \\
-     &amp;= E(f)\sum_{i = 1}^N Y_i \\
-     &amp;= \frac{n}{N}\sum_{i = 1}^N Y_i \\
-     &amp;= \frac{n}{N}t \\
-     &amp;= n\frac{t}{N} \\
-     &amp;= n\mu \\
-\end{align}
+f_{h}=\frac{k}{N_{h}}
 \]</span></p>
-</div>
-<div id="prova---vart" class="section level3">
-<h3>Prova - <span class="math inline">\(Var(t)\)</span></h3>
-<p><span class="math display">\[
-\begin{align}
-Var(t) &amp;= Var(\sum_{i = 1}^N f_iY_i) \\
-       &amp;= \sum_{i = 1}^N Y_i^2 Var(f_i) + \sum_{i = 1}^N Y_i Y_j
-Cov(f_i,f_j) \\
-       &amp;= Var(f)\sum_{i = 1}^N Y_i^2 -\frac{Var(f)}{N-1} \sum_{i =
-1}^N Y_i Y_j \\
-       &amp;= Var(f)[\sum_{i = 1}^N Y_i^2 -\frac{1}{N-1} \sum_{i = 1}^N
-Y_i Y_j] \\
-\end{align}
-\]</span></p>
-<p>Porem podemos mostrar que:</p>
-<p><span class="math display">\[
-\begin{align}
-\sum_{i = 1}^N Y_i &amp;= N\mu \\
-(\sum_{i = 1}^N Y_i)^2 &amp;= (N\mu)^2 \\
-\sum_{i = 1}^N Y_i^2 + \sum_{i = 1}^N Y_i Y_j  &amp;= N^2\mu^2 \\
-\sum_{i = 1}^N Y_i Y_j  &amp;= - \sum_{i = 1}^N Y_i^2 + N^2\mu^2 \\
-\end{align}
-\]</span></p>
-<p>Voltando para a conta da Variancia:</p>
-<p><span class="math display">\[
-\begin{align}
-Var(t) &amp;= Var(f_i)[\sum_{i = 1}^N Y_i^2 -\frac{1}{N-1} \sum_{i =
-1}^N Y_i Y_j] \\
-       &amp;= Var(f_i)[\sum_{i = 1}^N Y_i^2 -\frac{1}{N-1} (- \sum_{i =
-1}^N Y_i^2 + N^2\mu^2)] \\
-       &amp;= Var(f_i)[\sum_{i = 1}^N Y_i^2\frac{N-1}{N-1}
--\frac{1}{N-1} (- Y_i^2 + N^2\mu^2)] \\
-       &amp;= Var(f_i)\frac{1}{N-1}[\sum_{i = 1}^N Y_i^2 (N-1) - (-
-Y_i^2 + N^2\mu^2)] \\
-       &amp;= Var(f_i)\frac{1}{N-1}[ \sum_{i = 1}^N Y_i^2N- Y_i^2 - (-
-Y_i^2 + N^2\mu^2)] \\
-       &amp;= Var(f_i)\frac{1}{N-1}[ \sum_{i = 1}^N Y_i^2N- Y_i^2 +
-Y_i^2 - N^2\mu^2)] \\
-       &amp;= Var(f_i)\frac{1}{N-1}[ \sum_{i = 1}^N Y_i^2N - N^2\mu^2)]
-\\
-       &amp;= Var(f_i)\frac{1}{N-1}[N\sum_{i = 1}^N Y_i^2 - N^2\mu^2] \\
-       &amp;= Var(f_i)\frac{N}{N-1}[\sum_{i = 1}^N Y_i^2 - N\mu^2] \\
-\end{align}
-\]</span></p>
-<p>Aqui temos que fazer um caminho onde temos que ir completando os
-polinomios para chegar no resultado que queremos mas nem sempre fica
-claro que temos que fazer isso entao mais a frente temos outra opcao,
-contudo deixarei as duas aqui:</p>
-<p><span class="math display">\[
-\begin{align}
-       &amp;= Var(f_i)\frac{N}{N-1}[\sum_{i = 1}^N Y_i^2 - N\mu^2] \\
-       &amp;= Var(f_i)\frac{N}{N-1} [\sum_{i = 1}^N Y_i^2 -  2\mu^2 N  +
-N \mu^2] \\
-       &amp;= Var(f_i)\frac{N}{N-1} [\sum_{i = 1}^N Y_i^2 -  2\mu
-N\mu  + N \mu^2] \\
-       &amp;= Var(f_i)\frac{N}{N-1} [\sum_{i = 1}^N Y_i^2 -  2\mu
-\sum_{i = 1}^NY_i + \sum_{i = 1}^N \mu^2] \\
-       &amp;= Var(f_i)\frac{N}{N-1}\sum_{i = 1}^N (Y_i^2 - 2\mu Y_i +
-\mu^2) \\
-       &amp;= Var(f_i)\frac{N}{N-1}\sum_{i = 1}^N (Y_i - \mu)(Y_i - \mu)
-\\
-       &amp;= Var(f_i)\frac{N}{N-1}\sum_{i = 1}^N (Y_i - \mu)^2 \\
-       &amp;= Var(f_i)NS^2 \\
-       &amp;= Var(f)NS^2 \\
-       &amp;= \frac{n}{N} \frac{N-1}{N} NS^2\\
-       &amp;= n \frac{N-1}{N} S^2\\
-       &amp;= n \sigma^2\\
-\end{align}
-\]</span> ou podemos mostrar que (basicamente o caminho inverso):</p>
-<p><span class="math display">\[
-\begin{align}
-  \sum_{i = 1}^N (Y_i - \mu)^2 &amp;= \sum_{i = 1}^N (Y_i - \mu)(Y_i -
-\mu) \\
-                               &amp;= \sum_{i = 1}^N (Y_i^2 - 2\mu Y_i +
-\mu^2) \\
-                               &amp;= \sum_{i = 1}^N Y_i^2 -  2\mu
-\sum_{i = 1}^NY_i + \sum_{i = 1}^N \mu^2 \\
-                               &amp;= \sum_{i = 1}^N Y_i^2 -  2\mu
-N\mu  + N \mu^2 \\
-                               &amp;= \sum_{i = 1}^N Y_i^2 -  2\mu^2
-N  + N \mu^2 \\
-                               &amp;= \sum_{i = 1}^N Y_i^2 - N\mu^2
-\end{align}
-\]</span></p>
-<p>e em seguida:</p>
-<p><span class="math display">\[
-\begin{align}
-       &amp;= Var(f_i)\frac{N}{N-1}[\sum_{i = 1}^N Y_i^2 - N\mu^2] \\
-       &amp;= Var(f_i)\frac{N}{N-1}\sum_{i = 1}^N (Y_i - \mu)^2 \\
-       &amp;= Var(f_i)NS^2 \\
-       &amp;= Var(f)NS^2 \\
-       &amp;= \frac{n}{N} \frac{N-1}{N} NS^2\\
-       &amp;= n \frac{N-1}{N} S^2\\
-       &amp;= n \sigma^2\\
-\end{align}
-\]</span></p>
-</div>
-</div>
-<div id="teorema---estimacao-do-total-e-da-media-populacional" class="section level2">
-<h2>Teorema - Estimacao do total e da media populacional</h2>
-<p>A media amostral é:</p>
-<p><span class="math display">\[
-\bar y = \frac{1}{n} \sum_{i \in s} Y_i = \frac{t(s)}{n} = \hat \mu
-\]</span></p>
-<p>é um estimador não viesado da média populacional <span class="math inline">\(\mu\)</span> dentro do plano AASc, e ainda</p>
-<p><span class="math display">\[
-Var(\bar y) = \frac{\sigma^2}{n}
-\]</span></p>
-<div id="prova---ebar-y" class="section level3">
-<h3>Prova - <span class="math inline">\(E(\bar y)\)</span></h3>
-<p><span class="math display">\[
-E(\bar y) = E(\frac{t}{n}) = \frac{1}{n}E(t) = \frac{1}{n}n\mu = \mu
-\]</span></p>
-</div>
-<div id="prova---varbar-y" class="section level3">
-<h3>Prova - <span class="math inline">\(Var(\bar y)\)</span></h3>
-<p><span class="math display">\[
-Var(\bar y) = Var(\frac{1}{n} \sum_{i=1}^n y_i) = \frac{1}{n^2}n
-\sigma^2 = \frac{\sigma^2}{n}
-\]</span></p>
-</div>
 <div id="corolário" class="section level3">
 <h3>Corolário</h3>
-<p>Do plano AASc, a estatística:</p>
+<p>Com relação à AEun, o estimador <span class="math inline">\(\bar{y}_{e s}\)</span> é um estimador não viesado
+com variância expressa por</p>
 <p><span class="math display">\[
-T(s) = \hat t = N \bar y = \frac{n}{N}t(s)
+\operatorname{Var}_{u n}=\operatorname{Var}\left[\bar{y}_{e
+s}\right]=\sum_{h=1}^{H} W_{h}^{2} \frac{\sigma_{h}^{2}}{k}
 \]</span></p>
-<p>é um estimador não viesado do total populacional,com</p>
+<p>que é estimado por</p>
 <p><span class="math display">\[
-Var(T) = N^2 \frac{\sigma^2}{n}
+\operatorname{var}\left[\bar{y}_{e s}\right]=\sum_{h=1}^{H} W_{h}^{2}
+\frac{s_{h}^{2}}{k} .
 \]</span></p>
-<p>O estimador <span class="math inline">\(T(s)\)</span> é conhecido por
-estimador expansão do total populacional. Note que o total pode ser
-escrito da seguinte forma:</p>
-<p><span class="math display">\[
-t = \sum_{i \in S} Y_i + \sum_{i \notin S} Y_i
-\]</span></p>
-<p>enquanto:</p>
-<p><span class="math display">\[
-\hat t = n \bar y + (N - n) \bar y
-\]</span></p>
-<p>Onde <span class="math inline">\((N - n) \bar y\)</span> estima a
-parte nao observada <span class="math inline">\(\sum_{i \notin S}
-Y_i\)</span> de <span class="math inline">\(t\)</span></p>
 </div>
 </div>
-<div id="teorema---estimacao-da-variancia-populacional" class="section level2">
-<h2>Teorema - Estimacao da variancia populacional</h2>
-<p>Dentro do plano AASc, a estatística:</p>
+<div id="amostragem-ótima-de-neyman" class="section level2">
+<h2>Amostragem Ótima de Neyman</h2>
+<p>A Amostragem Ótima tem por objetivo minimizar a Ves quando o custo
+variável, <span class="math inline">\(C\)</span>, é fixado, ou minimizar
+o <span class="math inline">\(C\)</span> quando Ves é fixada.</p>
+<p>Para isso, considera-se um função de custo de forma linear, ou
+seja,</p>
 <p><span class="math display">\[
-s^2 = \frac{1}{n-1} \sum_{i \in s} (y_i - \bar y)^2
+C=c_{0}+\sum_{h=1}^{H} c_{h} n_{h} \quad \text { ou } \quad
+C^{\prime}=C-c_{0}=\sum_{h=1}^{H} c_{h} n_{h}
 \]</span></p>
-<p>é um estimador não viesado para a variância populacional <span class="math inline">\(\sigma^2\)</span>.</p>
-<div id="prova---es2" class="section level3">
-<h3>Prova - <span class="math inline">\(E(s^2)\)</span></h3>
+<p>onde <span class="math inline">\(c_{0}\)</span> denota o custo
+inicial, <span class="math inline">\(c_{h}\)</span> o custo por unidade
+observada no estrato <span class="math inline">\(h\)</span> e <span class="math inline">\(C^{\prime}\)</span> o custo variável.</p>
+<div id="teorema" class="section level3">
+<h3>Teorema</h3>
+<p>Na <span class="math inline">\(A E\)</span> com função de custo
+linear, tem-se <span class="math inline">\(V_{e s}\)</span> é mínima
+para <span class="math inline">\(C^{\prime}\)</span> fixado ou <span class="math inline">\(C^{\prime}\)</span> mínimo para <span class="math inline">\(V_{e s}\)</span> fixado, se</p>
 <p><span class="math display">\[
-\begin{align}
-s^2 &amp;= \frac{\sum_{i \in s} (Y_i - \bar y)^2}{n-1} \\
-(n-1)s^2 &amp;= \sum_{i \in s} (Y_i - \bar y)^2 \\
-&amp;= \sum_{i \in s} (Y_i - \bar y) (Y_i - \bar y)\\
-&amp;= \sum_{i \in s} (Y_i^2 - 2Y_i\bar y + \bar y^2)\\
-&amp;= \sum_{i \in s} Y_i^2 - 2\bar y\sum_{i \in s}Y_i + \sum_{i \in
-s}\bar y^2\\
-&amp;= \sum_{i \in s} Y_i^2 - 2\bar yn\bar y + n\bar y^2\\
-&amp;= \sum_{i \in s} Y_i^2 - 2\bar y^2n + n\bar y^2\\
-&amp;= \sum_{i \in s} Y_i^2 - n\bar y^2 \\
-&amp;= \sum_{i \in s} Y_i^2 - n (\frac{t}{n})^2 \\
-&amp;= \sum_{i \in s} Y_i^2 - n \frac{t^2}{n^2} \\
-&amp;= \sum_{i \in s} Y_i^2 - \frac{t^2}{n} \\
-&amp;= \sum_{i \in s} Y_i^2 - \frac{t^2}{n} \\
-\end{align}
+n_{h}=n \frac{W_{h} \sigma_{h} / \sqrt{c_{h}}}{\sum_{h=1}^{H} W_{h}
+\sigma_{h} / \sqrt{c_{h}}}, \quad h=1, \ldots, H
 \]</span></p>
-<p>Em seguida vamos aplicar a esperanca nos 2 lados da equacao:</p>
+</div>
+<div id="prova" class="section level3">
+<h3>Prova</h3>
+<p>Foi visto que</p>
 <p><span class="math display">\[
-\begin{align}
-(n-1)s^2 &amp;= \sum_{i \in s} Y_i^2 - \frac{t^2}{n} \\
-E((n-1)s^2) &amp;= E(\sum_{i \in s} Y_i^2 - \frac{t^2}{n}) \\
-            &amp;= E(\sum_{i \in s} Y_i^2) - E(\frac{t^2}{n}) \\
-            &amp;= \sum_{i \in s} Y_i^2E(f_i) - \frac{1}{n}E(t^2) \\
-\end{align}
+\operatorname{Var}\left[\bar{y}_{e s}\right]=\sum_{h=1}^{H} W_{h}^{2}
+\frac{\sigma_{h}^{2}}{n_{h}}=V_{e s}
 \]</span></p>
-<p>Como sabemos que <span class="math inline">\(\sum_{i=1}^N (Y_i -
-\mu)^2 = \sum_{i=1}^N Y_i^2 - N\mu^2\)</span> e tambem</p>
+<p>Este problema tem uma solução única e simples quando se utiliza a
+desigualdade de Cauchy-Schwarz.</p>
+<p>Desigualdade de Cauchy-Schwarz é dada por</p>
 <p><span class="math display">\[
-\sigma^2 = \frac{\sum_{i=1}^n (Y_i - \mu)^2}{N}  
+\left(\sum a_{h}^{2}\right) \cdot\left(\sum b_{h}^{2}\right)
+\geq\left(\sum a_{h} b_{h}\right)^{2}
 \]</span></p>
-<p>entao:</p>
-<p>$$ <span class="math display">\[\begin{align}
-\sum_{i=1}^N(Y_i - \mu)^2 &amp;= \sum_{i=1}^N Y_i^2 - N\mu^2 \\
-\sum_{i=1}^N(Y_i - \mu)^2 + N\mu^2  &amp;= \sum_{i=1}^N Y_i^2 \\
-\sum_{i=1}^N Y_i^2  &amp;= \sum_{i=1}^N (Y_i - \mu)^2 + N\mu^2 \\
-                    &amp;= N \sigma^2 + N\mu^2 \\
-                    &amp;= N (\sigma^2 + \mu^2) \\
-                    
-\end{align}\]</span> $$</p>
-<p>Importante lembrar que:</p>
+<p>de modo que a igualdade ocorre quando</p>
 <p><span class="math display">\[
-Var(t) = E(t^2) + E(t)^2 \\
-E(t^2) = Var(t) - E(t)^2    
+\frac{b_{h}}{a_{h}}=k
 \]</span></p>
-<p>Com isso tudo podemos seguir fazendo a conta:</p>
+<p>para <span class="math inline">\(h=1, \ldots, H\)</span>.</p>
+</div>
+<div id="prova-1" class="section level3">
+<h3>Prova</h3>
+<p>O problema consiste em minimizar</p>
 <p><span class="math display">\[
-\begin{align}
-\sum_{i \in s} Y_i^2E(f_i) - \frac{1}{n}E(t^2) &amp;= N (\sigma^2 +
-\mu^2) E(f_i) - \frac{1}{n} Var(t) - E(t)^2 \\
-                                               &amp;= N (\sigma^2 +
-\mu^2) \frac{n}{N} - \frac{1}{n} (n\sigma^2 - n^2\mu^2) \\
-                                               &amp;= n (\sigma^2 +
-\mu^2)  -  (\sigma^2 - n\mu^2) \\
-                                               &amp;= n \sigma^2 + n
-\mu^2  -  \sigma^2 - n\mu^2 \\
-                                               &amp;= n \sigma^2
--  \sigma^2  \\
-                                               &amp;= \sigma^2 (n -
-1)  \\
-\end{align}
+\operatorname{Var}_{e s}=\sum_{h=1}^{H} W_{h}^{2}
+\frac{\sigma_{h}^{2}}{n_{h}}
 \]</span></p>
-<p>Portanto:</p>
+<p>sujeito a um custo fixo <span class="math inline">\(C^{\prime}\)</span>, ou minimizar o custo <span class="math inline">\(C^{\prime}\)</span> para uma variância <span class="math inline">\(V_{e s}\)</span> fixada. Então, minimizar <span class="math inline">\(V_{e s}\)</span> para <span class="math inline">\(C^{\prime}\)</span> fixado ou <span class="math inline">\(C^{\prime}\)</span> para <span class="math inline">\(V_{e s}\)</span> fixada é equivalente a minimizar
+o produto</p>
 <p><span class="math display">\[
-\begin{align}
-E((n-1)s^2) &amp;= \sigma^2 (n - 1) \\
-(n-1)E(s^2) &amp;= \sigma^2 (n - 1) \\
-     E(s^2) &amp;= \sigma^2  \\
-\end{align}
-\]</span> ### Corolário</p>
-<p>Para o plano AASc, a estatística</p>
-<p><span class="math display">\[
-Var(\bar y) = \frac{s^2}{n}
+\operatorname{Var}_{e s} C^{\prime}=\left(\sum_{h=1}^{H} W_{h}^{2}
+\frac{\sigma_{h}^{2}}{n_{h}}\right) \cdot\left(\sum_{h=1}^{H} c_{h}
+n_{h}\right) .
 \]</span></p>
-<p>é um estimador não viesado para a variância da média amostral, <span class="math inline">\(Var(\bar y)\)</span>, e</p>
+<p>Pela desigualdade de Cauchy-Schwars, tem-se que</p>
 <p><span class="math display">\[
-Var(T) = N^2\frac{s^2}{n}
+a_{h}=\frac{W_{h} \sigma_{h}}{\sqrt{n_{h}}} \quad e \quad
+b_{h}=\sqrt{c_{h} n_{h}}
 \]</span></p>
-<p>é um estimador não viesado de <span class="math inline">\(Var(T)\)</span></p>
+<p>O produto <span class="math inline">\(V_{e s} \times
+C^{\prime}\)</span> é mínimo quando</p>
+<p><span class="math display">\[
+\frac{b_{h}}{a_{h}}=\frac{\sqrt{c_{h} n_{h}}}{\frac{W_{h}
+\sigma_{h}}{\sqrt{n_{h}}}}=\frac{n_{h} \sqrt{c_{h}}}{W_{h}
+\sigma_{h}}=k, \quad h=1, \ldots, H
+\]</span></p>
+<p><span class="math display">\[
+\rightarrow \quad n_{h}=k \frac{W_{h} \sigma_{h}}{\sqrt{c_{h}}}
+\]</span></p>
+<p>Sendo</p>
+<p><span class="math display">\[
+n_{h}=k \frac{W_{h} \sigma_{h}}{\sqrt{c_{h}}} \rightarrow \sum_{h=1}^{H}
+n_{h}=k \sum_{h=1}^{H} W_{h} \sigma_{h} / \sqrt{c_{h}}
+\]</span></p>
+<p>Como</p>
+<p><span class="math display">\[
+\begin{gathered}
+\sum_{h=1}^{H} n_{h}=n \rightarrow k=\frac{n}{\sum_{h=1}^{H} W_{h}
+\sigma_{h} / \sqrt{c_{h}}} \\
+\therefore n_{h}=n \frac{W_{h} \sigma_{h} / \sqrt{c_{h}}}{\sum_{h=1}^{H}
+W_{h} \sigma_{h} / \sqrt{c_{h}}}
+\end{gathered}
+\]</span></p>
+</div>
+<div id="conclusão" class="section level3">
+<h3>Conclusão</h3>
+<p>O número ótimo de unidades a serem observadas do estrato <span class="math inline">\(h\)</span> é diretamente proporcional a <span class="math inline">\(N_{h} \sigma_{h}\)</span> e inversamente
+proporcional a <span class="math inline">\(\sqrt{c_{h}}\)</span>.</p>
+<p><span class="math display">\[
+n_{h}=n \frac{W_{h} \sigma_{h} / \sqrt{c_{h}}}{\sum_{h=1}^{H} W_{h}
+\sigma_{h} / \sqrt{c_{h}}}
+\]</span></p>
+</div>
+<div id="corolário-1" class="section level3">
+<h3>Corolário</h3>
+<ol style="list-style-type: lower-roman">
+<li>Para <span class="math inline">\(C^{\prime}\)</span> fixado o
+tamanho ótimo da amostra é dado por</li>
+</ol>
+<p><span class="math display">\[
+n=C^{\prime} \frac{\sum_{h=1}^{H} N_{h} \sigma_{h} /
+\sqrt{c_{h}}}{\sum_{h=1}^{H} N_{h} \sigma_{h} \sqrt{c_{h}}}
+\]</span></p>
+<ol start="2" style="list-style-type: lower-roman">
+<li>Para <span class="math inline">\(V_{e s}\)</span> fixado o tamanho
+ótimo da amostra é dado por</li>
+</ol>
+<p><span class="math display">\[
+n=\frac{1}{V_{e s}}\left(\sum_{h=1}^{H} W_{h} \sigma_{h}
+\sqrt{c_{h}}\right)\left(\sum_{h=1}^{H} W_{h} \sigma_{h} /
+\sqrt{c_{h}}\right) .
+\]</span></p>
+<p>Para o caso em que o custo por unidade observada em todos os estratos
+seja fixado em c, isto é,</p>
+<p><span class="math display">\[
+C^{\prime}=C-c_{0}=n c .
+\]</span></p>
+<p>A alocação ótima se reduz a</p>
+<p><span class="math display">\[
+n_{h}=n \frac{N_{h} \sigma_{h}}{\sum_{h=1}^{H} N_{h} \sigma_{h}} \quad
+\text { (alocação ótima de Neyman). }
+\]</span></p>
+<p>Neste caso, <span class="math inline">\(V_{e s}\)</span> se reduz
+a</p>
+<p><span class="math inline">\(\operatorname{Var}_{o
+t}=\frac{1}{n}\left(\sum_{h=1}^{H} W_{h}
+\sigma_{h}\right)^{2}=\frac{\bar{\sigma}^{2}}{n}\)</span>, onde <span class="math inline">\(\bar{\sigma}=\sum_{h=1}^{H} W_{h}
+\sigma_{h}\)</span></p>
+<p>é um desvio padrão médio dentro de cada estrato.</p>
 </div>
 </div>
-<div id="resultado---normalidade-assintótica" class="section level2">
-<h2>Resultado - Normalidade Assintótica</h2>
-<p>Para um <span class="math inline">\(n\)</span> suficientemente grande
-:</p>
+<div id="efeito-do-planejamento" class="section level2">
+<h2>Efeito do Planejamento</h2>
+<p>Teorema</p>
+<p>Com relação à AASc, tem-se que</p>
 <p><span class="math display">\[
-\frac{\hat \theta - E(\hat \theta)}{\sqrt{Var(\hat \theta)}} \sim
-\text{Normal}(0,1)
+V_{o t} \leq V_{p r} \leq V_{c}
 \]</span></p>
-<p>Com relacao a AASc temos:</p>
+<p>Recomendações:</p>
 <p><span class="math display">\[
-\frac{\bar y - \mu}{\sqrt{\frac{\sigma^2}{n}}} \sim \text{Normal}(0,1)
+V_{c}=V_{p r}+\frac{\sigma_{e}^{2}}{n}=V_{o t}+\frac{\sigma_{d
+p}^{2}}{n}+\frac{\sigma_{e}^{2}}{n}
+\]</span> - Sempre que os estratos tiverem médias distintas ( <span class="math inline">\(\sigma_{e}^{2}\)</span> grande), deve-se usar
+alocação proporcional ou ótima. - Se, além disso, os desvios padrões de
+cada estrato diferem muito entre si ( <span class="math inline">\(\sigma_{d p}^{2}\)</span> grande), recomendase a
+alocação ótima.</p>
+</div>
+<div id="comparação-entre-aasc-e-aepr" class="section level2">
+<h2>Comparação entre AASc e AEpr</h2>
+<p>Comparando-se os planos amostrais <span class="math inline">\(A A S
+c\)</span> com <span class="math inline">\(A E p r\)</span>, tem-se
+que</p>
+<p><span class="math inline">\(E P A[A E p r]=\frac{V_{p
+r}}{V_{c}}=\frac{\sigma_{d}^{2} / n}{\sigma^{2} /
+n}=\frac{\sigma^{2}-\sigma_{e}^{2}}{\sigma^{2}}=1-\frac{\sigma_{e}^{2}}{\sigma^{2}}\)</span></p>
+<p>Se <span class="math inline">\(1 / N_{h}\)</span> for desprezível, o
+plano estratificado proporcional produz variâncias sempre menores que as
+produzidas por uma AASc de mesmo tamanho, e este ganho é maior quanto
+maior for <span class="math inline">\(\sigma_{e}^{2}\)</span>, i. e.,
+maior for a diferença entre as médias dos estratos.</p>
+<p>Comparando-se os planos amostrais <span class="math inline">\(A A S
+c\)</span> com <span class="math inline">\(A E\)</span> tot, tem-se
+que</p>
+<p><span class="math inline">\(E P A[A E o t]=\frac{V_{o
+t}}{V_{c}}=\frac{\frac{\sigma^{2}-\sigma_{e}^{2}-\sigma_{d
+p}^{2}}{n}}{\sigma^{2} / n}=\frac{\sigma^{2}-\sigma_{e}^{2}-\sigma_{d
+p}^{2}}{\sigma^{2}}\)</span></p>
+<p><span class="math inline">\(=1-\frac{\sigma_{e}^{2}}{\sigma^{2}}-\frac{\sigma_{d
+p}^{2}}{\sigma^{2}}\)</span></p>
+<p>O ganho com o uso do plano AEot é maior com o aumento da diferença
+entre os estrados, i, e., <span class="math inline">\(\sigma_{e}^{2}\)</span> grande. <span class="math inline">\(O\)</span> último termo da expressão mede a
+variabilidade dos desvios padrões dos estratos, o que significa que o
+ganho da alocação ótima cresce com a diferença entre as variabilidades
+dos estratos.</p>
+</div>
+<div id="normalidade-assintótica" class="section level2">
+<h2>Normalidade Assintótica</h2>
+<p>Para <span class="math inline">\(n\)</span> suficientemente grande,
+tem-se com relação à AASs</p>
+<p><span class="math display">\[
+\frac{\bar{y}_{e s}-\mu}{\sqrt{\sum_{h=1}^{H} W_{h}^{2} \sigma_{h}^{2} /
+n_{h}}} \sim N(0,1)
 \]</span></p>
+<p>e</p>
 <p><span class="math display">\[
-\frac{T - t}{N\sqrt{\frac{\sigma^2}{n}}} \sim \text{Normal}(0,1)
+\frac{\tau_{e s}-\tau}{\sqrt{\sum_{h=1}^{H} N_{h}^{2} \sigma_{h}^{2} /
+n_{h}}} \sim N(0,1)
 \]</span></p>
 </div>
 <div id="intervalo-de-confiança-para-a-média" class="section level2">
 <h2>Intervalo de Confiança para a Média</h2>
 <p>Com relação à média, para <span class="math inline">\(n\)</span>
-suficientemente grande:</p>
+suficientemente grande,</p>
 <p><span class="math display">\[
-P\left( \frac{\bar y - \mu}{\sqrt{\frac{\sigma^2}{n}}} \right)  \cong 1-
-\alpha
+P\left(\frac{\left|\bar{y}_{e s}-\mu\right|}{\sqrt{\sum_{h=1}^{H}
+W_{h}^{2} \sigma_{h}^{2} / n_{h}}} \leq z_{\alpha}\right) \cong 1-\alpha
 \]</span></p>
-<p>Como <span class="math inline">\(\sigma^2\)</span> é desconhecido,
-faz-se uso de <span class="math inline">\(s^2\)</span>, então:</p>
+<p>Como <span class="math inline">\(\sigma_{h}^{2}\)</span> é
+desconhecido, faz-se uso de <span class="math inline">\(s_{h}^{2}\)</span>, então</p>
 <p><span class="math display">\[
-P\left( \bar y - Z_{\alpha} \sqrt\frac{s^2}{n} \leq \mu \leq \bar y +
-Z_{\alpha} \sqrt\frac{s^2}{n} \right)  \cong 1- \alpha
+P\left(\bar{y}_{e s}-z_{\alpha} \sqrt{\sum_{h=1}^{H} W_{h}^{2} s_{h}^{2}
+/ n_{h}} \leq \mu \leq \bar{y}_{e s}+z_{\alpha} \sqrt{\sum_{h=1}^{H}
+W_{h}^{2} s_{h}^{2} / n_{h}}\right) \cong 1-\alpha .
 \]</span></p>
-<p>Onde segue que:</p>
+<p>Onde segue que</p>
 <p><span class="math display">\[
-I C(\mu ;(1-\alpha) 100 \%)=\left(\bar{y}-z_\alpha \sqrt{\frac{s^2}{n}}
-; \bar{y}+z_\alpha \sqrt{\frac{s^2}{n}}\right)
+I C(\mu ; \gamma)=\left(\bar{y}_{e s}-z_{\alpha} \sqrt{\sum_{h=1}^{H}
+W_{h}^{2} s_{h}^{2} / n_{h}} ; \bar{y}_{e s}+z_{\alpha}
+\sqrt{\sum_{h=1}^{H} W_{h}^{2} s_{h}^{2} / n_{h}}\right) .
 \]</span></p>
 </div>
 <div id="determinação-do-tamanho-da-amostra" class="section level2">
 <h2>Determinação do Tamanho da Amostra</h2>
-<p>O objetivo determinar <span class="math inline">\(n\)</span>, de modo
-que o estimador obtido tenha um erro máximo de estimação igual a <span class="math inline">\(B\)</span>, isto é,</p>
+<p>Pode-se determinar <span class="math inline">\(n\)</span> de modo
+que</p>
 <p><span class="math display">\[
-P(|\bar{y}-\mu| \leq B) \cong 1-\alpha
+P\left(\left|\bar{y}_{e s}-\mu\right| \leq B\right) \cong 1-\alpha
 \]</span></p>
-<p>Mas</p>
+<p>onde, <span class="math inline">\(B=z_{\alpha / 2}
+\sqrt{\sum_{h=1}^{H} W_{h}^{2} \sigma_{h}^{2} / n_{h}}\)</span></p>
+<p>Dado que <span class="math inline">\(n_{h}=n . W_{h}\)</span>,
+então</p>
 <p><span class="math display">\[
-P\left(|\bar{y}-\mu| \leq z_\alpha \sqrt{\sigma^2 / n}\right) \cong
-1-\alpha
+n=\frac{1}{D} \sum_{h=1}^{H} W_{h}
+\sigma_{h}^{2}=\frac{\sigma_{d}^{2}}{D}
 \]</span></p>
-<p>Então,</p>
-<p><span class="math display">\[
-B=z_\alpha \sqrt{\sigma^2 / n} \rightarrow n=\frac{\sigma^2}{\left(B /
-z_\alpha\right)^2}
-\]</span></p>
-<p>obs: <span class="math inline">\(\sigma^2\)</span> é obrido atraves
-de uma amostra piloto, de pesquisas anteriores ou <span class="math inline">\(IC(\mu,95\%) = 4\sigma\)</span></p>
 </div>
 </div>
 

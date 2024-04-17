@@ -1,5 +1,5 @@
 ---
-title: "Amostragem Aleatória Simples Sem Reposição"
+title: "Aula 4 - Amostragem Aleatória Simples Sem Reposição"
 author: "Davi Wentrick Feijó"
 date: "2024-04-04"
 output: 
@@ -103,14 +103,32 @@ $$
 \begin{align}
 Var(t) &= Var(f_i)[\sum_{i = 1}^N Y_i^2 -\frac{1}{N-1} \sum_{i = 1}^N Y_i Y_j] \\
        &= Var(f_i)[\sum_{i = 1}^N Y_i^2 -\frac{1}{N-1} (- \sum_{i = 1}^N Y_i^2 + N^2\mu^2)] \\
-       &= Var(f_i)\frac{1}{N-1}[(N-1)\sum_{i = 1}^N Y_i^2 + \sum_{i = 1}^N Y_i^2 + N^2\mu^2)] \\
-       &= Var(f_i)\frac{1}{N-1}[ \sum_{i = 1}^N Y_i^2 + N\mu^2] \\
-       &= Var(f_i)\frac{1}{N-1} \sum_{i = 1}^N (Y_i + \mu)^2 \\
-       &= Var(f_i)NS^2 \\
-       &= \frac{n}{N} (1-\frac{n}{N})NS^2 \\
-       &= n(1=f)S^2 \\
+       &= Var(f_i)[\sum_{i = 1}^N Y_i^2 \frac{N-1}{N-1} -\frac{1}{N-1} (- \sum_{i = 1}^N Y_i^2 + N^2\mu^2)] \\
+       &= Var(f_i)\frac{1}{N-1}[\sum_{i = 1}^N Y_i^2 (N-1)- (-  Y_i^2 + N^2\mu^2)] \\
+       &= Var(f_i)\frac{1}{N-1}[\sum_{i = 1}^N  Y_i^2N-Y_i^2+  Y_i^2 + N^2\mu^2)] \\
+       &= Var(f_i)\frac{1}{N-1}[\sum_{i = 1}^N  Y_i^2N + N^2\mu^2)] \\
+       &= Var(f_i)\frac{1}{N-1}N[\sum_{i = 1}^N  Y_i^2 + N\mu^2)] \\
+       &= Var(f_i)\frac{N}{N-1}[\sum_{i = 1}^N  Y_i^2 + N\mu^2)] \\
 \end{align}
 $$
+
+Como foi provado:
+
+$$
+\sum_{i = 1}^N  Y_i^2 + N\mu^2 = \sum_{i = 1}^N (Y_i + \mu)^2
+$$
+
+Podemos substituir e seguir a conta
+
+$$
+\begin{align}
+&= Var(f_i)\frac{1}{N-1} \sum_{i = 1}^N (Y_i + \mu)^2 \\
+       &= Var(f_i)NS^2 \\
+       &= \frac{n}{N} (1-\frac{n}{N})NS^2 \\
+       &= n(1-f)S^2 \\
+       \end{align}
+$$
+
 
 ## Estimação da média populacional
 
@@ -186,92 +204,76 @@ $$
 
 ### Prova $s^2$
 
-Vale lembrar que $\bar y = \frac{\sum_{i=1}^{n} Y_i}{n}$ ou seja $\sum_{i=1}^{n} Y_i = n \bar y$
-
 $$
 \begin{align}
-E[s^2]  &= E[\frac{\sum_{i=1}^{n} (Y_i-\bar y)^2}{n-1}] \\
-        &= \frac{1}{n-1} \sum_{i=1}^{n} E[(Y_i-\bar y)^2] \\
-        &= \frac{1}{n-1} \sum_{i=1}^{n} E(Y_i^2-2Y_i\bar y+\bar y^2) \\
-        &= \frac{1}{n-1} [\sum_{i=1}^{n} E(Y_i^2)-2E(\bar y\sum_{i=1}^{n}Y_i)+E(\sum_{i=1}^{n}\bar y^2)] \\
-        &= \frac{1}{n-1} [\sum_{i=1}^{n} E(Y_i^2)-2E(\bar y n \bar y)+E(\sum_{i=1}^{n}\bar y^2)] \\
-        &= \frac{1}{n-1} [\sum_{i=1}^{n} E(Y_i^2)-2nE({\bar y}^2)+nE(\bar y^2)] \\
-        &= \frac{1}{n-1} [\sum_{i=1}^{n} E(Y_i^2)-nE({\bar y}^2) \\
-        &= \frac{1}{n-1} [E(\sum_{i=1}^{n}Y_i^2)-nE({\bar y}^2)
+s^2 &= \frac{\sum_{i \in s} (Y_i - \bar y)^2}{n-1} \\
+(n-1)s^2 &= \sum_{i \in s} (Y_i - \bar y)^2 \\
+&= \sum_{i \in s} (Y_i - \bar y) (Y_i - \bar y)\\
+&= \sum_{i \in s} (Y_i^2 - 2Y_i\bar y + \bar y^2)\\
+&= \sum_{i \in s} Y_i^2 - 2\bar y\sum_{i \in s}Y_i + \sum_{i \in
+s}\bar y^2\\
+&= \sum_{i \in s} Y_i^2 - 2\bar yn\bar y + n\bar y^2\\
+&= \sum_{i \in s} Y_i^2 - 2\bar y^2n + n\bar y^2\\
+&= \sum_{i \in s} Y_i^2 - n\bar y^2 \\
+&= \sum_{i \in s} Y_i^2 - n (\frac{t}{n})^2 \\
+&= \sum_{i \in s} Y_i^2 - n \frac{t^2}{n^2} \\
+&= \sum_{i \in s} Y_i^2 - \frac{t^2}{n} \\
+&= \sum_{i \in s} Y_i^2 - \frac{t^2}{n} \\
 \end{align}
 $$
 
-Para continuar precisamos encontrar $E(Y_i^2)$ e $E(\bar y^2)$ :
+Em seguida vamos aplicar a esperanca nos 2 lados da equacao:
 
 $$
 \begin{align}
-Var(Y_i) &= E(Y_i^2)-[E(Y_i)]^2 \\
-\sigma^2 &= E(Y_i^2)-\mu^2 \\
-\therefore E(Y_i^2)&=\sigma^2 +\mu^2 \\
+(n-1)s^2 &= \sum_{i \in s} Y_i^2 - \frac{t^2}{n} \\
+E((n-1)s^2) &= E(\sum_{i \in s} Y_i^2 - \frac{t^2}{n}) \\
+            &= E(\sum_{i \in s} Y_i^2) - E(\frac{t^2}{n}) \\
+            &= \sum_{i \in s} Y_i^2E(f_i) - \frac{1}{n}E(t^2) \\
 \end{align}
 $$
 
-$$
-\begin{align}
-Var(\sum_{i = 1}^n Y_i) &= E(\sum_{i = 1}^n Y_i^2)-[E(\sum_{i = 1}^n Y_i)]^2 \\
-Var(t) &= E(\sum_{i = 1}^n Y_i^2)-[E(t)]^2 \\
-n(1-f)S^2 &= E(\sum_{i = 1}^n Y_i^2)-(n \mu)^2 \\
-\therefore E(\sum_{i = 1}^n Y_i^2) &=n(1-f)S^2 +(n \mu)^2 \\
-\end{align} 
-$$
+Para seguir a conta é importante notar que (Isso foi mostrado na prova de $Var(t)$):
 
 $$
 \begin{align}
-Var(\bar y) &= E(\bar y^2)-[E(\bar y)]^2 \\
-(1-f)\frac{s^2}{n} &= E(\bar y^2)-\mu ^2 \\
-\therefore E(\bar y^2) &= (1-f)\frac{s^2}{n} + \mu ^2
+\sum_{i=1}^N(Y_i - \mu)^2 &= \sum_{i=1}^N Y_i^2 - N\mu^2 \\
+\sum_{i=1}^N(Y_i - \mu)^2 + N\mu^2  &= \sum_{i=1}^N Y_i^2 \\
+\sum_{i=1}^N Y_i^2  &= \sum_{i=1}^N (Y_i - \mu)^2 + N\mu^2 \\
+                    &= N S^2 + N\mu^2 \\
+                    &= N (S^2 + \mu^2) \\
+\end{align}
+$$
+
+alem disso vamos precisar isolar o $E(t^2)$ na formual para o calculo da variancia:
+
+$$
+Var(t) = E(t^2) + E(t)^2 \\
+E(t^2) = Var(t) - E(t)^2
+$$
+
+Sabemos que $Var(t) =  n(1-f)S^2$, $E(t) = n \mu$ e $E(f_i) = \frac{n}{N}$, vamos usar para substituir na conta:
+
+
+$$
+\begin{align}
+E((n-1)s^2) &= \sum_{i \in s} Y_i^2E(f_i) - \frac{1}{n}E(t^2) \\
+            &= [N (S^2 +\mu^2)] E(f_i) - \frac{1}{n} (Var(t) - E(t)^2) \\
+            &= N (S^2 +\mu^2) E(f_i) - \frac{1}{n} (Var(t) - E(t)^2) \\
+            &= N (S^2 +\mu^2) \frac{n}{N} - \frac{1}{n} (n(1-f)S^2 - (n \mu)^2) \\
+            &= (S^2 +\mu^2) n - \frac{1}{n} (n(1-f)S^2 - n^2 \mu^2) \\
+            &= (S^2 +\mu^2) n -  \frac{1}{n}n(1-f)S^2 - \frac{1}{n}n^2 \mu^2 \\
+            &= (S^2 +\mu^2) n -  (1-f)S^2 - n \mu^2 \\
+            &= nS^2 +n\mu^2  -  (1-f)S^2 - n \mu^2 \\
+            &= nS^2  -  (1-f)S^2  \\
+            E((n-1)s^2) &= n S^2 - (1-f)S^2  \\
+(n-1)E(s^2) &= n S^2 - (1-f)S^2  \\
+(n-1)E(s^2) &= S^2(n - (1-f))  \\
 \end{align}
 $$
 
 
-
-$$
-\begin{align}
-Var(\bar y) &= E(\bar y^2)-[E(\bar y)]^2 \\
-\frac{\sigma^2}{n} &= E(\bar y^2)-\mu ^2 \\
-\therefore E(\bar y^2) &= \frac{\sigma^2}{n}+\mu ^2
-\end{align}
-$$
-
-Agora podemos continuar a conta:
-
-$$
-\begin{align}
-E[s^2] &= \frac{1}{n-1} [n (\sigma^2 +\mu^2)-n((1-f)\frac{s^2}{n} + \mu ^2)) \\
-E[s^2] &= \frac{1}{n-1} [n (\sigma^2 +\mu^2)-{\sigma ^2}-n\mu ^2) \\
-E[s^2] &= \frac{1}{n-1} [ n\sigma^2 +n\mu^2-{\sigma ^2}-n\mu ^2] \\
-E[s^2] &= \frac{1}{n-1} [ n\sigma^2 -{\sigma ^2}] \\
-E[s^2] &= \frac{1}{n-1} \sigma ^2[n - 1] \\
-\therefore E[s^2] &= \sigma ^2 
-\end{align}
-$$
-
-
-$$
-\begin{align}
-E[s^2] &= \frac{1}{n-1} [(n(1-f)s^2 +(n \mu)^2)-n((1-f)\frac{s^2}{n} + \mu ^2)] \\
-       &= \frac{1}{n-1} [(s^2n-s^2nf +n^2 \mu^2)-(n(1-f)\frac{s^2}{n} + n\mu ^2)] \\
-       &= \frac{1}{n-1} [(s^2n-s^2nf +n^2 \mu^2)-(\frac{s^2}{n}n-\frac{s^2}{n}nf + n\mu ^2)] \\
-       &= \frac{1}{n-1} [s^2n-s^2nf +n^2 \mu^2-\frac{s^2}{n}n+\frac{s^2}{n}nf - n\mu ^2)] \\
-       &= \frac{1}{n-1} [s^2n-s^2nf +n^2 \mu^2-s^2+s^2f - n\mu ^2)] \\
-       &= \frac{1}{n-1} [s^2(n-nf) +n^2 \mu^2-s^2(1+f) - n\mu ^2)] \\
-       &= \frac{1}{n-1} [s^2((n-nf)-(1+f)) +n^2 \mu^2 - n\mu ^2)] \\
-       &= \frac{1}{n-1} [s^2(n(1-f)-(1+f)) +n\mu ^2(n - 1)] \\
-       &= \frac{s^2(n(1-f)-(1+f)) +n\mu ^2(n - 1)}{n-1}  \\
-       &= \frac{s^2(n(1-f)-(1+f)) }{n-1} + \frac{n\mu ^2(n - 1)}{n-1} \\
-       &= \frac{s^2(n(1-f)-(1+f)) }{n-1} + n\mu ^2 \\
-       
-       
-\end{align}
-$$
-
-Cara odeio minha vida essa prova ta uma porra to todo confuso vo ter que falar com o prof...
-
+### Corolário
 
 Para o plano AASs, a estatística
 
@@ -293,7 +295,7 @@ $$
 
 
 
-## Intervalo de Confiança para a Média
+### Intervalo de Confiança para a Média
 
 Para $n$ suficientemente grande, tem-se com relação à AASs
 
@@ -306,8 +308,6 @@ e
 $$
 \frac{T-\tau}{N \sqrt{(1-f) s^2 / n}} \sim N(0,1)
 $$
-
-## Intervalo de Confiança para a Média
 
 Com relação à média, para $n$ suficientemente grande,
 
@@ -327,7 +327,7 @@ $$
 I C(\mu ; \gamma)=\left(\bar{y}-z_\alpha \sqrt{\frac{(1-f) s^2}{n}} ; \bar{y}+z_\alpha \sqrt{\frac{(1-f) s^2}{n}}\right)
 $$
  
-## Determinação do Tamanho da Amostra
+### Determinação do Tamanho da Amostra
  
 Foi visto que
  
@@ -366,7 +366,7 @@ $$
 Nao entendi como ele chegou nesse resultado...
 
 
-## Comparação entre AASc e AASs
+### Comparação entre AASc e AASs
 
 O critério mais adotado em amostragem para comparar planos amostrais baseia-se no Efeito do Planejamento (EPA), que compara a variância de um plano qualquer com relação a um plano que é considerado padrão.
 

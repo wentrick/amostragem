@@ -7,9 +7,9 @@
 
         <meta name="author" content="Davi Wentrick Feijó" />
     
-        <meta name="date" content="2024-03-26" />
+        <meta name="date" content="2024-04-17" />
     
-    <title>Aula 3 - Amostra Aleatoria Simples c/ Reposicao</title>
+    <title>Aula 5 - Exercicios</title>
 
         <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -1809,50 +1809,12 @@ margin-left: 0 !important;
         <div class="Sidebar">
           <div class="SidebarItems" id="toc">
             <ul>
-            <li><a href="#definicao-1" id="toc-definicao-1">Definicao
+            <li><a href="#exercício-1" id="toc-exercício-1">Exercício
             1</a></li>
-            <li><a href="#definicao-2" id="toc-definicao-2">Definicao
+            <li><a href="#exercício-2" id="toc-exercício-2">Exercício
             2</a></li>
-            <li><a href="#descrição-do-plano-aasc" id="toc-descrição-do-plano-aasc">Descrição do Plano
-            AASc</a></li>
-            <li><a href="#teorema-1" id="toc-teorema-1">Teorema 1</a>
-            <ul>
-            <li><a href="#prova---ef_i-e-varf_i" id="toc-prova---ef_i-e-varf_i">Prova - <span class="math inline">\(E(f_i)\)</span> e <span class="math inline">\(Var(f_i)\)</span></a></li>
-            <li><a href="#prova---covf_if_j" id="toc-prova---covf_if_j">Prova - <span class="math inline">\(Cov(f_i,f_j)\)</span></a></li>
-            <li><a href="#prova---covff" id="toc-prova---covff">Prova -
-            <span class="math inline">\(Cov(f,f&#39;)\)</span></a></li>
-            <li><a href="#prova---pi_i" id="toc-prova---pi_i">Prova -
-            <span class="math inline">\(\pi_i\)</span></a></li>
-            <li><a href="#prova---pi_ij" id="toc-prova---pi_ij">Prova -
-            <span class="math inline">\(\pi_{i,j}\)</span></a></li>
-            </ul></li>
-            <li><a href="#teorema---propriedade-das-estatisticas" id="toc-teorema---propriedade-das-estatisticas">Teorema -
-            Propriedade das Estatisticas</a>
-            <ul>
-            <li><a href="#prova---et" id="toc-prova---et">Prova - <span class="math inline">\(E(t)\)</span></a></li>
-            <li><a href="#prova---vart" id="toc-prova---vart">Prova -
-            <span class="math inline">\(Var(t)\)</span></a></li>
-            </ul></li>
-            <li><a href="#teorema---estimacao-do-total-e-da-media-populacional" id="toc-teorema---estimacao-do-total-e-da-media-populacional">Teorema
-            - Estimacao do total e da media populacional</a>
-            <ul>
-            <li><a href="#prova---ebar-y" id="toc-prova---ebar-y">Prova
-            - <span class="math inline">\(E(\bar y)\)</span></a></li>
-            <li><a href="#prova---varbar-y" id="toc-prova---varbar-y">Prova - <span class="math inline">\(Var(\bar y)\)</span></a></li>
-            <li><a href="#corolário" id="toc-corolário">Corolário</a></li>
-            </ul></li>
-            <li><a href="#teorema---estimacao-da-variancia-populacional" id="toc-teorema---estimacao-da-variancia-populacional">Teorema
-            - Estimacao da variancia populacional</a>
-            <ul>
-            <li><a href="#prova---es2" id="toc-prova---es2">Prova -
-            <span class="math inline">\(E(s^2)\)</span></a></li>
-            </ul></li>
-            <li><a href="#resultado---normalidade-assintótica" id="toc-resultado---normalidade-assintótica">Resultado -
-            Normalidade Assintótica</a></li>
-            <li><a href="#intervalo-de-confiança-para-a-média" id="toc-intervalo-de-confiança-para-a-média">Intervalo de
-            Confiança para a Média</a></li>
-            <li><a href="#determinação-do-tamanho-da-amostra" id="toc-determinação-do-tamanho-da-amostra">Determinação do
-            Tamanho da Amostra</a></li>
+            <li><a href="#exercício-3" id="toc-exercício-3">Exercício
+            3</a></li>
             </ul>
           </div>
           <div data-position="sidebar:post-end" class="InjectedComponents"><div class="dark-theme-toggler"><div class="toggle "><div class="toggle-track"><div class="toggle-track-check"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAAlwSFlzAAALEwAACxMBAJqcGAAAAVlpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IlhNUCBDb3JlIDUuNC4wIj4KICAgPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4KICAgICAgPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIKICAgICAgICAgICAgeG1sbnM6dGlmZj0iaHR0cDovL25zLmFkb2JlLmNvbS90aWZmLzEuMC8iPgogICAgICAgICA8dGlmZjpPcmllbnRhdGlvbj4xPC90aWZmOk9yaWVudGF0aW9uPgogICAgICA8L3JkZjpEZXNjcmlwdGlvbj4KICAgPC9yZGY6UkRGPgo8L3g6eG1wbWV0YT4KTMInWQAABlJJREFUWAm1V3tsFEUcntnXvXu0tBWo1ZZHihBjCEWqkHiNaMLDRKOtQSKaiCFKQtS/SbxiFCHGCIkmkBSMwZhQNTFoQZD0DFiwtCDFAkdDqBBBKFj63rvdnfH7zfVo5aFBj0l2Z/dm5vd98/0es8dYjlpr62azufnDQNZcU1PciMfjWvb9rvZSMk4Ayfb36pLH13189GC8LAtIRLLPt+pzwrCuLq4ISEv/gHmitrAwfPbEkXc/ad4dL6iujrvyX0jcitgd/yZlZqftP6995Mr5TVLa22Tn8XVX2g/XLSRjUu7Q79jonS7I7hS7/0oOb5VyqF52n98oj7esXX07EjlxwXWisRmSnm3b29TTM8iYrjmFBWExubxwY/uhNas4r/WySl1fc5cetDMd7ydl+lMJJRw5WC8ud62Xx5rfepzwxgZmbhUYNS5Stvsj4yo2GXJEFBVHWDBkfdbR9HpYBaaUajDnBLKKpl1xRKYcgGtMCqEzTaSnThk/SQT0uJqTqFNBmXMCsZE48DzRZRMBRjv1GHNdk3HBImF9ZUvTyxM40pMKVc4JZBXQOLOFoDeKSxdp6HIQcO4rjYT9fn0pjbz9GLt7BAAODmjSVReXUMFzNW5x5vfxp2mIxZjIuQKJxAmFa+is2DQJJQ0JyBVExNOYcJnPxx/6/utnijmP555ALEagKAGGnGn64QORBjARcIA/yJk7JMJBLRrNtybTvH88KGjCf2jK86bhzmMcwDKFZEQvbIhxFYhChoMWMzU2iWznlIBEVJOsP+1bdX/ALx9l7jApADeDAEcMkE90JnUmmGl4USKQ0xhoW3JB5XY0YrxYWhLwMZZypUyjDGH35AbNwgUGiFBPpuGbHCpAOV1ZGXf2f/taftAv31DyeymN2d1IhAFAwTOmnzF/kKcdh3me7CYCOVNgycju84u8DeVlwfFq9/ZlTfldYrMUjOlrkjkD+rU+WzCROkcEchIDHR011syZW9JHD7y07N6JvhWMpz3pugaTkB6lWFVCKkhck0zzeMp2utq+uHrmfxOgoCO/Z8CXPlEQ1bdH8wgvhSIkEG0ICcQeExIFGdimjvKka7btJFZuaXOammIGKUCFQ53j9EN1dYKWqHf0t2w407W2tgs6h89ZnImjB55flh81tt9XirjjDuSl+oIPRQ0iWPgNZ5GqTqbBe3vSzEl5n5PhWKwocyR2HlqYN61qV18WjYjE8JLARZPQsUSim8foIRYTlGr02Ly7piASFRtKJ4VfieYhxdS2JcDVMN6xVOKZyrCGm8b108lrLRVzvptLH7IoEFLFANes6KnDi+uxfmvFnF17oALq5u1agu3/YfHkcSFzeSggV5eXRfIB7CHNcO5SUI+Ih5Ir7f4MAV9IqdFzdZgNpZw1Gcs1mNvgGbTbqQ9/cz7ZuuhgyYRQ49ljTyWHhr2DwpNHHFf+5gnWZ3Bharo+0TD5dNMw5vv9RlVpSRDHK4TlnoukhtYApuOHejSZQuo5g/A9BysdKRCyLl6062fN37OXMDlvUJtUrtmxo0avrW3wTrYs3jJ9RvRVChrmSmanPMpX2OXMsmDGh6AiEIwBAlvkOqIdBy+8JyAz8pz7QxiDth4KDy5uAlwzrWTnwC8Vc4KVAMZ3YUZ+IqoIjP3h5KFFX1ZMy3uW+7RhEDHgTi0zC9rS7uhPCDiNrGFyqBeERtKN/B0YlyFCkw0NJ5C0Ojv7zvT1a1WV1TuvZDdL4NTgB7CASYpsen6gqvG5jmTf5qHedADgkBl3D0nkSgNhZACDyi0FUKZRr3IdRjgN4WPPoFMIIegIK3mqd38fS80mcJKelM4szNyzZtQbkchGePuBRS8Eg9pHU8ojRQpSqs+ajAIwTjjUMQ/nvTNM0kicwYxZIYMh/891DYi+fvedB+c1xsm4lDU6ya+Axtz+RiAzEVYbajQOpq17F0R9QevNcEhfcU+xvyQQUalGJBSesqOkgPQ4YNyUZL9fSvUPDjoNAwN8/dwFjaczNkc3ptaMud1EIDtGcmXTcefO2cGSvKIFfp/2JIJxlq7xEl3nVPM4fDeIbPkD16/ptNc0bDu7qxbsu0R2JGywWMIjF2ft3tjfloAyQAGXiOn8hrqwbVvMXzaO+QeHXP6nF0wvX74Hf4NGG5GPjSlYoyM3P/0FbCT6zvM/yYoAAAAASUVORK5CYII=" role="presentation" style="pointer-events: none;" width="16" height="16"></div> <div class="toggle-track-x"><img src="data:image/png;base64,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" role="presentation" style="pointer-events: none;" width="16" height="16"></div></div> <div class="toggle-thumb"></div></div> <input type="checkbox" aria-label="Switch between Dark and Default theme" class="toggler-screen-reader-only"></div></div>
@@ -1862,14 +1824,13 @@ margin-left: 0 !important;
    
    
         
-      <h1 class="title">Aula 3 - Amostra Aleatoria Simples c/
-Reposicao</h1>
+      <h1 class="title">Aula 5 - Exercicios</h1>
       
       <p class="authors">
            <span class="glyphicon glyphicon-user"></span> Davi Wentrick
 Feijó
       </p>
-         <p class="date"><span class="glyphicon glyphicon-calendar"></span> 2024-03-26</p>
+         <p class="date"><span class="glyphicon glyphicon-calendar"></span> 2024-04-17</p>
            
 
    
@@ -1877,566 +1838,73 @@ Feijó
    
 <!-- Don't indent these lines or it will mess pre blocks indentation --> 
 <div class="page-content has-page-title">
-<div id="definicao-1" class="section level2">
-<h2>Definicao 1</h2>
-<ul>
-<li><p>Seja <span class="math inline">\(f_i(s)\)</span> a variável que
-indica o número de vezes que a i-ésima unidade populacional aparece na
-amostra <span class="math inline">\(s\)</span>. Ou seja quantas vezes
-cada observacao especifica esta repetida na amostra</p></li>
-<li><p>Seja <span class="math inline">\(\delta_i(s)\)</span> a variável
-binária que indica a presença ou não da i-ésima unidade na amostra <span class="math inline">\(s\)</span>. Ou seja quantos tipos de observacoes
-diferentes e unicas existem na amostra. Isto é:</p></li>
-</ul>
+<div id="exercício-1" class="section level3">
+<h3>Exercício 1</h3>
+<p>Exemplo: Considere <span class="math inline">\(U=\{1,2,3,4,5,6,7,8\}\)</span> de domicílios, onde
+são conhecidas as variáveis renda familiar ( <span class="math inline">\(Y\)</span> ) e local do domicílio ( <span class="math inline">\(W\)</span> ), com os códigos <span class="math inline">\(A\)</span> para região alta e <span class="math inline">\(B\)</span> para região baixa. Tem-se que</p>
 <p><span class="math display">\[
-\delta_i(s) = \left\{ \begin{array}{rcl}
-1, &amp; \mbox{se} &amp; i \in s \\
-0, &amp; \mbox{se} &amp; i \notin s \\  
-\end{array}\right.
+D=\left(\begin{array}{llllllll}
+13 &amp; 17 &amp; 6 &amp; 5 &amp; 10 &amp; 12 &amp; 19 &amp; 6 \\
+B &amp; A &amp; B &amp; B &amp; B &amp; A &amp; A &amp; B
+\end{array}\right)
 \]</span></p>
-<ul>
-<li>Chama-se tamanho efetivo <span class="math inline">\(n(s)\)</span>
-da amostra <span class="math inline">\(s\)</span> a soma das frequências
-das unidades populacionais na amostra, ou seja é o total da amostra
-contando ate as observacoes que aparecem repetidas, isto é:</li>
-</ul>
+<p>Para esta população tem-se: <span class="math inline">\(\mu=11,
+\sigma^{2}=24\)</span>.</p>
+<p>A partir do plano amostral <span class="math inline">\(A A S
+c\)</span> de tamanho <span class="math inline">\(n=4\)</span>, sabe-se
+que</p>
 <p><span class="math display">\[
-n(s) = \sum_{i=1}^{N} f_i(s)
+\operatorname{Var}[\bar{y}]=\frac{24}{4}=6
 \]</span></p>
-<ul>
-<li>Chama-se tamanho fixo efetivo <span class="math inline">\(v(s)\)</span> da amostra <span class="math inline">\(s\)</span> o número de unidades populacionais
-distintas presentes na amostra s, aqui contaremos apenas as quantidades
-unicas de cada amostra coletada nao levando em conta suas repeticoes
-caso existam na amostra. isto é:</li>
-</ul>
+<p>Exemplo: Considere as seguintes subpopulações:</p>
 <p><span class="math display">\[
-v(s) = \sum_{i=1}^{N} \delta_i(s)
+\begin{aligned}
+&amp; U_{A}=\{1,2,3,4\}, \boldsymbol{D}_{A}=\{13,17,6,5\} \\
+&amp; U_{B}=\{5,6,7,8\}, \boldsymbol{D}_{B}=\{10,12,19,6\}
+\end{aligned}
 \]</span></p>
-</div>
-<div id="definicao-2" class="section level2">
-<h2>Definicao 2</h2>
-<p>Indica-se por <span class="math inline">\(\pi_i(A)\)</span> , a
-probabilidade de o i-ésimo elemente de U pertencer à amostra segundo o
-planejamento A, e <span class="math inline">\(\pi_{ij}(A)\)</span> a
-probabilidade de o i-ésimo e j-ésimo elementos pertencerem
-simultaneamente à amostra. Aqui estamos interessados em formalizar uma
-forma de calcular a probabilidade de uma observacao (ou um conjunto)
-fazer parte da amostra. Deste modo,</p>
+<p>com os seguintes parâmetros:</p>
 <p><span class="math display">\[
-\pi_i(A) = P_A(\delta_i = 1) = \sum P_A(\delta_i = 1) = \sum P_A(s)
+\mu_{A}=10,25 \quad \sigma_{A}^{2}=24,69 \quad \mu_{B}=11,75 \quad
+\sigma_{B}^{2}=22,19 .
 \]</span></p>
+<p>Considerando uma AASc dentro de cada estrato, com <span class="math inline">\(n_{A}=2, n_{B}=2\)</span>, calcule:</p>
 <p><span class="math display">\[
-\pi_{ij}(A) = P_A(\delta_{ij} = 1) = \sum P_A(\delta_i = 1) = \sum
-P_A(s)
+\operatorname{Var}\left[\bar{y}_{A}\right],
+\operatorname{Var}\left[\bar{y}_{B}\right],
+\operatorname{Var}\left[\bar{y}_{e s}\right] \text { e EPA. }
 \]</span></p>
 </div>
-<div id="descrição-do-plano-aasc" class="section level2">
-<h2>Descrição do Plano AASc</h2>
-<ol style="list-style-type: decimal">
-<li>A população é numerada de 1 a <span class="math inline">\(N\)</span>, a partir do sistema de referência,
-i.e., <span class="math inline">\(U = {1, 2, ..., N}\)</span>.</li>
-<li>Utilizando-se uma tabela de números aleatórios, ou um programa de
-computador, soteia-se com igual probabilidade uma das <span class="math inline">\(N\)</span> unidades da população.</li>
-<li>Repõe-se essa unidade na população e sorteia-se um elemento
-seguinte.</li>
-<li>Repete-se o procedimento até que <span class="math inline">\(n\)</span> unidades tenham sido sorteadas.</li>
+<div id="exercício-2" class="section level3">
+<h3>Exercício 2</h3>
+<p>Considere a seguinte estratificação:</p>
+<p><span class="math display">\[
+\begin{gathered}
+U_{1}=\{2,4,7\}, \boldsymbol{D}_{1}=\{17,5,19\} \\
+U_{2}=\{1,3,5,6,8\}, \boldsymbol{D}_{2}=\{13,6,10,12,6\}
+\end{gathered}
+\]</span></p>
+<p>com os seguintes parâmetros:</p>
+<p><span class="math display">\[
+\mu_{1}=13,67 \quad S_{1}^{2}=57,33 \quad \mu_{2}=9,40 \quad
+S_{2}^{2}=10,8 .
+\]</span></p>
+<p>Em ambos os estratos usou-se AASs, com <span class="math inline">\(n_{1}=1\)</span> e <span class="math inline">\(n_{2}=2\)</span>, ou seja, <span class="math inline">\(n=3\)</span>.</p>
+<p>Calcule <span class="math inline">\(\operatorname{Var}\left[\bar{y}_{e
+s}\right]\)</span>.</p>
+</div>
+<div id="exercício-3" class="section level3">
+<h3>Exercício 3</h3>
+<p>Uma população está dividida em 5 estratos. Os tamanhos dos estratos,
+médias e variâncias são dados na tabela abaixo.</p>
+<ol style="list-style-type: lower-alpha">
+<li><p>Calcule <span class="math inline">\(\mu\)</span> e <span class="math inline">\(\sigma^{2}\)</span> para esta população.</p></li>
+<li><p>Para uma amostra de tamanho 80, determine as alocações
+proporcional e ótima (de Neyman).</p></li>
+<li><p>Compara as variâncias dos estimadores obtidos com a <span class="math inline">\(A A S c\)</span> e com a alocação
+proporcional.</p></li>
+<li><p>Compara as variâncias dos estimadores obtidos com a <span class="math inline">\(A A S c\)</span> e com a alocação ótima.</p></li>
 </ol>
-</div>
-<div id="teorema-1" class="section level2">
-<h2>Teorema 1</h2>
-<p>Para o plano AASc a variável <span class="math inline">\(f_i\)</span>, número de vezes que a unidade <span class="math inline">\(i\)</span> aparece na amostra, segue uma
-distribuição binomial com parâmetros <span class="math inline">\(n\)</span> e <span class="math inline">\(1/N\)</span>, denotado por:</p>
-<p><span class="math display">\[
-f_i \sim \text{Binomial} (n;\frac{1}{N})
-\]</span></p>
-<ul>
-<li><p><span class="math inline">\(E(f_i) =
-\frac{n}{N}\)</span></p></li>
-<li><p><span class="math inline">\(Var(f_i) =
-\frac{n}{N}(1-\frac{n}{N})\)</span></p></li>
-<li><p><span class="math inline">\(Cov(f_i,f_j) = -\frac{n}{N^2}, i \neq
-j\)</span></p></li>
-<li><p><span class="math inline">\(Cov(f,f&#39;) =
--\frac{Var(f)}{N-1}\)</span></p></li>
-<li><p><span class="math inline">\(\pi_i =
-1-(1-\frac{1}{N})^n\)</span></p></li>
-<li><p><span class="math inline">\(\pi_{ij} = 1-2(1-\frac{1}{N})^n +
-(1-\frac{2}{N})^n\)</span></p></li>
-</ul>
-<div id="prova---ef_i-e-varf_i" class="section level3">
-<h3>Prova - <span class="math inline">\(E(f_i)\)</span> e <span class="math inline">\(Var(f_i)\)</span></h3>
-<p>O resultado vem do calculo da esperanca e variancia de uma <span class="math inline">\(binomial(n,p)\)</span></p>
-<p><span class="math display">\[
-P(X = k) = \left( \begin{array}{c} n \\ k \end{array} \right)
-p^k(1-p)^{n-k}
-\]</span></p>
-<p>Sabemos que a esperanca e a variancia de uma binomial sao:</p>
-<ul>
-<li><p><span class="math inline">\(E(X) = np\)</span></p></li>
-<li><p><span class="math inline">\(Var(X) = np(1-p)\)</span></p></li>
-</ul>
-<p>Logo na binomial da AASc temos <span class="math inline">\(n =
-n\)</span> e <span class="math inline">\(p = \frac{1}{N}\)</span></p>
-<ul>
-<li><p><span class="math inline">\(E(X) = np = n\frac{1}{N} =
-\frac{n}{N}\)</span></p></li>
-<li><p><span class="math inline">\(Var(X) = np(1-p) =
-n\frac{1}{N}(1-\frac{1}{N}) =
-\frac{n}{N}(1-\frac{1}{N})\)</span></p></li>
-</ul>
-</div>
-<div id="prova---covf_if_j" class="section level3">
-<h3>Prova - <span class="math inline">\(Cov(f_i,f_j)\)</span></h3>
-<p>Considerando o plano AASc, cada tentativa é independente e qualquer
-um dos <span class="math inline">\(N\)</span> elementos populacionais
-tem a mesma probabilidade <span class="math inline">\(1/N\)</span> de
-ser sorteado. Portanto,</p>
-<p><span class="math display">\[
-(f_1,f_2,f_3,...,f_N) \sim
-\text{Multinomial}(n,\frac{1}{N},...,\frac{1}{N})
-\]</span> Onde:</p>
-<ul>
-<li><p><span class="math inline">\(E(f_i) = np_i =
-\frac{n}{N}\)</span></p></li>
-<li><p><span class="math inline">\(Var(f_i) = np_i(1-p_i) =
-\frac{n}{N}(1-\frac{1}{N})\)</span></p></li>
-<li><p><span class="math inline">\(Cov(f_i,f_j) = -np_ip_j = -n
-\frac{1}{N} \frac{1}{N} = -\frac{n}{N^2}, i \neq j\)</span></p></li>
-</ul>
-</div>
-<div id="prova---covff" class="section level3">
-<h3>Prova - <span class="math inline">\(Cov(f,f&#39;)\)</span></h3>
-<p>Seja o tamanho de um amostra <span class="math inline">\(n(s) =
-\sum_{i=1}^N f_i(s)\)</span>. Fixado um plano amostral, o tamanho
-esperado e a variância do tamanho da amostra serão:</p>
-<ul>
-<li><p><span class="math inline">\(E(n) = \sum_{i=1}^N
-E(f_i)\)</span></p></li>
-<li><p><span class="math inline">\(Var(n) = \sum_{i=1}^N Var(f_i) +
-\sum_{i\neq1}^N Cov(f_i,f_j)\)</span></p></li>
-</ul>
-<p>Para encontrar a variancia de <span class="math inline">\(n\)</span>
-foi utilizado uma propriedade diistributiva da Covariancia, da seguinte
-forma:</p>
-<p><span class="math display">\[
-Var(n) = Cov(n,n) \\
-Var(n) = Cov(f_1+f_2+...,f_N,f_1+f_2+...,f_N) \\
-Var(n) = \sum_{i=1}^N Var(f_i) + \sum_{i\neq1}^N Cov(f_i,f_j)
-\]</span></p>
-<p>Para planos amostrais simétricos, isto é, cujas esperanças,
-variâncias e covariâncias são as mesmas para todas as variáveis:</p>
-<ul>
-<li><p><span class="math inline">\(E(f_i) = E(f)\)</span></p></li>
-<li><p><span class="math inline">\(Var(f_i) = Var(f)\)</span></p></li>
-<li><p><span class="math inline">\(Cov(f_i,f_j) = Cov(f,f&#39;)\)</span>
-para <span class="math inline">\(i = \overline{1,N}\)</span></p></li>
-</ul>
-<p>Para planos com tamanho fixo:</p>
-<p><span class="math display">\[
-Var(n) = N Var(f) + N(N-1)Cov(f,f&#39;)
-\]</span></p>
-<p>mas como <span class="math inline">\(Var(n) = 0\)</span>, então:
-(obs: pq é <span class="math inline">\(0\)</span>????????)</p>
-<p><span class="math display">\[
-\begin{align}
-Var(n) &amp;= N Var(f) + N(N-1)Cov(f,f&#39;) \\
-0 &amp;= N Var(f) + N(N-1)Cov(f,f&#39;) \\
--N(N-1)Cov(f,f&#39;) &amp;= N Var(f) \\
-Cov(f,f&#39;) &amp;= - \frac{N Var(f)}{N(N-1)} \\
-Cov(f,f&#39;) &amp;= - \frac{ Var(f)}{(N-1)} \\
-Cov(f,f&#39;) &amp;= - \frac{1}{(N-1)} \frac{n}{N}(1-\frac{1}{N}) \\
-Cov(f,f&#39;) &amp;= - \frac{n}{(N-1)N} (\frac{N-1}{N}) \\
-Cov(f,f&#39;) &amp;= - \frac{n(N-1)}{(N-1)N^2} \\
-Cov(f,f&#39;) &amp;= - \frac{n}{N^2} \\
-\end{align}
-\]</span></p>
-<p>obs: o slide que eu to vendo do professor esta com uma notacao bem
-estranha nao sei se é um erro tenho que perguntar, minha duvida é se nao
-deveria ser um somatorio duplo no calculo da covariancia</p>
-</div>
-<div id="prova---pi_i" class="section level3">
-<h3>Prova - <span class="math inline">\(\pi_i\)</span></h3>
-<p>Queremos saber a probabilidade do i-ésimo elemento se parte da
-amostra, como estamos trabalhando com uma Amostra Aleatoria Simples com
-Reposicao (AASc) sabemos que em uma amostra de tamanho <span class="math inline">\(n\)</span> a chance de cada elemento fazer parte é
-<span class="math inline">\(1/N\)</span>. Entao para fazer esse calculo
-vamos utilizar o complementar ou seja queremos calcular a chance de NAO
-fazer parte da amostra e isso significa calcular a probabilidade do
-i-ésimo elemento ser 0:</p>
-<p>$$ <span class="math display">\[\begin{align}
-\pi_i &amp;= P(f_i \neq 0) \\
-      &amp;= 1 - P(f_i=0) \\
-      &amp;= 1 - \left( \begin{array}{c} n \\ 0 \end{array} \right)
-\frac{1}{N}^0(1-\frac{1}{N})^{n-0} \\
-      &amp;= 1 -  (1-\frac{1}{N})^{n} \\
-      &amp;=  \frac{N^n-(N-1)^n}{N^n} \\
-\end{align}\]</span></p>
-<p>$$</p>
-</div>
-<div id="prova---pi_ij" class="section level3">
-<h3>Prova - <span class="math inline">\(\pi_{i,j}\)</span></h3>
-<p>Para fazer esse segundo calculo temos que levar em conta como vamos
-calcular a probabilidade de 2 eventos ocorrerem, para isso estaremos
-usando o principio da inlcusao/exclusao:</p>
-<p><span class="math display">\[
-\begin{align}
-P(A  \ \ e \ \ B) &amp;= P(A) + P(B) - P(A \ \ ou \ \ B) \\
-P(A \cap B) &amp;= P(A) + P(B) - P(A \cup B)
-\end{align}
-\]</span></p>
-<p><span class="math display">\[
-\begin{align}
-\pi_{ij} &amp;= P(f_i \neq 0) + P(f_j \neq 0)  - P(f_{ij} \neq 0) \\
-      &amp;= [1 - P(f_i=0)] + [1- P(f_j=0)] - [1 - ( P(f_{ij} = 0))] \\
-\end{align}
-\]</span> Como a probabilidade de <span class="math inline">\(f_i = f_j
-= 1/N\)</span> e tambem sabemos que:</p>
-<ul>
-<li><p><span class="math inline">\(P(f_i=0) =
-(1-\frac{1}{N})^{n}\)</span></p></li>
-<li><p><span class="math inline">\(p_{ij} = p_i+p_j = p(f_i) + P(f_j) =
-\frac{1}{N}+\frac{1}{N} = \frac{2}{N}\)</span> isso é possivel devido a
-idependencia da AASc</p></li>
-</ul>
-<p>Precisamos calcular <span class="math inline">\(P(f_{ij} = 0) =
-?\)</span></p>
-<p><span class="math display">\[
-P(f_{ij} = 0) = \left( \begin{array}{c} n \\ 0 \end{array} \right)
-p_{ij}^0(1-p_{ij})^{n-0} \\
-P(f_{ij} = 0) = (1-\frac{2}{N})^{n} \\
-\]</span></p>
-<p><span class="math display">\[
-\begin{align}
-\pi_{ij} &amp;= [1 - P(f_i=0)] + [1- P(f_j=0)] - [1 - ( P(f_{ij} = 0))]
-\\
-      &amp;= [1 - (1-\frac{1}{N})^{n}] + [1- (1-\frac{1}{N})^{n}] - [1 -
-(1-\frac{2}{N})^{n}] \\
-      &amp;= 2 - 2(1-\frac{1}{N})^{n} - 1 + (1-\frac{2}{N})^{n} \\
-      &amp;= 2 - 1 - 2(1-\frac{1}{N})^{n} + (1-\frac{2}{N})^{n} \\
-      &amp;= 1 - 2(1-\frac{1}{N})^{n} + (1-\frac{2}{N})^{n} \\
-\end{align}
-\]</span></p>
-</div>
-</div>
-<div id="teorema---propriedade-das-estatisticas" class="section level2">
-<h2>Teorema - Propriedade das Estatisticas</h2>
-<p>A estatistica <span class="math inline">\(t(s) = \sum Y_i\)</span>
-tem para o plano AASc as seguintes propriedades:</p>
-<ul>
-<li><p><span class="math inline">\(E(t) = n\mu\)</span></p></li>
-<li><p><span class="math inline">\(Var(t) = n \sigma^2\)</span></p></li>
-</ul>
-<div id="prova---et" class="section level3">
-<h3>Prova - <span class="math inline">\(E(t)\)</span></h3>
-<p><span class="math display">\[
-\begin{align}
-t(s) &amp;= \sum_{i \in s} Y_i \\
-     &amp;= \sum_{i = 1}^N f_i(s)Y_i \\
-     &amp;= \sum_{i = 1}^N f_iY_i \\
-\end{align}
-\]</span></p>
-<p><span class="math display">\[
-\begin{align}
-E(t) &amp;= E(\sum_{i = 1}^N f_iY_i) \\
-     &amp;= \sum_{i = 1}^N E(f_i)Y_i \\
-     &amp;= E(f)\sum_{i = 1}^N Y_i \\
-     &amp;= \frac{n}{N}\sum_{i = 1}^N Y_i \\
-     &amp;= \frac{n}{N}t \\
-     &amp;= n\frac{t}{N} \\
-     &amp;= n\mu \\
-\end{align}
-\]</span></p>
-</div>
-<div id="prova---vart" class="section level3">
-<h3>Prova - <span class="math inline">\(Var(t)\)</span></h3>
-<p><span class="math display">\[
-\begin{align}
-Var(t) &amp;= Var(\sum_{i = 1}^N f_iY_i) \\
-       &amp;= \sum_{i = 1}^N Y_i^2 Var(f_i) + \sum_{i = 1}^N Y_i Y_j
-Cov(f_i,f_j) \\
-       &amp;= Var(f)\sum_{i = 1}^N Y_i^2 -\frac{Var(f)}{N-1} \sum_{i =
-1}^N Y_i Y_j \\
-       &amp;= Var(f)[\sum_{i = 1}^N Y_i^2 -\frac{1}{N-1} \sum_{i = 1}^N
-Y_i Y_j] \\
-\end{align}
-\]</span></p>
-<p>Porem podemos mostrar que:</p>
-<p><span class="math display">\[
-\begin{align}
-\sum_{i = 1}^N Y_i &amp;= N\mu \\
-(\sum_{i = 1}^N Y_i)^2 &amp;= (N\mu)^2 \\
-\sum_{i = 1}^N Y_i^2 + \sum_{i = 1}^N Y_i Y_j  &amp;= N^2\mu^2 \\
-\sum_{i = 1}^N Y_i Y_j  &amp;= - \sum_{i = 1}^N Y_i^2 + N^2\mu^2 \\
-\end{align}
-\]</span></p>
-<p>Voltando para a conta da Variancia:</p>
-<p><span class="math display">\[
-\begin{align}
-Var(t) &amp;= Var(f_i)[\sum_{i = 1}^N Y_i^2 -\frac{1}{N-1} \sum_{i =
-1}^N Y_i Y_j] \\
-       &amp;= Var(f_i)[\sum_{i = 1}^N Y_i^2 -\frac{1}{N-1} (- \sum_{i =
-1}^N Y_i^2 + N^2\mu^2)] \\
-       &amp;= Var(f_i)[\sum_{i = 1}^N Y_i^2\frac{N-1}{N-1}
--\frac{1}{N-1} (- Y_i^2 + N^2\mu^2)] \\
-       &amp;= Var(f_i)\frac{1}{N-1}[\sum_{i = 1}^N Y_i^2 (N-1) - (-
-Y_i^2 + N^2\mu^2)] \\
-       &amp;= Var(f_i)\frac{1}{N-1}[ \sum_{i = 1}^N Y_i^2N- Y_i^2 - (-
-Y_i^2 + N^2\mu^2)] \\
-       &amp;= Var(f_i)\frac{1}{N-1}[ \sum_{i = 1}^N Y_i^2N- Y_i^2 +
-Y_i^2 - N^2\mu^2)] \\
-       &amp;= Var(f_i)\frac{1}{N-1}[ \sum_{i = 1}^N Y_i^2N - N^2\mu^2)]
-\\
-       &amp;= Var(f_i)\frac{1}{N-1}[N\sum_{i = 1}^N Y_i^2 - N^2\mu^2] \\
-       &amp;= Var(f_i)\frac{N}{N-1}[\sum_{i = 1}^N Y_i^2 - N\mu^2] \\
-\end{align}
-\]</span></p>
-<p>Aqui temos que fazer um caminho onde temos que ir completando os
-polinomios para chegar no resultado que queremos mas nem sempre fica
-claro que temos que fazer isso entao mais a frente temos outra opcao,
-contudo deixarei as duas aqui:</p>
-<p><span class="math display">\[
-\begin{align}
-       &amp;= Var(f_i)\frac{N}{N-1}[\sum_{i = 1}^N Y_i^2 - N\mu^2] \\
-       &amp;= Var(f_i)\frac{N}{N-1} [\sum_{i = 1}^N Y_i^2 -  2\mu^2 N  +
-N \mu^2] \\
-       &amp;= Var(f_i)\frac{N}{N-1} [\sum_{i = 1}^N Y_i^2 -  2\mu
-N\mu  + N \mu^2] \\
-       &amp;= Var(f_i)\frac{N}{N-1} [\sum_{i = 1}^N Y_i^2 -  2\mu
-\sum_{i = 1}^NY_i + \sum_{i = 1}^N \mu^2] \\
-       &amp;= Var(f_i)\frac{N}{N-1}\sum_{i = 1}^N (Y_i^2 - 2\mu Y_i +
-\mu^2) \\
-       &amp;= Var(f_i)\frac{N}{N-1}\sum_{i = 1}^N (Y_i - \mu)(Y_i - \mu)
-\\
-       &amp;= Var(f_i)\frac{N}{N-1}\sum_{i = 1}^N (Y_i - \mu)^2 \\
-       &amp;= Var(f_i)NS^2 \\
-       &amp;= Var(f)NS^2 \\
-       &amp;= \frac{n}{N} \frac{N-1}{N} NS^2\\
-       &amp;= n \frac{N-1}{N} S^2\\
-       &amp;= n \sigma^2\\
-\end{align}
-\]</span> ou podemos mostrar que (basicamente o caminho inverso):</p>
-<p><span class="math display">\[
-\begin{align}
-  \sum_{i = 1}^N (Y_i - \mu)^2 &amp;= \sum_{i = 1}^N (Y_i - \mu)(Y_i -
-\mu) \\
-                               &amp;= \sum_{i = 1}^N (Y_i^2 - 2\mu Y_i +
-\mu^2) \\
-                               &amp;= \sum_{i = 1}^N Y_i^2 -  2\mu
-\sum_{i = 1}^NY_i + \sum_{i = 1}^N \mu^2 \\
-                               &amp;= \sum_{i = 1}^N Y_i^2 -  2\mu
-N\mu  + N \mu^2 \\
-                               &amp;= \sum_{i = 1}^N Y_i^2 -  2\mu^2
-N  + N \mu^2 \\
-                               &amp;= \sum_{i = 1}^N Y_i^2 - N\mu^2
-\end{align}
-\]</span></p>
-<p>e em seguida:</p>
-<p><span class="math display">\[
-\begin{align}
-       &amp;= Var(f_i)\frac{N}{N-1}[\sum_{i = 1}^N Y_i^2 - N\mu^2] \\
-       &amp;= Var(f_i)\frac{N}{N-1}\sum_{i = 1}^N (Y_i - \mu)^2 \\
-       &amp;= Var(f_i)NS^2 \\
-       &amp;= Var(f)NS^2 \\
-       &amp;= \frac{n}{N} \frac{N-1}{N} NS^2\\
-       &amp;= n \frac{N-1}{N} S^2\\
-       &amp;= n \sigma^2\\
-\end{align}
-\]</span></p>
-</div>
-</div>
-<div id="teorema---estimacao-do-total-e-da-media-populacional" class="section level2">
-<h2>Teorema - Estimacao do total e da media populacional</h2>
-<p>A media amostral é:</p>
-<p><span class="math display">\[
-\bar y = \frac{1}{n} \sum_{i \in s} Y_i = \frac{t(s)}{n} = \hat \mu
-\]</span></p>
-<p>é um estimador não viesado da média populacional <span class="math inline">\(\mu\)</span> dentro do plano AASc, e ainda</p>
-<p><span class="math display">\[
-Var(\bar y) = \frac{\sigma^2}{n}
-\]</span></p>
-<div id="prova---ebar-y" class="section level3">
-<h3>Prova - <span class="math inline">\(E(\bar y)\)</span></h3>
-<p><span class="math display">\[
-E(\bar y) = E(\frac{t}{n}) = \frac{1}{n}E(t) = \frac{1}{n}n\mu = \mu
-\]</span></p>
-</div>
-<div id="prova---varbar-y" class="section level3">
-<h3>Prova - <span class="math inline">\(Var(\bar y)\)</span></h3>
-<p><span class="math display">\[
-Var(\bar y) = Var(\frac{1}{n} \sum_{i=1}^n y_i) = \frac{1}{n^2}n
-\sigma^2 = \frac{\sigma^2}{n}
-\]</span></p>
-</div>
-<div id="corolário" class="section level3">
-<h3>Corolário</h3>
-<p>Do plano AASc, a estatística:</p>
-<p><span class="math display">\[
-T(s) = \hat t = N \bar y = \frac{n}{N}t(s)
-\]</span></p>
-<p>é um estimador não viesado do total populacional,com</p>
-<p><span class="math display">\[
-Var(T) = N^2 \frac{\sigma^2}{n}
-\]</span></p>
-<p>O estimador <span class="math inline">\(T(s)\)</span> é conhecido por
-estimador expansão do total populacional. Note que o total pode ser
-escrito da seguinte forma:</p>
-<p><span class="math display">\[
-t = \sum_{i \in S} Y_i + \sum_{i \notin S} Y_i
-\]</span></p>
-<p>enquanto:</p>
-<p><span class="math display">\[
-\hat t = n \bar y + (N - n) \bar y
-\]</span></p>
-<p>Onde <span class="math inline">\((N - n) \bar y\)</span> estima a
-parte nao observada <span class="math inline">\(\sum_{i \notin S}
-Y_i\)</span> de <span class="math inline">\(t\)</span></p>
-</div>
-</div>
-<div id="teorema---estimacao-da-variancia-populacional" class="section level2">
-<h2>Teorema - Estimacao da variancia populacional</h2>
-<p>Dentro do plano AASc, a estatística:</p>
-<p><span class="math display">\[
-s^2 = \frac{1}{n-1} \sum_{i \in s} (y_i - \bar y)^2
-\]</span></p>
-<p>é um estimador não viesado para a variância populacional <span class="math inline">\(\sigma^2\)</span>.</p>
-<div id="prova---es2" class="section level3">
-<h3>Prova - <span class="math inline">\(E(s^2)\)</span></h3>
-<p><span class="math display">\[
-\begin{align}
-s^2 &amp;= \frac{\sum_{i \in s} (Y_i - \bar y)^2}{n-1} \\
-(n-1)s^2 &amp;= \sum_{i \in s} (Y_i - \bar y)^2 \\
-&amp;= \sum_{i \in s} (Y_i - \bar y) (Y_i - \bar y)\\
-&amp;= \sum_{i \in s} (Y_i^2 - 2Y_i\bar y + \bar y^2)\\
-&amp;= \sum_{i \in s} Y_i^2 - 2\bar y\sum_{i \in s}Y_i + \sum_{i \in
-s}\bar y^2\\
-&amp;= \sum_{i \in s} Y_i^2 - 2\bar yn\bar y + n\bar y^2\\
-&amp;= \sum_{i \in s} Y_i^2 - 2\bar y^2n + n\bar y^2\\
-&amp;= \sum_{i \in s} Y_i^2 - n\bar y^2 \\
-&amp;= \sum_{i \in s} Y_i^2 - n (\frac{t}{n})^2 \\
-&amp;= \sum_{i \in s} Y_i^2 - n \frac{t^2}{n^2} \\
-&amp;= \sum_{i \in s} Y_i^2 - \frac{t^2}{n} \\
-&amp;= \sum_{i \in s} Y_i^2 - \frac{t^2}{n} \\
-\end{align}
-\]</span></p>
-<p>Em seguida vamos aplicar a esperanca nos 2 lados da equacao:</p>
-<p><span class="math display">\[
-\begin{align}
-(n-1)s^2 &amp;= \sum_{i \in s} Y_i^2 - \frac{t^2}{n} \\
-E((n-1)s^2) &amp;= E(\sum_{i \in s} Y_i^2 - \frac{t^2}{n}) \\
-            &amp;= E(\sum_{i \in s} Y_i^2) - E(\frac{t^2}{n}) \\
-            &amp;= \sum_{i \in s} Y_i^2E(f_i) - \frac{1}{n}E(t^2) \\
-\end{align}
-\]</span></p>
-<p>Como sabemos que <span class="math inline">\(\sum_{i=1}^N (Y_i -
-\mu)^2 = \sum_{i=1}^N Y_i^2 - N\mu^2\)</span> e tambem</p>
-<p><span class="math display">\[
-\sigma^2 = \frac{\sum_{i=1}^n (Y_i - \mu)^2}{N}  
-\]</span></p>
-<p>entao:</p>
-<p>$$ <span class="math display">\[\begin{align}
-\sum_{i=1}^N(Y_i - \mu)^2 &amp;= \sum_{i=1}^N Y_i^2 - N\mu^2 \\
-\sum_{i=1}^N(Y_i - \mu)^2 + N\mu^2  &amp;= \sum_{i=1}^N Y_i^2 \\
-\sum_{i=1}^N Y_i^2  &amp;= \sum_{i=1}^N (Y_i - \mu)^2 + N\mu^2 \\
-                    &amp;= N \sigma^2 + N\mu^2 \\
-                    &amp;= N (\sigma^2 + \mu^2) \\
-                    
-\end{align}\]</span> $$</p>
-<p>Importante lembrar que:</p>
-<p><span class="math display">\[
-Var(t) = E(t^2) + E(t)^2 \\
-E(t^2) = Var(t) - E(t)^2    
-\]</span></p>
-<p>Com isso tudo podemos seguir fazendo a conta:</p>
-<p><span class="math display">\[
-\begin{align}
-\sum_{i \in s} Y_i^2E(f_i) - \frac{1}{n}E(t^2) &amp;= N (\sigma^2 +
-\mu^2) E(f_i) - \frac{1}{n} Var(t) - E(t)^2 \\
-                                               &amp;= N (\sigma^2 +
-\mu^2) \frac{n}{N} - \frac{1}{n} (n\sigma^2 - n^2\mu^2) \\
-                                               &amp;= n (\sigma^2 +
-\mu^2)  -  (\sigma^2 - n\mu^2) \\
-                                               &amp;= n \sigma^2 + n
-\mu^2  -  \sigma^2 - n\mu^2 \\
-                                               &amp;= n \sigma^2
--  \sigma^2  \\
-                                               &amp;= \sigma^2 (n -
-1)  \\
-\end{align}
-\]</span></p>
-<p>Portanto:</p>
-<p><span class="math display">\[
-\begin{align}
-E((n-1)s^2) &amp;= \sigma^2 (n - 1) \\
-(n-1)E(s^2) &amp;= \sigma^2 (n - 1) \\
-     E(s^2) &amp;= \sigma^2  \\
-\end{align}
-\]</span> ### Corolário</p>
-<p>Para o plano AASc, a estatística</p>
-<p><span class="math display">\[
-Var(\bar y) = \frac{s^2}{n}
-\]</span></p>
-<p>é um estimador não viesado para a variância da média amostral, <span class="math inline">\(Var(\bar y)\)</span>, e</p>
-<p><span class="math display">\[
-Var(T) = N^2\frac{s^2}{n}
-\]</span></p>
-<p>é um estimador não viesado de <span class="math inline">\(Var(T)\)</span></p>
-</div>
-</div>
-<div id="resultado---normalidade-assintótica" class="section level2">
-<h2>Resultado - Normalidade Assintótica</h2>
-<p>Para um <span class="math inline">\(n\)</span> suficientemente grande
-:</p>
-<p><span class="math display">\[
-\frac{\hat \theta - E(\hat \theta)}{\sqrt{Var(\hat \theta)}} \sim
-\text{Normal}(0,1)
-\]</span></p>
-<p>Com relacao a AASc temos:</p>
-<p><span class="math display">\[
-\frac{\bar y - \mu}{\sqrt{\frac{\sigma^2}{n}}} \sim \text{Normal}(0,1)
-\]</span></p>
-<p><span class="math display">\[
-\frac{T - t}{N\sqrt{\frac{\sigma^2}{n}}} \sim \text{Normal}(0,1)
-\]</span></p>
-</div>
-<div id="intervalo-de-confiança-para-a-média" class="section level2">
-<h2>Intervalo de Confiança para a Média</h2>
-<p>Com relação à média, para <span class="math inline">\(n\)</span>
-suficientemente grande:</p>
-<p><span class="math display">\[
-P\left( \frac{\bar y - \mu}{\sqrt{\frac{\sigma^2}{n}}} \right)  \cong 1-
-\alpha
-\]</span></p>
-<p>Como <span class="math inline">\(\sigma^2\)</span> é desconhecido,
-faz-se uso de <span class="math inline">\(s^2\)</span>, então:</p>
-<p><span class="math display">\[
-P\left( \bar y - Z_{\alpha} \sqrt\frac{s^2}{n} \leq \mu \leq \bar y +
-Z_{\alpha} \sqrt\frac{s^2}{n} \right)  \cong 1- \alpha
-\]</span></p>
-<p>Onde segue que:</p>
-<p><span class="math display">\[
-I C(\mu ;(1-\alpha) 100 \%)=\left(\bar{y}-z_\alpha \sqrt{\frac{s^2}{n}}
-; \bar{y}+z_\alpha \sqrt{\frac{s^2}{n}}\right)
-\]</span></p>
-</div>
-<div id="determinação-do-tamanho-da-amostra" class="section level2">
-<h2>Determinação do Tamanho da Amostra</h2>
-<p>O objetivo determinar <span class="math inline">\(n\)</span>, de modo
-que o estimador obtido tenha um erro máximo de estimação igual a <span class="math inline">\(B\)</span>, isto é,</p>
-<p><span class="math display">\[
-P(|\bar{y}-\mu| \leq B) \cong 1-\alpha
-\]</span></p>
-<p>Mas</p>
-<p><span class="math display">\[
-P\left(|\bar{y}-\mu| \leq z_\alpha \sqrt{\sigma^2 / n}\right) \cong
-1-\alpha
-\]</span></p>
-<p>Então,</p>
-<p><span class="math display">\[
-B=z_\alpha \sqrt{\sigma^2 / n} \rightarrow n=\frac{\sigma^2}{\left(B /
-z_\alpha\right)^2}
-\]</span></p>
-<p>obs: <span class="math inline">\(\sigma^2\)</span> é obrido atraves
-de uma amostra piloto, de pesquisas anteriores ou <span class="math inline">\(IC(\mu,95\%) = 4\sigma\)</span></p>
 </div>
 </div>
 

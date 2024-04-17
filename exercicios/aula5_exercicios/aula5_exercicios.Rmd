@@ -1,0 +1,118 @@
+---
+title: "Aula 5 - Exercicios"
+author: "Davi Wentrick Feijó"
+date: "2024-04-17"
+output: 
+  rmdformats::downcute:
+    self_contained: true
+    thumbnails: true
+    lightbox: true
+    gallery: true
+    highlight: tango
+    toc_depth : 4
+  html_document:
+    toc: false
+    toc_depth: 5
+    toc_float: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Exercício 1
+
+Exemplo: Considere $U=\{1,2,3,4,5,6,7,8\}$ de domicílios, onde são conhecidas as variáveis renda familiar ( $Y$ ) e local do domicílio ( $W$ ), com os códigos $A$ para região alta e $B$ para região baixa. Tem-se que
+
+$$
+D=\left(\begin{array}{llllllll}
+13 & 17 & 6 & 5 & 10 & 12 & 19 & 6 \\
+B & A & B & B & B & A & A & B
+\end{array}\right)
+$$
+
+Para esta população tem-se: $\mu=11, \sigma^{2}=24$.
+
+A partir do plano amostral $A A S c$ de tamanho $n=4$, sabe-se que
+
+$$
+\operatorname{Var}[\bar{y}]=\frac{24}{4}=6
+$$
+
+\section*{Amostragem Estratificada}
+
+Exemplo: Considere as seguintes subpopulações:
+
+$$
+\begin{aligned}
+& U_{A}=\{1,2,3,4\}, \boldsymbol{D}_{A}=\{13,17,6,5\} \\
+& U_{B}=\{5,6,7,8\}, \boldsymbol{D}_{B}=\{10,12,19,6\}
+\end{aligned}
+$$
+
+com os seguintes parâmetros:
+
+$$
+\mu_{A}=10,25 \quad \sigma_{A}^{2}=24,69 \quad \mu_{B}=11,75 \quad \sigma_{B}^{2}=22,19 .
+$$
+
+Considerando uma AASc dentro de cada estrato, com $n_{A}=2, n_{B}=2$, calcule:
+
+$$
+\operatorname{Var}\left[\bar{y}_{A}\right], \operatorname{Var}\left[\bar{y}_{B}\right], \operatorname{Var}\left[\bar{y}_{e s}\right] \text { e EPA. }
+$$
+
+
+### Exercício 2
+
+Considere a seguinte estratificação:
+
+$$
+\begin{gathered}
+U_{1}=\{2,4,7\}, \boldsymbol{D}_{1}=\{17,5,19\} \\
+U_{2}=\{1,3,5,6,8\}, \boldsymbol{D}_{2}=\{13,6,10,12,6\}
+\end{gathered}
+$$
+
+com os seguintes parâmetros:
+
+$$
+\mu_{1}=13,67 \quad S_{1}^{2}=57,33 \quad \mu_{2}=9,40 \quad S_{2}^{2}=10,8 .
+$$
+
+Em ambos os estratos usou-se AASs, com $n_{1}=1$ e $n_{2}=2$, ou seja, $n=3$.
+
+Calcule $\operatorname{Var}\left[\bar{y}_{e s}\right]$.
+
+### Exercício 3 
+
+Uma população está dividida em 5 estratos. Os tamanhos dos estratos, médias e variâncias são dados na tabela abaixo.
+
+\begin{tabular}{|c|c|c|c|}
+\hline $\boldsymbol{h}$ & $\boldsymbol{N h}$ & $\boldsymbol{\mu}_{\boldsymbol{h}}$ & $\boldsymbol{S}_{\boldsymbol{h}}^{\mathbf{2}}$ \\
+\hline 1 & 117 & 7,3 & 1,31 \\
+\hline 2 & 98 & 6,9 & 2,03 \\
+\hline 3 & 74 & 11,2 & 1,13 \\
+\hline 4 & 41 & 9,1 & 1,96 \\
+\hline 5 & 45 & 9,6 & 1,74 \\
+\hline
+\end{tabular}
+
+a) Calcule $\mu$ e $\sigma^{2}$ para esta população.
+
+b) Para uma amostra de tamanho 80, determine as alocações proporcional e ótima (de Neyman).
+
+c) Compara as variâncias dos estimadores obtidos com a $A A S c$ e com a alocação proporcional.
+
+d) Compara as variâncias dos estimadores obtidos com a $A A S c$ e com a alocação ótima.
+
+
+
+
+
+
+
+
+
+
+

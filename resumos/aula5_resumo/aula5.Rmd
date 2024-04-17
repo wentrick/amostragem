@@ -1,0 +1,525 @@
+---
+title: "Aula 5 - Amostragem Estratificada"
+author: "Davi Wentrick Feijó"
+date: "2024-04-17"
+output: 
+  rmdformats::downcute:
+    self_contained: true
+    thumbnails: true
+    lightbox: true
+    gallery: true
+    highlight: tango
+    toc_depth : 4
+  html_document:
+    toc: false
+    toc_depth: 5
+    toc_float: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+## Motivação
+- Para uma $A A S c$ de tamanho n, a variância do estimador média amostral, é dada por $\operatorname{Var}[\bar{y}]=\frac{\sigma^{2}}{n}$.
+- Aumentando-se $n$, o erro padrão diminui.
+- Se a população é muito heterogênea e as razões de custo limitam o aumento da amostra, torna-se impossível definir uma $A A S c$ da população toda com precisão razoável.
+
+
+
+
+## Notação e relações entre os parâmetros
+
+- $N_{h}$ : tamanho do estrato $h$
+
+- $\tau_{h}=\sum_{i=1}^{N_{h}} Y_{h i}:$ total do estrato $h$
+
+- $\mu_{h}=\bar{Y}_{h}=\frac{1}{N_{h}} \sum_{i=1}^{N_{h}} Y_{h i}:$ média do estrato $h$
+
+- $S_{h}^{2}=\frac{1}{N_{h}-1} \sum_{i=1}^{N_{h}}\left(Y_{h i}-\mu_{h}\right)^{2}:$ variância do estrato $h$
+
+- $\sigma_{h}^{2}=\frac{1}{N_{h}} \sum_{i=1}^{N_{h}}\left(Y_{h i}-\mu_{h}\right)^{2}:$ variância do estrato $h$
+
+- $N=\sum_{h=1}^{H} N_{h}:$ tamanho do universo
+
+- $W_{h}=\frac{N_{h}}{N}$ : peso do estrato $h$, com $\sum_{h=1}^{H} W_{h}=1$
+
+- $\tau=\sum_{i=1}^{N_{h}} \tau_{h}=\sum_{h=1}^{H} \sum_{i=1}^{N_{h}} Y_{h i}=\sum_{h=1}^{H} N_{h} \mu_{h}$ : total populacional
+
+- $\mu=\bar{Y}=\frac{\tau}{N}=\frac{1}{N} \sum_{h=1}^{H} \sum_{i=1}^{N_{h}} Y_{h i}=\frac{1}{N} \sum_{h=1}^{H} N_{h} \mu_{h}$
+
+$$
+\mu=\sum_{h=1}^{H} W_{h} \mu_{h}: \text { média populacional }
+$$
+
+(média ponderada dos estratos)
+
+
+### Resultado
+
+
+$$
+\begin{aligned}
+& \sum_{h=1}^{H} \sum_{i=1}^{N_{h}}\left(Y_{h i}-\mu\right)^{2}=\sum_{h=1}^{H} \sum_{i=1}^{N_{h}}\left(Y_{h i}-\mu_{h}\right)^{2}+\sum_{h=1}^{H} N_{h}\left(\mu_{h}-\mu\right)^{2} \\
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+ \sigma^{2} &= \frac{1}{N} \sum_{h=1}^{H} \sum_{i=1}^{N_{h}}\left(Y_{h i}-\mu\right)^{2} \\
+            &= \frac{1}{N}\left\{\sum_{h=1}^{H} \sum_{i=1}^{N_{h}}\left(Y_{h i}-\mu_{h}\right)^{2}+\sum_{h=1}^{H} N_{h}\left(\mu_{h}-\mu\right)^{2}\right\} \\
+      \quad &=\frac{1}{N}\left\{\sum_{h=1}^{H} N_{h} \sigma_{h}^{2}+\sum_{h=1}^{H} N_{h}\left(\mu_{h}-\mu\right)^{2}\right\} \\ 
+            &=\sum_{h=1}^{H} W_{h} \sigma_{h}^{2}+\sum_{h=1}^{H} W_{h}\left(\mu_{h}-\mu\right)^{2}  \quad \rightarrow \quad \sigma^{2}=\sigma_{d}^{2}+\sigma_{e}^{2}
+\end{aligned}
+$$
+ou seja :
+
+$$
+\sigma^{2}=\sigma_{d}^{2}+\sigma_{e}^{2}
+$$
+
+$\sigma_{d}^{2}=\sum_{h=1}^{H} W_{h} \sigma_{h}^{2} \rightarrow$ mede a variància dentro dos estratos
+
+$\sigma_{e}^{2}=\sum_{h=1}^{H} W_{h}\left(\mu_{h}-\mu\right)^{2} \rightarrow$ mede a variância entre os estratos
+
+
+Para estratos relativamente grandes
+
+$$
+\sigma^{2}=\sigma_{d}^{2}+\sigma_{e}^{2} \cong S_{d}^{2}+\sigma_{e}^{2}
+$$
+
+onde
+
+$$
+S_{d}^{2}=\sum_{h=1}^{H} W_{h} S_{h}^{2}
+$$
+
+Quando todos os estratos têm a mesma média,
+
+$$
+\sigma^{2}=\sigma_{d}^{2}
+$$
+
+pois
+
+$$
+\sigma_{e}^{2}=\sum_{h=1}^{H} W_{h}\left(\mu_{h}-\mu\right)^{2}=0
+$$
+
+## Funções paramétricas
+
+- $\bar{y}_{h}=\frac{1}{n_{h}} \sum_{i \in s_{h}} Y_{h i}$ : média amostral do estrato $h$
+
+- $t_{h}=\sum_{i \in s_{h}} Y_{h i}$ :total amostral do estrato $h$
+
+- $s_{h}^{2}=\frac{1}{n_{h}-1} \sum_{i \in s_{h}}\left(Y_{h i}-\bar{y}_{h}\right)^{2}:$ variância amostral do estrato $h$
+
+Sendo $\boldsymbol{s}=\bigcup_{h=1}^{H} s_{h}$ de tamanho $n=\sum_{h=1}^{H} n_{h}$
+
+- $\bar{y}=\frac{1}{n} \sum_{h=1}^{H} \sum_{i \in s_{h}} Y_{h i}:$ média amostral
+
+- $t=\sum_{h=1}^{H} \sum_{i \in s_{h}} Y_{h i}:$ total amostral
+
+- $s^{2}=\frac{1}{n-1} \sum_{h=1}^{H} \sum_{i \in s_{h}}\left(Y_{h i}-\bar{y}\right)^{2}:$ variância amostral
+
+
+## Teorema 1
+
+O estimador
+
+$$
+T_{e s}=\sum_{h=1}^{H} N_{h} \hat{\mu}_{h}
+$$
+
+é não viesado para o total populacional $\tau$, com
+
+$$
+\operatorname{Var}_{A}\left[T_{e s}\right]=\sum_{h=1}^{H} N_{h}^{2} \operatorname{Var}_{A}\left[\hat{\mu}_{h}\right]
+$$
+
+\section*{Corolário}
+
+O estimador
+
+$$
+\bar{y}_{e s}=\frac{1}{N} \sum_{h=1}^{H} N_{h} \hat{\mu}_{h}=\sum_{h=1}^{H} W_{h} \hat{\mu}_{h}
+$$
+
+é um não viesado para a média populacional $\mu$, com
+
+$$
+\operatorname{Var}_{A}\left[\bar{y}_{e s}\right]=\sum_{h=1}^{H} W_{h}^{2} \operatorname{Var}_{A}\left[\hat{\mu}_{h}\right]
+$$
+
+Considere um plano amostral de uma AASc que $\hat{\mu}_{h}=\bar{y}_{h}$. Então,
+
+$$
+\begin{array}{ll}
+T_{e s}=\sum_{h=1}^{H} N_{h} \bar{y}_{h} & \operatorname{Var}\left[T_{e s}\right]=\sum_{h=1}^{H} N_{h}^{2} \frac{\sigma_{h}^{2}}{n_{h}} \\
+\bar{y}_{e s}=\sum_{h=1}^{H} W_{h} \bar{y}_{h} & \operatorname{Var}\left[\bar{y}_{e s}\right]=\sum_{h=1}^{H} W_{h}^{2} \frac{\sigma_{h}^{2}}{n_{h}}
+\end{array}
+$$
+
+Com estimadores não viesados dados por
+
+$$
+\operatorname{var}\left[T_{e s}\right]=\sum_{h=1}^{H} N_{h}^{2} \frac{s_{h}^{2}}{n_{h}}
+$$
+
+$$
+\operatorname{var}\left[\bar{y}_{e s}\right]=\sum_{h=1}^{H} W_{h}^{2} \frac{s_{h}^{2}}{n_{h}}
+$$
+
+## Amostragem Estratificada Proporcional - AEpr
+
+O plano amostral estratificado proporcional equivale a estudar as propriedades do estimador $\bar{y}$ associado à $A A S c$, retirada de uma população com variância $\sigma_{d}^{2}$.
+
+Neste procedimento a amostra de tamanho $n$ é distribuída proporcionalmente ao tamanho dos estratos, i. e.,
+
+$$
+n_{h}=n W_{h}=n \frac{N_{h}}{N}
+$$
+
+Teorema. Com relação à $A E p r$, o estimador $\bar{y}_{e s}$ é igual à média amostral simples $\bar{y}$, com
+
+$$
+\operatorname{Var}_{p r}=\operatorname{Var}\left[\bar{y}_{e s}\right]=\sum_{h=1}^{H} W_{h} \frac{\sigma_{h}^{2}}{n}=\frac{\sigma_{d}^{2}}{n}
+$$
+
+que é estimada por
+
+$$
+\operatorname{var}\left[\bar{y}_{e s}\right]=\sum_{h=1}^{H} W_{h} \frac{s_{h}^{2}}{n} .
+$$
+
+### Prova - Media
+
+$$
+\begin{aligned}
+ \bar{y}_{e s} &= \sum_{h=1}^{H} W_{h} \bar{y}_{h} \\
+               &=\sum_{h=1}^{H} W_{h} \frac{1}{n_{h}} \sum_{i \in s_{h}} Y_{h i} \\
+               & =\sum_{h=1}^{H} W_{h} \frac{1}{n W_{h}} \sum_{i \in s_{h}} Y_{h i} \\
+               &=\frac{1}{n} \sum_{h=1}^{H} \sum_{i \in s_{h}} Y_{h i} \\
+               &=\bar{y} \\
+\end{aligned}
+$$
+
+
+### Prova - Variancia
+
+Considerando que
+
+$$
+f_{h}=\frac{n_{h}}{N_{h}}=\frac{n_{h} W_{h}}{N_{h} W_{h}}=\frac{n}{N}
+$$
+
+e que
+
+$$
+\begin{gathered}
+\frac{W_{h}^{2}}{n_{h}}=\frac{W_{h}^{2}}{n W_{h}}=\frac{W_{h}}{n} \\
+\operatorname{Var}\left[\bar{y}_{e s}\right]=\sum_{h=1}^{H} W_{h}^{2} \frac{\sigma_{h}^{2}}{n_{h}}=\sum_{h=1}^{H} W_{h} \frac{\sigma_{h}^{2}}{n}=\frac{\sigma_{d}^{2}}{n}
+\end{gathered}
+$$
+
+Como dentro de cada estrato $s_{h}^{2}$ é um estimador não viesado de $\sigma_{h}^{2}$, então
+
+$$
+\operatorname{var}\left[\bar{y}_{e s}\right]=\sum_{h=1}^{H} W_{h} \frac{s_{h}^{2}}{n}
+$$
+
+
+## Amostragem Estratificada Uniforme - AEun
+
+No plano amostral estratificado uniforme atribui-se o mesmo tamanho de amostra para cada estrato.
+
+É o procedimento indicado quando se pretende apresentar estimativas separadas para cada estrato. Para cada um dos $H$ estratos tem-se,
+
+$$
+n_{h}=\frac{n}{H}=k
+$$
+
+e
+
+$$
+f_{h}=\frac{k}{N_{h}}
+$$
+
+
+### Corolário
+
+Com relação à AEun, o estimador $\bar{y}_{e s}$ é um estimador não viesado com variância expressa por
+
+$$
+\operatorname{Var}_{u n}=\operatorname{Var}\left[\bar{y}_{e s}\right]=\sum_{h=1}^{H} W_{h}^{2} \frac{\sigma_{h}^{2}}{k}
+$$
+
+que é estimado por
+
+$$
+\operatorname{var}\left[\bar{y}_{e s}\right]=\sum_{h=1}^{H} W_{h}^{2} \frac{s_{h}^{2}}{k} .
+$$
+
+## Amostragem Ótima de Neyman
+
+A Amostragem Ótima tem por objetivo minimizar a Ves quando o custo variável, $C$, é fixado, ou minimizar o $C$ quando Ves é fixada.
+
+Para isso, considera-se um função de custo de forma linear, ou seja,
+
+$$
+C=c_{0}+\sum_{h=1}^{H} c_{h} n_{h} \quad \text { ou } \quad C^{\prime}=C-c_{0}=\sum_{h=1}^{H} c_{h} n_{h}
+$$
+
+onde $c_{0}$ denota o custo inicial, $c_{h}$ o custo por unidade observada no estrato $h$ e $C^{\prime}$ o custo variável.
+
+
+### Teorema
+
+Na $A E$ com função de custo linear, tem-se $V_{e s}$ é mínima para $C^{\prime}$ fixado ou $C^{\prime}$ mínimo para $V_{e s}$ fixado, se
+
+$$
+n_{h}=n \frac{W_{h} \sigma_{h} / \sqrt{c_{h}}}{\sum_{h=1}^{H} W_{h} \sigma_{h} / \sqrt{c_{h}}}, \quad h=1, \ldots, H
+$$
+
+### Prova
+
+Foi visto que
+
+$$
+\operatorname{Var}\left[\bar{y}_{e s}\right]=\sum_{h=1}^{H} W_{h}^{2} \frac{\sigma_{h}^{2}}{n_{h}}=V_{e s}
+$$
+
+Este problema tem uma solução única e simples quando se utiliza a desigualdade de Cauchy-Schwarz.
+
+
+Desigualdade de Cauchy-Schwarz é dada por
+
+$$
+\left(\sum a_{h}^{2}\right) \cdot\left(\sum b_{h}^{2}\right) \geq\left(\sum a_{h} b_{h}\right)^{2}
+$$
+
+de modo que a igualdade ocorre quando
+
+$$
+\frac{b_{h}}{a_{h}}=k
+$$
+
+para $h=1, \ldots, H$.
+
+
+### Prova 
+
+O problema consiste em minimizar
+
+$$
+\operatorname{Var}_{e s}=\sum_{h=1}^{H} W_{h}^{2} \frac{\sigma_{h}^{2}}{n_{h}}
+$$
+
+sujeito a um custo fixo $C^{\prime}$, ou minimizar o custo $C^{\prime}$ para uma variância $V_{e s}$ fixada. Então, minimizar $V_{e s}$ para $C^{\prime}$ fixado ou $C^{\prime}$ para $V_{e s}$ fixada é equivalente a minimizar o produto
+
+$$
+\operatorname{Var}_{e s} C^{\prime}=\left(\sum_{h=1}^{H} W_{h}^{2} \frac{\sigma_{h}^{2}}{n_{h}}\right) \cdot\left(\sum_{h=1}^{H} c_{h} n_{h}\right) .
+$$
+
+Pela desigualdade de Cauchy-Schwars, tem-se que
+
+$$
+a_{h}=\frac{W_{h} \sigma_{h}}{\sqrt{n_{h}}} \quad e \quad b_{h}=\sqrt{c_{h} n_{h}}
+$$
+
+O produto $V_{e s} \times C^{\prime}$ é mínimo quando
+
+$$
+\frac{b_{h}}{a_{h}}=\frac{\sqrt{c_{h} n_{h}}}{\frac{W_{h} \sigma_{h}}{\sqrt{n_{h}}}}=\frac{n_{h} \sqrt{c_{h}}}{W_{h} \sigma_{h}}=k, \quad h=1, \ldots, H
+$$
+
+$$
+\rightarrow \quad n_{h}=k \frac{W_{h} \sigma_{h}}{\sqrt{c_{h}}}
+$$
+
+
+Sendo
+
+$$
+n_{h}=k \frac{W_{h} \sigma_{h}}{\sqrt{c_{h}}} \rightarrow \sum_{h=1}^{H} n_{h}=k \sum_{h=1}^{H} W_{h} \sigma_{h} / \sqrt{c_{h}}
+$$
+
+Como
+
+$$
+\begin{gathered}
+\sum_{h=1}^{H} n_{h}=n \rightarrow k=\frac{n}{\sum_{h=1}^{H} W_{h} \sigma_{h} / \sqrt{c_{h}}} \\
+\therefore n_{h}=n \frac{W_{h} \sigma_{h} / \sqrt{c_{h}}}{\sum_{h=1}^{H} W_{h} \sigma_{h} / \sqrt{c_{h}}}
+\end{gathered}
+$$
+
+
+### Conclusão
+
+O número ótimo de unidades a serem observadas do estrato $h$ é diretamente proporcional a $N_{h} \sigma_{h}$ e inversamente proporcional a $\sqrt{c_{h}}$.
+
+$$
+n_{h}=n \frac{W_{h} \sigma_{h} / \sqrt{c_{h}}}{\sum_{h=1}^{H} W_{h} \sigma_{h} / \sqrt{c_{h}}}
+$$
+
+
+### Corolário
+
+i. Para $C^{\prime}$ fixado o tamanho ótimo da amostra é dado por
+
+$$
+n=C^{\prime} \frac{\sum_{h=1}^{H} N_{h} \sigma_{h} / \sqrt{c_{h}}}{\sum_{h=1}^{H} N_{h} \sigma_{h} \sqrt{c_{h}}}
+$$
+
+ii. Para $V_{e s}$ fixado o tamanho ótimo da amostra é dado por
+
+$$
+n=\frac{1}{V_{e s}}\left(\sum_{h=1}^{H} W_{h} \sigma_{h} \sqrt{c_{h}}\right)\left(\sum_{h=1}^{H} W_{h} \sigma_{h} / \sqrt{c_{h}}\right) .
+$$
+
+Para o caso em que o custo por unidade observada em todos os estratos seja fixado em c, isto é,
+
+$$
+C^{\prime}=C-c_{0}=n c .
+$$
+
+A alocação ótima se reduz a
+
+$$
+n_{h}=n \frac{N_{h} \sigma_{h}}{\sum_{h=1}^{H} N_{h} \sigma_{h}} \quad \text { (alocação ótima de Neyman). }
+$$
+
+Neste caso, $V_{e s}$ se reduz a
+
+$\operatorname{Var}_{o t}=\frac{1}{n}\left(\sum_{h=1}^{H} W_{h} \sigma_{h}\right)^{2}=\frac{\bar{\sigma}^{2}}{n}$, onde $\bar{\sigma}=\sum_{h=1}^{H} W_{h} \sigma_{h}$
+
+é um desvio padrão médio dentro de cada estrato.
+
+
+## Efeito do Planejamento
+
+Teorema
+
+Com relação à AASc, tem-se que
+
+$$
+V_{o t} \leq V_{p r} \leq V_{c}
+$$
+
+Recomendações:
+
+$$
+V_{c}=V_{p r}+\frac{\sigma_{e}^{2}}{n}=V_{o t}+\frac{\sigma_{d p}^{2}}{n}+\frac{\sigma_{e}^{2}}{n}
+$$
+- Sempre que os estratos tiverem médias distintas ( $\sigma_{e}^{2}$ grande), deve-se usar alocação proporcional ou ótima.
+- Se, além disso, os desvios padrões de cada estrato diferem muito entre si ( $\sigma_{d p}^{2}$ grande), recomendase a alocação ótima.
+
+## Comparação entre AASc e AEpr
+
+Comparando-se os planos amostrais $A A S c$ com $A E p r$, tem-se que
+
+$E P A[A E p r]=\frac{V_{p r}}{V_{c}}=\frac{\sigma_{d}^{2} / n}{\sigma^{2} / n}=\frac{\sigma^{2}-\sigma_{e}^{2}}{\sigma^{2}}=1-\frac{\sigma_{e}^{2}}{\sigma^{2}}$
+
+Se $1 / N_{h}$ for desprezível, o plano estratificado proporcional produz variâncias sempre menores que as produzidas por uma AASc de mesmo tamanho, e este ganho é maior quanto maior for $\sigma_{e}^{2}$, i. e., maior for a diferença entre as médias dos estratos.
+
+Comparando-se os planos amostrais $A A S c$ com $A E$ tot, tem-se que
+
+$E P A[A E o t]=\frac{V_{o t}}{V_{c}}=\frac{\frac{\sigma^{2}-\sigma_{e}^{2}-\sigma_{d p}^{2}}{n}}{\sigma^{2} / n}=\frac{\sigma^{2}-\sigma_{e}^{2}-\sigma_{d p}^{2}}{\sigma^{2}}$
+
+$=1-\frac{\sigma_{e}^{2}}{\sigma^{2}}-\frac{\sigma_{d p}^{2}}{\sigma^{2}}$
+
+O ganho com o uso do plano AEot é maior com o aumento da diferença entre os estrados, i, e., $\sigma_{e}^{2}$ grande. $O$ último termo da expressão mede a variabilidade dos desvios padrões dos estratos, o que significa que o ganho da alocação ótima cresce com a diferença entre as variabilidades dos estratos.
+
+## Normalidade Assintótica
+
+Para $n$ suficientemente grande, tem-se com relação à AASs
+
+$$
+\frac{\bar{y}_{e s}-\mu}{\sqrt{\sum_{h=1}^{H} W_{h}^{2} \sigma_{h}^{2} / n_{h}}} \sim N(0,1)
+$$
+
+e
+
+$$
+\frac{\tau_{e s}-\tau}{\sqrt{\sum_{h=1}^{H} N_{h}^{2} \sigma_{h}^{2} / n_{h}}} \sim N(0,1)
+$$
+
+## Intervalo de Confiança para a Média
+
+Com relação à média, para $n$ suficientemente grande,
+
+$$
+P\left(\frac{\left|\bar{y}_{e s}-\mu\right|}{\sqrt{\sum_{h=1}^{H} W_{h}^{2} \sigma_{h}^{2} / n_{h}}} \leq z_{\alpha}\right) \cong 1-\alpha
+$$
+
+Como $\sigma_{h}^{2}$ é desconhecido, faz-se uso de $s_{h}^{2}$, então
+
+$$
+P\left(\bar{y}_{e s}-z_{\alpha} \sqrt{\sum_{h=1}^{H} W_{h}^{2} s_{h}^{2} / n_{h}} \leq \mu \leq \bar{y}_{e s}+z_{\alpha} \sqrt{\sum_{h=1}^{H} W_{h}^{2} s_{h}^{2} / n_{h}}\right) \cong 1-\alpha .
+$$
+
+Onde segue que
+
+$$
+I C(\mu ; \gamma)=\left(\bar{y}_{e s}-z_{\alpha} \sqrt{\sum_{h=1}^{H} W_{h}^{2} s_{h}^{2} / n_{h}} ; \bar{y}_{e s}+z_{\alpha} \sqrt{\sum_{h=1}^{H} W_{h}^{2} s_{h}^{2} / n_{h}}\right) .
+$$
+
+## Determinação do Tamanho da Amostra
+
+Pode-se determinar $n$ de modo que
+
+$$
+P\left(\left|\bar{y}_{e s}-\mu\right| \leq B\right) \cong 1-\alpha
+$$
+
+onde, $B=z_{\alpha / 2} \sqrt{\sum_{h=1}^{H} W_{h}^{2} \sigma_{h}^{2} / n_{h}}$
+
+Dado que $n_{h}=n . W_{h}$, então
+
+$$
+n=\frac{1}{D} \sum_{h=1}^{H} W_{h} \sigma_{h}^{2}=\frac{\sigma_{d}^{2}}{D}
+$$
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
