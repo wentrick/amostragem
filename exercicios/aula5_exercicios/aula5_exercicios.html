@@ -1934,8 +1934,34 @@ sigma2 = var_tot_dentro + var_tot_entre</code></pre>
 <pre><code>## [1] &quot;A media populacional é 8.43786666666667&quot;</code></pre>
 <pre><code>## [1] &quot;A variancia populacional é 4.30107278222222&quot;</code></pre>
 <ol start="2" style="list-style-type: lower-alpha">
-<li><p>Para uma amostra de tamanho 80, determine as alocações
-proporcional e ótima (de Neyman).</p></li>
+<li>Para uma amostra de tamanho 80, determine as alocações proporcional
+e ótima (de Neyman).</li>
+</ol>
+<ul>
+<li><span class="math inline">\(c_h\)</span> é o custo viavel</li>
+</ul>
+<p>Sabemos que a formual da amostragem otima é:</p>
+<p><span class="math display">\[
+n_{h}=n \frac{W_{h} \sigma_{h} / \sqrt{c_{h}}}{\sum_{h=1}^{H} W_{h}
+\sigma_{h} / \sqrt{c_{h}}}
+\]</span> para ajudar na montagem do codigo vamos chamar de <span class="math inline">\(g = W_{h} \sigma_{h} / \sqrt{c_{h}}\)</span> (é
+uma escolha completamente arbitraria somente para facilitar o
+calculo)</p>
+<pre class="r"><code>h = c(1,2,3,4,5)
+Nh = c(117,98,74,41,45)
+muh = c(7.3,6.9,11.2,9.1,9.6)
+s2h = c(1.31,2.03,1.13,1.96,1.74)
+ch = c(1,1,1,1,1)
+n = 80
+
+dados = data.frame(h,Nh,muh,s2h,ch) %&gt;%
+  mutate(peso_estrat = Nh/sum(Nh),
+         var_estrat = s2h*(Nh - 1)/Nh,
+         dp_estrat = sqrt(var_estrat),
+         g = (peso_estrat*dp_estrat)/sqrt(ch),
+         otima = (g/sum(g))*n,
+         prop = n*peso_estrat)</code></pre>
+<ol start="3" style="list-style-type: lower-alpha">
 <li><p>Compara as variâncias dos estimadores obtidos com a <span class="math inline">\(A A S c\)</span> e com a alocação
 proporcional.</p></li>
 <li><p>Compara as variâncias dos estimadores obtidos com a <span class="math inline">\(A A S c\)</span> e com a alocação ótima.</p></li>

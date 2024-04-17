@@ -143,14 +143,30 @@ paste("A variancia populacional é",sigma2)
 
 b) Para uma amostra de tamanho 80, determine as alocações proporcional e ótima (de Neyman).
 
+* $c_h$ é o custo viavel
+
+Sabemos que a formual da amostragem otima é:
+
+$$
+n_{h}=n \frac{W_{h} \sigma_{h} / \sqrt{c_{h}}}{\sum_{h=1}^{H} W_{h} \sigma_{h} / \sqrt{c_{h}}}
+$$
+para ajudar na montagem do codigo vamos chamar de $g = W_{h} \sigma_{h} / \sqrt{c_{h}}$ (é uma escolha completamente arbitraria somente para facilitar o calculo)
 
 ```{r}
 h = c(1,2,3,4,5)
 Nh = c(117,98,74,41,45)
 muh = c(7.3,6.9,11.2,9.1,9.6)
 s2h = c(1.31,2.03,1.13,1.96,1.74)
+ch = c(1,1,1,1,1)
+n = 80
 
-dados = data.frame(h,Nh,muh,s2h) 
+dados = data.frame(h,Nh,muh,s2h,ch) %>%
+  mutate(peso_estrat = Nh/sum(Nh),
+         var_estrat = s2h*(Nh - 1)/Nh,
+         dp_estrat = sqrt(var_estrat),
+         g = (peso_estrat*dp_estrat)/sqrt(ch),
+         otima = (g/sum(g))*n,
+         prop = n*peso_estrat)
 ```
 
 
