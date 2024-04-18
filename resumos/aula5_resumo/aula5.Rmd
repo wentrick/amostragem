@@ -1,5 +1,5 @@
 ---
-title: "Aula 5 - Amostragem Estratificada"
+title: "Aula 5/6 - Amostragem Estratificada"
 author: "Davi Wentrick Feijó"
 date: "2024-04-17"
 output: 
@@ -482,10 +482,131 @@ $$
 n=\frac{1}{D} \sum_{h=1}^{H} W_{h} \sigma_{h}^{2}=\frac{\sigma_{d}^{2}}{D}
 $$
 
+## Estimação de Proporções em AEs
+
+Nessas situações a quantidade de interesse associada ao $j$ ésimo elemento no $h$-ésimo estrato pode ser representado por
+
+$Y_{h i}=\left\{\begin{array}{c}1, \quad \text { se o elemento }(h, i) \text { possui a característica } \\ 0, \quad \text { caso contrário }\end{array}\right.$
+
+Sendo $\tau_{h}=\sum_{i=1}^{N_{h}} Y_{h i}$ o número de elementos que possui a característica no estrato $h$, tem-se que
+
+$$
+P_{h}=\frac{\tau_{h}}{N_{h}}=\mu_{h}
+$$
+
+é a proporção de elementos com as características de interesse no estrato $h, h=1,2, \ldots, H$.
+
+A proporção de elementos que possui a característica no estrato $h$, pode ser escrita por
+
+$$
+P=\sum_{h=1}^{H} W_{h} P_{h}
+$$
+
+onde $W_{h}=N_{h} / N$.
+
+Dada uma amostra $\boldsymbol{s}_{h}$ de tamanho $n_{h}$, selecionada segundo a AASc no estrato $h$, pode-se definir para $P$ o estimador
+
+$$
+\hat{P}_{e s}=p_{e s}=\bar{y}_{e s}=\sum_{h=1}^{H} W_{h} \hat{P}_{h}, \text { onde } \hat{P}_{h}=p_{h}=\bar{y}_{h}=\frac{t_{h}}{n_{h}}
+$$
+
+$t_{h}$ é o número de elementos na amostra que possuem a característica no estrato $h$.
+
+### Teorema
+
+Com relação à $A E$ com reposição, tem-se que
+
+$$
+p_{e s}=\hat{P}_{e s}=\bar{y}_{e s}=\sum_{h=1}^{H} W_{h} \hat{P}_{h}
+$$
+
+é um estimador não viesado de $P$ com
+
+$$
+V_{e s}=\operatorname{Var}\left[\widehat{P}_{e s}\right]=\sum_{h=1}^{H} W_{h}{ }^{2} \frac{P_{h} Q_{h}}{n_{h}} .
+$$
 
 
 
+### Teorema 
 
+Um estimador não viesado de $V_{e s}$ com relação à $A E$ com reposição é dado por
+
+$$
+\widehat{V}_{e s}=\sum_{h=1}^{H} W_{h}^{2} \frac{\hat{P}_{h} \hat{Q}_{h}}{n_{h}-1}
+$$
+
+## Intervalo de Confiança para a Proporção
+
+Com relação à proporção, para $n$ suficientemente grande,
+
+$$
+I C(P ; \gamma)=\hat{P}_{e s} \pm z_{\alpha} \sqrt{\sum_{h=1}^{H} W_{h}{ }^{2} \frac{\hat{P}_{h} \hat{Q}_{h}}{n_{h}-1}}
+$$
+
+## Determinação do Tamanho da Amostra
+
+Usando o custo linear $C=c_{0}+\sum_{i=1}^{H} c_{h} n_{h}$ a alocação ótima é dada por
+
+$$
+n_{h}=n \frac{N_{h} \sqrt{P_{h} Q_{h} / c_{h}}}{\sum_{h=1}^{H} N_{h} \sqrt{P_{h} Q_{h} / c_{h}}}
+$$
+
+Sendo o custo constante,
+
+$$
+n_{h}=n \frac{N_{h} \sqrt{P_{h} Q_{h}}}{\sum_{h=1}^{H} N_{h} \sqrt{P_{h} Q_{h}}}
+$$
+
+
+## Estimadores do Tipo Razão
+
+### Motivação
+
+- Objetivo: estimar a quantidade de açúcar que pode ser extraída de um caminhão carregado de laranjas (unidades populacionais).
+
+- Seja $Y_{i}$ a quantidade de açúcar extraída da laranja $i$, $i=\overline{1, N}$. Deseja-se estimar a quantidade total de açúcar no carregamento, $\tau_{Y}=\sum_{i=1}^{N} Y_{i}$.
+
+- Estimador natural: $\hat{\tau}_{Y}=T_{Y}=N \bar{y}$. Mas $N=$ ? (estimador expansão)
+
+- Peso da laranja $i$ ( $X_{i}$ ) é fortemente correlacionado com a quantidade de açúcar na laranja $\left(Y_{i}\right), i=\overline{1, N}$.
+
+- Pode-se definir, então, a razão quantidade média de açúcar por unidade de peso como
+
+$$
+R=\frac{\tau_{Y}}{\tau_{X}}=\frac{\mu_{Y}}{\mu_{X}} \quad \rightarrow \quad \tau_{Y}=R \tau_{X}=\frac{\mu_{Y}}{\mu_{X}} \tau_{X}
+$$
+
+onde $\tau_{X}=\sum_{i=1}^{N} X_{i}$ é o peso total do carregamento.
+
+De uma amostra de $n$ laranjas tem-se os estimadores $\bar{x}$ e $\bar{y}$. Conhecendo-se o peso total, tem-se o estimador
+
+$$
+\hat{\tau}_{Y}=\frac{\bar{y}}{\bar{x}} \tau_{X}
+$$
+
+conhecido por estimador da razão do total populacional.
+
+### Contexto
+
+Há situações nas quais o interesse é na própria razão $R$, como por exemplo:
+- Comparação de determinadas quantidades em períodos sucessivos.
+- Razão entre a venda de um produto em dois anos consecutivos.
+- Quando o parâmetro é um índice, i.e., quociente entre duas variáveis.
+
+
+
+### Parâmetro de interesse e estimadores
+
+
+
+$$
+\begin{array}{c|c}
+\hline R & r=\hat{R}=\frac{\bar{y}}{\bar{x}} \\
+\hline \tau_{Y} & \hat{\tau}_{Y}=T_{R}=\hat{R} \tau_{X}=r \tau_{X} \\
+\hline \mu_{Y} & \bar{y}_{R}=\hat{R} \mu_{X}=r \mu_{X}
+\end{array}
+$$
 
 
 

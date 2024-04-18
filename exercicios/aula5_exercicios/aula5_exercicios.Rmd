@@ -1,5 +1,5 @@
 ---
-title: "Aula 5 - Exercicios"
+title: "Aula 5/6 - Exercicios"
 author: "Davi Wentrick Feijó"
 date: "2024-04-17"
 output: 
@@ -18,12 +18,12 @@ output:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-pacman::p_load(tidyverse,utils,RcppAlgos)
+pacman::p_load(tidyverse,utils,RcppAlgos,gtools,matrixStats)
 ```
 
 ### Exercício 1
 
-Exemplo: Considere $U=\{1,2,3,4,5,6,7,8\}$ de domicílios, onde são conhecidas as variáveis renda familiar ( $Y$ ) e local do domicílio ( $W$ ), com os códigos $A$ para região alta e $B$ para região baixa. Tem-se que
+Considere $U=\{1,2,3,4,5,6,7,8\}$ de domicílios, onde são conhecidas as variáveis renda familiar ( $Y$ ) e local do domicílio ( $W$ ), com os códigos $A$ para região alta e $B$ para região baixa. Tem-se que
 
 $$
 D=\left(\begin{array}{llllllll}
@@ -40,7 +40,7 @@ $$
 \operatorname{Var}[\bar{y}]=\frac{24}{4}=6
 $$
 
-Exemplo: Considere as seguintes subpopulações:
+Considere as seguintes subpopulações:
 
 $$
 \begin{aligned}
@@ -60,6 +60,39 @@ Considerando uma AASc dentro de cada estrato, com $n_{A}=2, n_{B}=2$, calcule:
 $$
 \operatorname{Var}\left[\bar{y}_{A}\right], \operatorname{Var}\left[\bar{y}_{B}\right], \operatorname{Var}\left[\bar{y}_{e s}\right] \text { e EPA. }
 $$
+
+
+
+```{r}
+mu = 11
+mua = 10.25
+mub = 11.75
+sigma2 = 24
+sigma2a = 24.69
+sigma2b = 22.19
+n = 4 #tamanho da amostra na populacao (como temos 2 estratos com n=2 fica igual a 4 i guess)
+ne = 2 #tamanho das amostras no estrato
+w = 16/64 #tamanho da populacao no estrato dividido pela populacao total
+#no caso temos uma populacao de 8 tirando 2 a 2 com repeticao temos um total de 64
+#temos 2 subpop (estrato) de tamanho 4 tirando 2 a 2 com repeticao temos um total de 16 
+#o w é nosso peso
+
+var_bar_y = sigma2/n
+var_bar_ya = sigma2a/ne
+var_bar_yb = sigma2b/ne
+var_bar_yes = w*var_bar_ya+w*var_bar_yb
+
+
+EPA = var_bar_yes/var_bar_y
+```
+
+
+```{r echo=FALSE}
+paste("Variancia y barra a =",var_bar_ya)
+paste("Variancia y barra b =",var_bar_yb)
+paste("Variancia y barra es =",var_bar_yes)
+paste("Efeito de Planejamento (EPA) =",EPA)
+```
 
 
 ### Exercício 2
@@ -83,7 +116,64 @@ Em ambos os estratos usou-se AASs, com $n_{1}=1$ e $n_{2}=2$, ou seja, $n=3$.
 
 Calcule $\operatorname{Var}\left[\bar{y}_{e s}\right]$.
 
-### Exercício 3 
+
+### Exercício 3
+
+Considere a seguinte estratificação:
+
+$$
+\begin{gathered}
+U_{1}=\{2,4,7\}, \boldsymbol{D}_{1}=\{17,5,19\} \\
+U_{2}=\{1,3,5,6,8\}, \boldsymbol{D}_{2}=\{13,6,10,12,6\}
+\end{gathered}
+$$
+
+com os seguintes parâmetros:
+
+$$
+\mu_{1}=13,67 \quad S_{1}^{2}=57,33 \quad \mu_{2}=9,40 \quad S_{2}^{2}=10,8 .
+$$
+
+Em ambos os estratos usou-se AASs, com $n_{1}=1$ e $n_{2}=2$, ou seja, $n=3$.
+
+Calcule $\operatorname{Var}\left[\bar{y}_{e s}\right]$.
+
+```{r}
+u = c(13,17,6,5,10,12,19,6)
+N = length(u)
+mu = mean(u)
+mu1 = 13.67
+mu2 = 11.75
+s2 = var(u)*(N - 1) / N
+s21 = 57.33
+s22 = 9.40
+n = 3 #tamanho da amostra na populacao (como temos 2 estratos com n=2 fica igual a 4 i guess)
+n1 = 1 #tamanho das amostras no estrato 1
+n2 = 2 #tamanho das amostras no estrato 2
+w1 = 3/336 #tamanho da populacao no estrato dividido pela populacao total
+w2 = 20/336 
+
+
+
+var_bar_y = s2/n
+var_bar_y1 = s21/ne
+var_bar_y2 = s22/ne
+var_bar_yes = w1*var_bar_y1+w2*var_bar_y2
+
+
+EPA = var_bar_yes/var_bar_y
+```
+
+
+```{r echo=FALSE}
+paste("Var Y barra es =",var_bar_yes)
+```
+
+
+
+
+
+### Exercício 4
 
 Uma população está dividida em 5 estratos. Os tamanhos dos estratos, médias e variâncias são dados na tabela abaixo.
 
@@ -174,14 +264,64 @@ dados = data.frame(h,Nh,muh,s2h,ch) %>%
 
 c) Compara as variâncias dos estimadores obtidos com a $A A S c$ e com a alocação proporcional.
 
+```{r}
+
+var_prop = var_tot_dentro/n
+
+var_otima = (1/n)*(sum(dados$peso_estrat*dados$dp_estrat))^2
+  
+EPAprop = 1 - (var_tot_entre/sigma2)
+
+EPAotimo = 1 - (var_tot_entre/sigma2) - (var_prop/sigma2)
+```
+
+```{r echo=FALSE}
+paste("A variancia porporcional é:", var_prop)
+paste("O efeito do planejamento Amostral (EPA) proporcional é:", EPAprop)
+```
+
+
 d) Compara as variâncias dos estimadores obtidos com a $A A S c$ e com a alocação ótima.
 
+```{r echo=FALSE}
+paste("A variancia otima é:", var_prop)
+paste("O efeito do planejamento Amostral (EPA) otimo é:", EPAotimo)
+```
+
+
+### Exercício 5
+
+Considere uma população $U=\{1,2,3\}$ que apresenta os seguintes parâmetros populacionais:
+
+$$
+\boldsymbol{D}=\left(\begin{array}{c}
+F_{i} \\
+T_{i}
+\end{array}\right)=\left(\begin{array}{rrr}
+12 & 30 & 18 \\
+1 & 3 & 2
+\end{array}\right)
+$$
+
+Parâmetros populacionais: $\mu_{F}=20 ; \mu_{T}=2$
+
+Suponha que seja de interesse estimar a renda bruta média $\mu_{E}$ usando-se como variável auxiliar o número de trabalhadores $T_{i}$ por domicílio.
+
+a) Da seleção de uma amostra de tamanho $n=2$ da população de acordo com a $A A S c$, encontre as distribuições amostrais de $\bar{f}, \bar{t}$ e $\bar{f}_{R}$ na AASc
 
 
 
 
+b) Calcule os seguintes estimadores:
 
-
+$$
+\begin{array}{c|c}
+\boldsymbol{E}[\cdot \boldsymbol{]} & \boldsymbol{V}[\cdot \boldsymbol{]} \\
+\hline E[\bar{f}]=? & V[\bar{f}]=? \\
+E\left[\bar{f}_{R}\right]=? & V\left[\bar{f}_{R}\right]=? \\
+& E Q M\left[\bar{f}_{R}\right]=?
+\end{array}
+$$
 
 
 

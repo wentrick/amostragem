@@ -1849,6 +1849,24 @@ margin-left: 0 !important;
             Confiança para a Média</a></li>
             <li><a href="#determinação-do-tamanho-da-amostra" id="toc-determinação-do-tamanho-da-amostra">Determinação do
             Tamanho da Amostra</a></li>
+            <li><a href="#estimação-de-proporções-em-aes" id="toc-estimação-de-proporções-em-aes">Estimação de
+            Proporções em AEs</a>
+            <ul>
+            <li><a href="#teorema-2" id="toc-teorema-2">Teorema</a></li>
+            <li><a href="#teorema-3" id="toc-teorema-3">Teorema</a></li>
+            </ul></li>
+            <li><a href="#intervalo-de-confiança-para-a-proporção" id="toc-intervalo-de-confiança-para-a-proporção">Intervalo
+            de Confiança para a Proporção</a></li>
+            <li><a href="#determinação-do-tamanho-da-amostra-1" id="toc-determinação-do-tamanho-da-amostra-1">Determinação
+            do Tamanho da Amostra</a></li>
+            <li><a href="#estimadores-do-tipo-razão" id="toc-estimadores-do-tipo-razão">Estimadores do Tipo
+            Razão</a>
+            <ul>
+            <li><a href="#motivação-1" id="toc-motivação-1">Motivação</a></li>
+            <li><a href="#contexto" id="toc-contexto">Contexto</a></li>
+            <li><a href="#parâmetro-de-interesse-e-estimadores" id="toc-parâmetro-de-interesse-e-estimadores">Parâmetro de
+            interesse e estimadores</a></li>
+            </ul></li>
             </ul>
           </div>
           <div data-position="sidebar:post-end" class="InjectedComponents"><div class="dark-theme-toggler"><div class="toggle "><div class="toggle-track"><div class="toggle-track-check"><img src="data:image/png;base64,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" role="presentation" style="pointer-events: none;" width="16" height="16"></div> <div class="toggle-track-x"><img src="data:image/png;base64,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" role="presentation" style="pointer-events: none;" width="16" height="16"></div></div> <div class="toggle-thumb"></div></div> <input type="checkbox" aria-label="Switch between Dark and Default theme" class="toggler-screen-reader-only"></div></div>
@@ -2353,6 +2371,134 @@ então</p>
 n=\frac{1}{D} \sum_{h=1}^{H} W_{h}
 \sigma_{h}^{2}=\frac{\sigma_{d}^{2}}{D}
 \]</span></p>
+</div>
+<div id="estimação-de-proporções-em-aes" class="section level2">
+<h2>Estimação de Proporções em AEs</h2>
+<p>Nessas situações a quantidade de interesse associada ao <span class="math inline">\(j\)</span> ésimo elemento no <span class="math inline">\(h\)</span>-ésimo estrato pode ser representado
+por</p>
+<p><span class="math inline">\(Y_{h i}=\left\{\begin{array}{c}1, \quad
+\text { se o elemento }(h, i) \text { possui a característica } \\ 0,
+\quad \text { caso contrário }\end{array}\right.\)</span></p>
+<p>Sendo <span class="math inline">\(\tau_{h}=\sum_{i=1}^{N_{h}} Y_{h
+i}\)</span> o número de elementos que possui a característica no estrato
+<span class="math inline">\(h\)</span>, tem-se que</p>
+<p><span class="math display">\[
+P_{h}=\frac{\tau_{h}}{N_{h}}=\mu_{h}
+\]</span></p>
+<p>é a proporção de elementos com as características de interesse no
+estrato <span class="math inline">\(h, h=1,2, \ldots, H\)</span>.</p>
+<p>A proporção de elementos que possui a característica no estrato <span class="math inline">\(h\)</span>, pode ser escrita por</p>
+<p><span class="math display">\[
+P=\sum_{h=1}^{H} W_{h} P_{h}
+\]</span></p>
+<p>onde <span class="math inline">\(W_{h}=N_{h} / N\)</span>.</p>
+<p>Dada uma amostra <span class="math inline">\(\boldsymbol{s}_{h}\)</span> de tamanho <span class="math inline">\(n_{h}\)</span>, selecionada segundo a AASc no
+estrato <span class="math inline">\(h\)</span>, pode-se definir para
+<span class="math inline">\(P\)</span> o estimador</p>
+<p><span class="math display">\[
+\hat{P}_{e s}=p_{e s}=\bar{y}_{e s}=\sum_{h=1}^{H} W_{h} \hat{P}_{h},
+\text { onde } \hat{P}_{h}=p_{h}=\bar{y}_{h}=\frac{t_{h}}{n_{h}}
+\]</span></p>
+<p><span class="math inline">\(t_{h}\)</span> é o número de elementos na
+amostra que possuem a característica no estrato <span class="math inline">\(h\)</span>.</p>
+<div id="teorema-2" class="section level3">
+<h3>Teorema</h3>
+<p>Com relação à <span class="math inline">\(A E\)</span> com reposição,
+tem-se que</p>
+<p><span class="math display">\[
+p_{e s}=\hat{P}_{e s}=\bar{y}_{e s}=\sum_{h=1}^{H} W_{h} \hat{P}_{h}
+\]</span></p>
+<p>é um estimador não viesado de <span class="math inline">\(P\)</span>
+com</p>
+<p><span class="math display">\[
+V_{e s}=\operatorname{Var}\left[\widehat{P}_{e s}\right]=\sum_{h=1}^{H}
+W_{h}{ }^{2} \frac{P_{h} Q_{h}}{n_{h}} .
+\]</span></p>
+</div>
+<div id="teorema-3" class="section level3">
+<h3>Teorema</h3>
+<p>Um estimador não viesado de <span class="math inline">\(V_{e
+s}\)</span> com relação à <span class="math inline">\(A E\)</span> com
+reposição é dado por</p>
+<p><span class="math display">\[
+\widehat{V}_{e s}=\sum_{h=1}^{H} W_{h}^{2} \frac{\hat{P}_{h}
+\hat{Q}_{h}}{n_{h}-1}
+\]</span></p>
+</div>
+</div>
+<div id="intervalo-de-confiança-para-a-proporção" class="section level2">
+<h2>Intervalo de Confiança para a Proporção</h2>
+<p>Com relação à proporção, para <span class="math inline">\(n\)</span>
+suficientemente grande,</p>
+<p><span class="math display">\[
+I C(P ; \gamma)=\hat{P}_{e s} \pm z_{\alpha} \sqrt{\sum_{h=1}^{H} W_{h}{
+}^{2} \frac{\hat{P}_{h} \hat{Q}_{h}}{n_{h}-1}}
+\]</span></p>
+</div>
+<div id="determinação-do-tamanho-da-amostra-1" class="section level2">
+<h2>Determinação do Tamanho da Amostra</h2>
+<p>Usando o custo linear <span class="math inline">\(C=c_{0}+\sum_{i=1}^{H} c_{h} n_{h}\)</span> a
+alocação ótima é dada por</p>
+<p><span class="math display">\[
+n_{h}=n \frac{N_{h} \sqrt{P_{h} Q_{h} / c_{h}}}{\sum_{h=1}^{H} N_{h}
+\sqrt{P_{h} Q_{h} / c_{h}}}
+\]</span></p>
+<p>Sendo o custo constante,</p>
+<p><span class="math display">\[
+n_{h}=n \frac{N_{h} \sqrt{P_{h} Q_{h}}}{\sum_{h=1}^{H} N_{h} \sqrt{P_{h}
+Q_{h}}}
+\]</span></p>
+</div>
+<div id="estimadores-do-tipo-razão" class="section level2">
+<h2>Estimadores do Tipo Razão</h2>
+<div id="motivação-1" class="section level3">
+<h3>Motivação</h3>
+<ul>
+<li><p>Objetivo: estimar a quantidade de açúcar que pode ser extraída de
+um caminhão carregado de laranjas (unidades populacionais).</p></li>
+<li><p>Seja <span class="math inline">\(Y_{i}\)</span> a quantidade de
+açúcar extraída da laranja <span class="math inline">\(i\)</span>, <span class="math inline">\(i=\overline{1, N}\)</span>. Deseja-se estimar a
+quantidade total de açúcar no carregamento, <span class="math inline">\(\tau_{Y}=\sum_{i=1}^{N} Y_{i}\)</span>.</p></li>
+<li><p>Estimador natural: <span class="math inline">\(\hat{\tau}_{Y}=T_{Y}=N \bar{y}\)</span>. Mas <span class="math inline">\(N=\)</span> ? (estimador expansão)</p></li>
+<li><p>Peso da laranja <span class="math inline">\(i\)</span> ( <span class="math inline">\(X_{i}\)</span> ) é fortemente correlacionado com a
+quantidade de açúcar na laranja <span class="math inline">\(\left(Y_{i}\right), i=\overline{1,
+N}\)</span>.</p></li>
+<li><p>Pode-se definir, então, a razão quantidade média de açúcar por
+unidade de peso como</p></li>
+</ul>
+<p><span class="math display">\[
+R=\frac{\tau_{Y}}{\tau_{X}}=\frac{\mu_{Y}}{\mu_{X}} \quad \rightarrow
+\quad \tau_{Y}=R \tau_{X}=\frac{\mu_{Y}}{\mu_{X}} \tau_{X}
+\]</span></p>
+<p>onde <span class="math inline">\(\tau_{X}=\sum_{i=1}^{N}
+X_{i}\)</span> é o peso total do carregamento.</p>
+<p>De uma amostra de <span class="math inline">\(n\)</span> laranjas
+tem-se os estimadores <span class="math inline">\(\bar{x}\)</span> e
+<span class="math inline">\(\bar{y}\)</span>. Conhecendo-se o peso
+total, tem-se o estimador</p>
+<p><span class="math display">\[
+\hat{\tau}_{Y}=\frac{\bar{y}}{\bar{x}} \tau_{X}
+\]</span></p>
+<p>conhecido por estimador da razão do total populacional.</p>
+</div>
+<div id="contexto" class="section level3">
+<h3>Contexto</h3>
+<p>Há situações nas quais o interesse é na própria razão <span class="math inline">\(R\)</span>, como por exemplo: - Comparação de
+determinadas quantidades em períodos sucessivos. - Razão entre a venda
+de um produto em dois anos consecutivos. - Quando o parâmetro é um
+índice, i.e., quociente entre duas variáveis.</p>
+</div>
+<div id="parâmetro-de-interesse-e-estimadores" class="section level3">
+<h3>Parâmetro de interesse e estimadores</h3>
+<p><span class="math display">\[
+\begin{array}{c|c}
+\hline R &amp; r=\hat{R}=\frac{\bar{y}}{\bar{x}} \\
+\hline \tau_{Y} &amp; \hat{\tau}_{Y}=T_{R}=\hat{R} \tau_{X}=r \tau_{X}
+\\
+\hline \mu_{Y} &amp; \bar{y}_{R}=\hat{R} \mu_{X}=r \mu_{X}
+\end{array}
+\]</span></p>
+</div>
 </div>
 </div>
 
