@@ -97,9 +97,10 @@ n = length(D)
 
 mu = mean(D)
 
-sigma2 = var(D) * (n - 1) / n #correcao pois a funcao var() calcula a variancia amostral
+sigma2 = var(D)   #como estamos usando uma amostra sem resposicao
 
 ```
+
 ```{r echo=FALSE}
 paste("A media populacional de D é:",mu)
 paste("A variancia populacional de D é:",sigma2)
@@ -127,7 +128,7 @@ espV = sum(resultsV * 1/9) #Esperanca
 ```
 
 ```{r echo=FALSE}
-paste("A esperanca da variancia amostral é:",espM)
+paste("A esperanca da variancia amostral é:",espV)
 ```
 
 

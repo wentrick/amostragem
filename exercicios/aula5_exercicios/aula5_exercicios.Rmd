@@ -323,7 +323,116 @@ E\left[\bar{f}_{R}\right]=? & V\left[\bar{f}_{R}\right]=? \\
 \end{array}
 $$
 
+## Exercicio 6
+
+Considere uma população $U=\{1,2,3\}$ que apresenta os seguintes parâmetros populacionais:
+
+$$
+\boldsymbol{D}=\left(\begin{array}{c}
+F_{i} \\
+T_{i}
+\end{array}\right)=\left(\begin{array}{rrr}
+12 & 30 & 18 \\
+1 & 3 & 2
+\end{array}\right)
+$$
+
+Suponha que seja de interesse estimar a renda bruta média $\mu_{E}$ usando-se como variável auxiliar o número de trabalhadores $T_{i}$ por domicílio.
+
+Da seleção de uma amostra de tamanho $n=2$ da população de acordo com a $A A S c$ foram obtidos os seguintes resultados:
+
+Distribuições amostrais de $\bar{f}, \bar{t}$ e $\bar{f}_{R}$ na AASc
+
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
+\hline $\mathbf{s}$ & $\mathbf{1 1}$ & $\mathbf{1 2}$ & $\mathbf{1 3}$ & $\mathbf{2 1}$ & $\mathbf{2 2}$ & $\mathbf{2 3}$ & $\mathbf{3 1}$ & $\mathbf{3 2}$ & $\mathbf{3 3}$ \\
+\hline$P(\boldsymbol{s})$ & $1 / 9$ & $1 / 9$ & $1 / 9$ & $1 / 9$ & $1 / 9$ & $1 / 9$ & $1 / 9$ & $1 / 9$ & $1 / 9$ \\
+\hline $\bar{f}$ & 12 & 21 & 15 & 21 & 30 & 24 & 15 & 24 & 18 \\
+\hline $\bar{t}$ & 1 & 2 & 1,5 & 2 & 3 & 2,5 & 1,5 & 2,5 & 2 \\
+\hline $\bar{f}_{R}$ & 24 & 21 & 20 & 21 & 20 & 19,2 & 20 & 19,2 & 18 \\
+\hline
+\end{tabular}
+
+onde $\bar{f}_{R}=(\bar{f} / \bar{t}) \cdot \mu_{T}$
+
+\section*{Estimadores do Tipo Razão}
+
+Parâmetros populacionais: $\mu_{F}=20 ; \mu_{T}=2$
+
+$$
+\begin{array}{c|c}
+\boldsymbol{E}[\cdot \boldsymbol{]} & \boldsymbol{V}[\cdot \boldsymbol{]} \\
+\hline E[\bar{f}]=? & V[\bar{f}]=? \\
+E\left[\bar{f}_{R}\right]=? & V\left[\bar{f}_{R}\right]=? \\
+& E Q M\left[\bar{f}_{R}\right]=?
+\end{array}
+$$
+
+```{r}
+renda <- c(12, 30, 18)
+ntrab = c(1,3,2)
+mut = mean(ntrab)
+resultsR = c()
+resultsD <- c()
+resultsT <- c()
+amostra <- c(1,1,1, 2, 1, 3, 2, 1,2,2,2, 3, 3, 1, 3, 2,3,3)
+t= 0
+for (i in seq(1, length(amostra)/2)) {
+  d_bar <- mean(c(renda[amostra[i+t]],renda[amostra[i+t+1]]))
+  t_bar <- mean(c(ntrab[amostra[i+t]],ntrab[amostra[i+t+1]]))
+  r_bar = (d_bar/t_bar)*mut
+  
+  resultsR = append(resultsR, r_bar)
+  resultsD <- append(resultsD, d_bar)
+  resultsT <- append(resultsT, t_bar)
+  t=t+1
+}
+
+print(resultsD)
+print(resultsT)
+print(resultsR)
+```
 
 
+```{r}
+#D - Renda Var e Esp
 
+espD = sum(resultsD * 1/9) #Esperanca
+esp_quadD = sum((resultsD^2) * 1/9)
+
+varD = esp_quadD - espD^2 #Variancia
+
+#T - numero de trab Var e Esp
+
+espT = sum(resultsT * 1/9) #Esperanca
+esp_quadT = sum((resultsT^2) * 1/9)
+
+varT = esp_quadT - espT^2 #Variancia
+
+#T - razao media entra renda e numero de trabalhadores Var e Esp
+
+espR = sum(resultsR * 1/9) #Esperanca
+esp_quadR = sum((resultsR^2) * 1/9)
+
+varR = esp_quadR - espR^2 #Variancia
+
+# Vies
+
+muD = mean(renda)
+
+vies = muD - espR
+
+# EQM
+
+
+eqmR = varR + vies^2
+```
+
+```{r echo=FALSE}
+paste("Esperanca da Renda media:",espD)
+paste("Variancia da Renda media:",varD)
+paste("Esperanca do estimador razao:",espR)
+paste("Variancia do estimador razao:",varR)
+paste("Vies do estimador do tipo razao:",vies)
+paste("Erro quadratico media do estimador tipo razao:",eqmR)
+```
 

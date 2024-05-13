@@ -1854,12 +1854,106 @@ Feijó
 <h3>Questao 1</h3>
 <p>Considerando uma AASs prove que <span class="math inline">\(E[s^2] =
 S^2\)</span></p>
+<p>$$</p>
+<span class="math display">\[\begin{aligned}
+E\left[\sum_{i \in
+S}\left(y_i-\bar{y}\right)^2\right]&amp;=E\left[\sum_{i \in
+S}(y_i-\bar{y}+\mu-\mu)^2\right] \\
+                                                      &amp;=E\left[\sum_{i
+\in S}(y_i-\mu-\bar{y}+\mu)^2\right] \\
+                                                      &amp;=E\left[\sum_{i
+\in S}\left(\left(y_i-\mu\right)-(\bar{y}-\mu)\right)^2\right] \\
+                                                      &amp;=E\left[\sum_{i
+\in S}(y_i-\mu)^2-\sum_{i \in S}(\bar{y}-\mu)^2\right] \\
+                                                      &amp;
+=E\left[\sum_{i \in S}\left(y_i-\mu\right)^2-n(\bar{y}-\mu)^2\right] \\
+                                                      
+                                                      &amp;
+=E\left[\sum_{i \in S}\left(y_i-\mu\right)^2\right] -
+E[n(\bar{y}-\mu)^2] \\
+                                                      &amp;
+=E\left[\sum_{i \in S}\left(y_i-\mu\right)^2\right] -
+nE[(\bar{y}-\mu)^2] \\
+                                                      &amp;
+=E\left[\sum_{i \in S}\left(y_i-\mu\right)^2\right] -
+n(E[\bar{y}]-\mu)^2 \\
+                                                      
+                                                     
+\end{aligned}\]</span>
+<p>$$</p>
+<p>Aqui vamos utilizar a variavel <span class="math inline">\(f_i\)</span> que é a variavel indicadore que diz
+quais elementos pertencem ou nao pertencem a amostra, isso vai alterar o
+somatorio. Vale lembrar que se pertence a amostra a variavel vai assumir
+valor igual a 1 caso contrario 0. (obs: eu nao sei pq vc simplesmente
+pode colocar essa variavel ai mas ne fazer oq)</p>
+$$
+<span class="math display">\[\begin{aligned}
+E\left[\sum_{i \in S}\left(y_i-\bar{y}\right)^2\right]
+&amp;=E\left[\sum_{i=1}^N f_i\left(y_i-\mu\right)^2\right]-n
+\operatorname{Var}(\bar{y}) \\
+                                                       &amp;=\sum_{i=1}^N
+E[f_i](y_i-\mu)^2 -n \operatorname{Var}(\bar{y}) \\
+                                                       &amp;=\sum_{i=1}^N
+\frac{n}{N}(y_i-\mu)^2 -n\left(1-f\right) \frac{S^2}{n} \\
+                                                       &amp;
+=\frac{n}{N}
+\sum_{i=1}^N\left(y_i-\mu\right)^2-n\left(1-\frac{n}{N}\right)
+\frac{S^2}{n} \\
+                                                       &amp;
+=\frac{n}{N} (N-1)S^2-n\left(1-\frac{n}{N}\right) \frac{S^2}{n} \\
+                                                       &amp;
+=\frac{n}{N} (N-1)S^2-\left(1-\frac{n}{N}\right) S^2 \\
+                                                       &amp;
+=S^2\left[\frac{n(N-1)}{N} -\frac{N+n}{N}\right]  \\
+                                                       &amp;
+=S^2\left[\frac{n(N-1)-N+n}{N} \right]  \\
+                                                       &amp;
+=S^2\left[\frac{(nN-n)-N+n}{N} \right]  \\
+                                                       &amp;
+=S^2\left[\frac{nN-N}{N} \right]  \\
+                                                       &amp;
+=S^2\left[\frac{N(n-1)}{N} \right]  \\
+E\left[\sum_{i \in S}\left(y_i-\bar{y}\right)^2\right] &amp; =S^2(n-1)
+\\
+\frac{1}{(n-1)}E\left[\sum_{i \in S}\left(y_i-\bar{y}\right)^2\right]
+&amp; =S^2 \\
+                                                      E(s^2) &amp; =S^2
+\\
+                              
+\end{aligned}\]</span>
+<p>$$</p>
 </div>
 <div id="questao-2" class="section level3">
 <h3>Questao 2</h3>
 <p>Considerando uma AASc prove que <span class="math inline">\(E[\hat P]
 = P\)</span> e que <span class="math inline">\(Var[p] = \frac{\hat P (1
 - \hat P)}{n-1}\)</span> é nao viesado de <span class="math inline">\(Var[\hat P]\)</span></p>
+<p><span class="math display">\[
+\begin{aligned}
+\mathrm{E}[\hat{P}]&amp;=E[\bar{y}] \\
+                    &amp;=E\left[\sum_{i=1}^N \delta_i
+\frac{y_i}{n}\right] \\
+                    &amp;=\sum_{i=1}^N E\left[\delta_i\right]
+\frac{y_i}{n} \\
+                    &amp; =\sum_{i=1}^N \frac{n}{N} \frac{y_i}{n} \\
+                    &amp;=\sum_{i=1}^N \frac{y_i}{N}=P \\
+\end{aligned}
+\]</span></p>
+<p>Um estimador não viesado de <span class="math inline">\(\sigma^2\)</span> é dado por: <span class="math display">\[
+\begin{aligned}
+&amp; s^2=\frac{\sum_{i \in
+s}\left(Y_i-\bar{y}\right)^2}{n-1}=\frac{\sum_{i \in
+s}\left(Y_i-\hat{P}\right)^2}{n-1}=\frac{n}{n-1} \hat{\sigma}^2= \\
+&amp; =\frac{n}{n-1} \hat{P} \hat{Q}=\frac{n}{n-1} p q
+\end{aligned}
+\]</span></p>
+<p>Portanto, tem-se que:</p>
+<p><span class="math display">\[
+\operatorname{var}[\bar{y}]=\operatorname{var}[\hat{P}]=\frac{s^2}{n}
+\therefore
+\operatorname{var}[\hat{P}]=\frac{s^2}{n}=\frac{1}{n}\frac{n}{n-1} p
+q=\frac{\hat{P} \hat{Q}}{n-1}
+\]</span></p>
 </div>
 <div id="questao-3" class="section level3">
 <h3>Questao 3</h3>
@@ -1867,6 +1961,23 @@ S^2\)</span></p>
 tamanho ótimo da amostra é dado por <span class="math inline">\(n = C
 \frac{\sum_{h=1}^H N_h \sigma_h /\sqrt{c_h}}{\sum_{h=1}^H N_h \sigma_h
 \sqrt{c_h}}\)</span></p>
+$$
+<span class="math display">\[\begin{aligned} &amp; \text { Substituindo
+} n_h=n \frac{W_h \sigma_h / \sqrt{c_h}}{\sum_{h=1}^H W_h \sigma_h /
+\sqrt{c_h}} \text { em } C^{\prime} \text { tem-se } \\
+
+C^{\prime}&amp;=\sum_{h=1}^H c_h n_h \\
+&amp;=\sum_{h=1}^H c_h n \frac{W_h \sigma_h / \sqrt{c_h}}{\sum_{h=1}^H
+W_h \sigma_h / \sqrt{c_h}} \\
+&amp;=n\sum_{h=1}^H   \frac{W_h \sigma_h  c_h^{-1/2}c_h}{\sum_{h=1}^H
+W_h \sigma_h / \sqrt{c_h}} \\
+&amp;=n\sum_{h=1}^H   \frac{W_h \sigma_h  c_h^{-1/2+1}}{\sum_{h=1}^H W_h
+\sigma_h / \sqrt{c_h}} \\
+&amp;=n\sum_{h=1}^H   \frac{W_h \sigma_h  c_h^{1/2}}{\sum_{h=1}^H W_h
+\sigma_h / \sqrt{c_h}} \\
+&amp; =n \frac{\sum_{h=1}^H W_h \sigma_h \sqrt{c_h}}{\sum_{h=1}^H W_h
+\sigma_h / \sqrt{c_h}} \\ \end{aligned}\]</span>
+<p>$$</p>
 </div>
 <div id="questao-4" class="section level3">
 <h3>Questao 4</h3>
@@ -1877,6 +1988,22 @@ n = \frac{1}{V_{es}} \left( \sum_{h=1}^H W_h \sigma_h
 \sqrt{c_h}   \right) \left( \sum_{h=1}^H W_h \sigma_h
 /\sqrt{c_h}   \right)
 \]</span></p>
+$$
+<span class="math display">\[\begin{aligned}
+\text { Substituindo } n_h&amp;=n \frac{W_h \sigma_h /
+\sqrt{c_h}}{\sum_{h=1}^H W_h \sigma_h / \sqrt{c_h}} \text { em } V_{e s}
+\text { tem-se }
+\\
+\operatorname{Var}\left[\bar{y}_{e s}\right]&amp;=\sum_{h=1}^H W_h^2
+\frac{\sigma_h^2}{n_h}\\
+&amp;=\sum_{h=1}^H \frac{W_h^2 \sigma_h^2}{n W_h \sigma_h / \sqrt{c_h}}
+\cdot \sum_{h=1}^H W_h \sigma_h / \sqrt{c_h} \\
+&amp;=\sum_{h=1}^H \frac{W_h \sigma_h \sqrt{c_h}}{n} \cdot \sum_{h=1}^H
+W_h \sigma_h / \sqrt{c_h} \\
+\quad \therefore n &amp;= \frac{1}{V_{e s}} \sum_{h=1}^H W_h \sigma_h
+\sqrt{c_h} \cdot \sum_{h=1}^H W_h \sigma_h / \sqrt{c_h}
+\end{aligned}\]</span>
+<p>$$</p>
 </div>
 <div id="questao-5" class="section level3">
 <h3>Questao 5</h3>
@@ -1887,6 +2014,15 @@ reduz a <span class="math inline">\(n_h=n \frac{N_h
 t}=\frac{1}{n}\left(\sum_{h=1}^H W_h
 \sigma_h\right)^2=\frac{\bar{\sigma}^2}{n}\)</span> , onde <span class="math inline">\(\bar{\sigma}=\sum_{h=1}^H W_h \sigma_h\)</span> é
 um desvio padrão médio dentro de cada estrato.</p>
+<p>Se <span class="math inline">\(C^{\prime}=n c\)</span> tem-se</p>
+<p><span class="math display">\[
+\begin{array}{r}
+n_h=n \frac{W_h \sigma_h / \sqrt{c_h}}{\sum_{h=1}^H W_h \sigma_h /
+\sqrt{c_h}}=n \frac{W_h \sigma_h / \sqrt{c}}{\sum_{h=1}^H W_h \sigma_h /
+\sqrt{c}} \\
+\therefore n_h=n \frac{W_h \sigma_h}{\sum_{h=1}^H W_h \sigma_h}
+\end{array}
+\]</span></p>
 </div>
 <div id="questao-6" class="section level3">
 <h3>Questao 6</h3>
@@ -2140,6 +2276,203 @@ estratificado e combinado do total da população.</p>
 </tr>
 </tbody>
 </table>
+<p>Vamos fzer primeiro a razao estratificada</p>
+<pre class="r"><code>xj = c(2,5,9,15,10,18,21,25)
+yj = c(0,3,7,10,7,15,10,16)
+estrato = c(1,1,1,1,2,2,2,2)
+j = c(1,2,3,4,5,6,7,8)</code></pre>
+<p>Estrato 1:</p>
+<pre class="r"><code>renda &lt;- c(0,3,7,10)
+ntrab = c(2,5,9,15)
+mut = mean(ntrab)
+resultsR = c()
+resultsD &lt;- c()
+resultsT &lt;- c()
+amostra &lt;- c(1,1,1, 2, 1, 3, 2, 1,2,2,2, 3, 3, 1, 3, 2,3,3)
+t= 0
+for (i in seq(1, length(amostra)/2)) {
+  d_bar &lt;- mean(c(renda[amostra[i+t]],renda[amostra[i+t+1]]))
+  t_bar &lt;- mean(c(ntrab[amostra[i+t]],ntrab[amostra[i+t+1]]))
+  r_bar = (d_bar/t_bar)*mut
+  
+  resultsR = append(resultsR, r_bar)
+  resultsD &lt;- append(resultsD, d_bar)
+  resultsT &lt;- append(resultsT, t_bar)
+  t=t+1
+}
+
+print(resultsD)</code></pre>
+<pre><code>## [1] 0.0 1.5 3.5 1.5 3.0 5.0 3.5 5.0 7.0</code></pre>
+<pre class="r"><code>print(resultsT)</code></pre>
+<pre><code>## [1] 2.0 3.5 5.5 3.5 5.0 7.0 5.5 7.0 9.0</code></pre>
+<pre class="r"><code>print(resultsR)</code></pre>
+<pre><code>## [1] 0.000000 3.321429 4.931818 3.321429 4.650000 5.535714 4.931818 5.535714
+## [9] 6.027778</code></pre>
+<pre class="r"><code>#D - Renda Var e Esp
+
+espD = sum(resultsD * 1/9) #Esperanca
+esp_quadD = sum((resultsD^2) * 1/9)
+
+varD = esp_quadD - espD^2 #Variancia
+
+#T - numero de trab Var e Esp
+
+espT = sum(resultsT * 1/9) #Esperanca
+esp_quadT = sum((resultsT^2) * 1/9)
+
+varT = esp_quadT - espT^2 #Variancia
+
+#T - razao media entra renda e numero de trabalhadores Var e Esp
+
+espR = sum(resultsR * 1/9) #Esperanca
+esp_quadR = sum((resultsR^2) * 1/9)
+
+varR = esp_quadR - espR^2 #Variancia
+
+# Vies
+
+muD = mean(renda)
+
+vies = muD - espR
+
+# EQM
+
+
+eqmR = varR + vies^2</code></pre>
+<pre><code>## [1] &quot;Esperanca da Renda media: 3.33333333333333&quot;</code></pre>
+<pre><code>## [1] &quot;Variancia da Renda media: 4.11111111111111&quot;</code></pre>
+<pre><code>## [1] &quot;Esperanca do estimador razao: 4.25063331729998&quot;</code></pre>
+<pre><code>## [1] &quot;Variancia do estimador razao: 3.03815050315077&quot;</code></pre>
+<pre><code>## [1] &quot;Vies do estimador do tipo razao: 0.749366682700016&quot;</code></pre>
+<pre><code>## [1] &quot;Erro quadratico media do estimador tipo razao: 3.59970092829159&quot;</code></pre>
+<p>Estrato 2:</p>
+<pre class="r"><code>renda &lt;- c(7,15,10,16)
+ntrab = c(10,18,21,25)
+mut = mean(ntrab)
+resultsR = c()
+resultsD &lt;- c()
+resultsT &lt;- c()
+amostra &lt;- c(1,1,1, 2, 1, 3, 2, 1,2,2,2, 3, 3, 1, 3, 2,3,3)
+t= 0
+for (i in seq(1, length(amostra)/2)) {
+  d_bar &lt;- mean(c(renda[amostra[i+t]],renda[amostra[i+t+1]]))
+  t_bar &lt;- mean(c(ntrab[amostra[i+t]],ntrab[amostra[i+t+1]]))
+  r_bar = (d_bar/t_bar)*mut
+  
+  resultsR = append(resultsR, r_bar)
+  resultsD &lt;- append(resultsD, d_bar)
+  resultsT &lt;- append(resultsT, t_bar)
+  t=t+1
+}
+
+print(resultsD)</code></pre>
+<pre><code>## [1]  7.0 11.0  8.5 11.0 15.0 12.5  8.5 12.5 10.0</code></pre>
+<pre class="r"><code>print(resultsT)</code></pre>
+<pre><code>## [1] 10.0 14.0 15.5 14.0 18.0 19.5 15.5 19.5 21.0</code></pre>
+<pre class="r"><code>print(resultsR)</code></pre>
+<pre><code>## [1] 12.950000 14.535714 10.145161 14.535714 15.416667 11.858974 10.145161
+## [8] 11.858974  8.809524</code></pre>
+<pre class="r"><code>#D - Renda Var e Esp
+
+espD = sum(resultsD * 1/9) #Esperanca
+esp_quadD = sum((resultsD^2) * 1/9)
+
+varD = esp_quadD - espD^2 #Variancia
+
+#T - numero de trab Var e Esp
+
+espT = sum(resultsT * 1/9) #Esperanca
+esp_quadT = sum((resultsT^2) * 1/9)
+
+varT = esp_quadT - espT^2 #Variancia
+
+#T - razao media entra renda e numero de trabalhadores Var e Esp
+
+espR = sum(resultsR * 1/9) #Esperanca
+esp_quadR = sum((resultsR^2) * 1/9)
+
+varR = esp_quadR - espR^2 #Variancia
+
+# Vies
+
+muD = mean(renda)
+
+vies = muD - espR
+
+# EQM
+
+
+eqmR = varR + vies^2</code></pre>
+<pre><code>## [1] &quot;Esperanca da Renda media: 10.6666666666667&quot;</code></pre>
+<pre><code>## [1] &quot;Variancia da Renda media: 5.44444444444446&quot;</code></pre>
+<pre><code>## [1] &quot;Esperanca do estimador razao: 12.2506544829125&quot;</code></pre>
+<pre><code>## [1] &quot;Variancia do estimador razao: 4.66334711367878&quot;</code></pre>
+<pre><code>## [1] &quot;Vies do estimador do tipo razao: -0.250654482912548&quot;</code></pre>
+<pre><code>## [1] &quot;Erro quadratico media do estimador tipo razao: 4.72617478348294&quot;</code></pre>
+<p>Combinado (juntando os estratos):</p>
+<pre class="r"><code>renda &lt;- c(0,3,7,10,7,15,10,16)
+ntrab = xj = c(2,5,9,15,10,18,21,25)
+mut = mean(ntrab)
+resultsR = c()
+resultsD &lt;- c()
+resultsT &lt;- c()
+amostra &lt;- c(1,1,1, 2, 1, 3, 2, 1,2,2,2, 3, 3, 1, 3, 2,3,3)
+t= 0
+for (i in seq(1, length(amostra)/2)) {
+  d_bar &lt;- mean(c(renda[amostra[i+t]],renda[amostra[i+t+1]]))
+  t_bar &lt;- mean(c(ntrab[amostra[i+t]],ntrab[amostra[i+t+1]]))
+  r_bar = (d_bar/t_bar)*mut
+  
+  resultsR = append(resultsR, r_bar)
+  resultsD &lt;- append(resultsD, d_bar)
+  resultsT &lt;- append(resultsT, t_bar)
+  t=t+1
+}
+
+print(resultsD)</code></pre>
+<pre><code>## [1] 0.0 1.5 3.5 1.5 3.0 5.0 3.5 5.0 7.0</code></pre>
+<pre class="r"><code>print(resultsT)</code></pre>
+<pre><code>## [1] 2.0 3.5 5.5 3.5 5.0 7.0 5.5 7.0 9.0</code></pre>
+<pre class="r"><code>print(resultsR)</code></pre>
+<pre><code>## [1]  0.000000  5.625000  8.352273  5.625000  7.875000  9.375000  8.352273
+## [8]  9.375000 10.208333</code></pre>
+<pre class="r"><code>#D - Renda Var e Esp
+
+espD = sum(resultsD * 1/9) #Esperanca
+esp_quadD = sum((resultsD^2) * 1/9)
+
+varD = esp_quadD - espD^2 #Variancia
+
+#T - numero de trab Var e Esp
+
+espT = sum(resultsT * 1/9) #Esperanca
+esp_quadT = sum((resultsT^2) * 1/9)
+
+varT = esp_quadT - espT^2 #Variancia
+
+#T - razao media entra renda e numero de trabalhadores Var e Esp
+
+espR = sum(resultsR * 1/9) #Esperanca
+esp_quadR = sum((resultsR^2) * 1/9)
+
+varR = esp_quadR - espR^2 #Variancia
+
+# Vies
+
+muD = mean(renda)
+
+vies = muD - espR
+
+# EQM
+
+
+eqmR = varR + vies^2</code></pre>
+<pre><code>## [1] &quot;Esperanca da Renda media: 3.33333333333333&quot;</code></pre>
+<pre><code>## [1] &quot;Variancia da Renda media: 4.11111111111111&quot;</code></pre>
+<pre><code>## [1] &quot;Esperanca do estimador razao: 7.1986531986532&quot;</code></pre>
+<pre><code>## [1] &quot;Variancia do estimador razao: 8.71373811062362&quot;</code></pre>
+<pre><code>## [1] &quot;Vies do estimador do tipo razao: 1.3013468013468&quot;</code></pre>
+<pre><code>## [1] &quot;Erro quadratico media do estimador tipo razao: 10.4072416079992&quot;</code></pre>
 </div>
 </div>
 

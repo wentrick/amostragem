@@ -2044,9 +2044,9 @@ n = length(D)
 
 mu = mean(D)
 
-sigma2 = var(D) * (n - 1) / n #correcao pois a funcao var() calcula a variancia amostral</code></pre>
+sigma2 = var(D)   #como estamos usando uma amostra sem resposicao</code></pre>
 <pre><code>## [1] &quot;A media populacional de D é: 20&quot;</code></pre>
-<pre><code>## [1] &quot;A variancia populacional de D é: 56&quot;</code></pre>
+<pre><code>## [1] &quot;A variancia populacional de D é: 84&quot;</code></pre>
 <p>Esperanca e Variancia de <span class="math inline">\(\bar
 y\)</span></p>
 <pre class="r"><code>espM = sum(resultsM * 1/9) #Esperanca
@@ -2057,7 +2057,7 @@ varM = esp_quadM - espM^2 #Variancia</code></pre>
 <pre><code>## [1] &quot;A variancia da media amostral é: 28&quot;</code></pre>
 <p>Esperanca de <span class="math inline">\(s^2\)</span></p>
 <pre class="r"><code>espV = sum(resultsV * 1/9) #Esperanca</code></pre>
-<pre><code>## [1] &quot;A esperanca da variancia amostral é: 20&quot;</code></pre>
+<pre><code>## [1] &quot;A esperanca da variancia amostral é: 56&quot;</code></pre>
 </div>
 </div>
 </div>

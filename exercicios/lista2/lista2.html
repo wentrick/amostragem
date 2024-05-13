@@ -7,9 +7,9 @@
 
         <meta name="author" content="Davi Wentrick Feijó" />
     
-        <meta name="date" content="2024-04-17" />
+        <meta name="date" content="2024-05-13" />
     
-    <title>Aula 5/6 - Exercicios</title>
+    <title>Lista 2 - Amostragem</title>
 
         <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -1809,18 +1809,19 @@ margin-left: 0 !important;
         <div class="Sidebar">
           <div class="SidebarItems" id="toc">
             <ul>
-            <li><a href="#exercício-1" id="toc-exercício-1">Exercício
-            1</a></li>
-            <li><a href="#exercício-2" id="toc-exercício-2">Exercício
-            2</a></li>
-            <li><a href="#exercício-3" id="toc-exercício-3">Exercício
-            3</a></li>
-            <li><a href="#exercício-4" id="toc-exercício-4">Exercício
-            4</a></li>
-            <li><a href="#exercício-5" id="toc-exercício-5">Exercício
-            5</a></li>
-            <li><a href="#exercicio-6" id="toc-exercicio-6">Exercicio
-            6</a></li>
+            <li><a href="#exercicio-1." id="toc-exercicio-1.">Exercicio
+            1.</a></li>
+            <li><a href="#exercicio-2." id="toc-exercicio-2.">Exercicio
+            2.</a></li>
+            <li><a href="#exercícios-do-livro-bolfarini-bussab" id="toc-exercícios-do-livro-bolfarini-bussab">Exercícios do
+            livro BOLFARINI &amp; BUSSAB:</a>
+            <ul>
+            <li><a href="#section" id="toc-section">7.1</a></li>
+            <li><a href="#section-1" id="toc-section-1">7.7</a></li>
+            <li><a href="#section-2" id="toc-section-2">7.8</a></li>
+            <li><a href="#section-3" id="toc-section-3">7.11</a></li>
+            <li><a href="#section-4" id="toc-section-4">7.19</a></li>
+            </ul></li>
             </ul>
           </div>
           <div data-position="sidebar:post-end" class="InjectedComponents"><div class="dark-theme-toggler"><div class="toggle "><div class="toggle-track"><div class="toggle-track-check"><img src="data:image/png;base64,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" role="presentation" style="pointer-events: none;" width="16" height="16"></div> <div class="toggle-track-x"><img src="data:image/png;base64,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" role="presentation" style="pointer-events: none;" width="16" height="16"></div></div> <div class="toggle-thumb"></div></div> <input type="checkbox" aria-label="Switch between Dark and Default theme" class="toggler-screen-reader-only"></div></div>
@@ -1830,13 +1831,13 @@ margin-left: 0 !important;
    
    
         
-      <h1 class="title">Aula 5/6 - Exercicios</h1>
+      <h1 class="title">Lista 2 - Amostragem</h1>
       
       <p class="authors">
            <span class="glyphicon glyphicon-user"></span> Davi Wentrick
 Feijó
       </p>
-         <p class="date"><span class="glyphicon glyphicon-calendar"></span> 2024-04-17</p>
+         <p class="date"><span class="glyphicon glyphicon-calendar"></span> 2024-05-13</p>
            
 
    
@@ -1844,344 +1845,256 @@ Feijó
    
 <!-- Don't indent these lines or it will mess pre blocks indentation --> 
 <div class="page-content has-page-title">
-<div id="exercício-1" class="section level3">
-<h3>Exercício 1</h3>
-<p>Considere <span class="math inline">\(U=\{1,2,3,4,5,6,7,8\}\)</span>
-de domicílios, onde são conhecidas as variáveis renda familiar ( <span class="math inline">\(Y\)</span> ) e local do domicílio ( <span class="math inline">\(W\)</span> ), com os códigos <span class="math inline">\(A\)</span> para região alta e <span class="math inline">\(B\)</span> para região baixa. Tem-se que</p>
-<p><span class="math display">\[
-D=\left(\begin{array}{llllllll}
-13 &amp; 17 &amp; 6 &amp; 5 &amp; 10 &amp; 12 &amp; 19 &amp; 6 \\
-B &amp; A &amp; B &amp; B &amp; B &amp; A &amp; A &amp; B
-\end{array}\right)
-\]</span></p>
-<p>Para esta população tem-se: <span class="math inline">\(\mu=11,
-\sigma^{2}=24\)</span>.</p>
-<p>A partir do plano amostral <span class="math inline">\(A A S
-c\)</span> de tamanho <span class="math inline">\(n=4\)</span>, sabe-se
-que</p>
-<p><span class="math display">\[
-\operatorname{Var}[\bar{y}]=\frac{24}{4}=6
-\]</span></p>
-<p>Considere as seguintes subpopulações:</p>
-<p><span class="math display">\[
-\begin{aligned}
-&amp; U_{A}=\{1,2,3,4\}, \boldsymbol{D}_{A}=\{13,17,6,5\} \\
-&amp; U_{B}=\{5,6,7,8\}, \boldsymbol{D}_{B}=\{10,12,19,6\}
-\end{aligned}
-\]</span></p>
-<p>com os seguintes parâmetros:</p>
-<p><span class="math display">\[
-\mu_{A}=10,25 \quad \sigma_{A}^{2}=24,69 \quad \mu_{B}=11,75 \quad
-\sigma_{B}^{2}=22,19 .
-\]</span></p>
-<p>Considerando uma AASc dentro de cada estrato, com <span class="math inline">\(n_{A}=2, n_{B}=2\)</span>, calcule:</p>
-<p><span class="math display">\[
-\operatorname{Var}\left[\bar{y}_{A}\right],
-\operatorname{Var}\left[\bar{y}_{B}\right],
-\operatorname{Var}\left[\bar{y}_{e s}\right] \text { e EPA. }
-\]</span></p>
-<pre class="r"><code>mu = 11
-mua = 10.25
-mub = 11.75
-sigma2 = 24
-sigma2a = 24.69
-sigma2b = 22.19
-n = 4 #tamanho da amostra na populacao (como temos 2 estratos com n=2 fica igual a 4 i guess)
-ne = 2 #tamanho das amostras no estrato
-w = 16/64 #tamanho da populacao no estrato dividido pela populacao total
-#no caso temos uma populacao de 8 tirando 2 a 2 com repeticao temos um total de 64
-#temos 2 subpop (estrato) de tamanho 4 tirando 2 a 2 com repeticao temos um total de 16 
-#o w é nosso peso
-
-var_bar_y = sigma2/n
-var_bar_ya = sigma2a/ne
-var_bar_yb = sigma2b/ne
-var_bar_yes = w*var_bar_ya+w*var_bar_yb
-
-
-EPA = var_bar_yes/var_bar_y</code></pre>
-<pre><code>## [1] &quot;Variancia y barra a = 12.345&quot;</code></pre>
-<pre><code>## [1] &quot;Variancia y barra b = 11.095&quot;</code></pre>
-<pre><code>## [1] &quot;Variancia y barra es = 5.86&quot;</code></pre>
-<pre><code>## [1] &quot;Efeito de Planejamento (EPA) = 0.976666666666667&quot;</code></pre>
+<div id="exercicio-1." class="section level3">
+<h3>Exercicio 1.</h3>
+<p>Prove que <span class="math inline">\(E\left[\bar{y}_{c
+2}\right]=\mu+B\left[\bar{y}_{c 2}\right]\)</span> e que <span class="math inline">\(\operatorname{Var}\left[\bar{y}_{c
+2}\right]=\frac{\sigma_{e q}^2}{a}\)</span>.</p>
 </div>
-<div id="exercício-2" class="section level3">
-<h3>Exercício 2</h3>
-<p>Considere a seguinte estratificação:</p>
-<p><span class="math display">\[
-\begin{gathered}
-U_{1}=\{2,4,7\}, \boldsymbol{D}_{1}=\{17,5,19\} \\
-U_{2}=\{1,3,5,6,8\}, \boldsymbol{D}_{2}=\{13,6,10,12,6\}
-\end{gathered}
-\]</span></p>
-<p>com os seguintes parâmetros:</p>
-<p><span class="math display">\[
-\mu_{1}=13,67 \quad S_{1}^{2}=57,33 \quad \mu_{2}=9,40 \quad
-S_{2}^{2}=10,8 .
-\]</span></p>
-<p>Em ambos os estratos usou-se AASs, com <span class="math inline">\(n_{1}=1\)</span> e <span class="math inline">\(n_{2}=2\)</span>, ou seja, <span class="math inline">\(n=3\)</span>.</p>
-<p>Calcule <span class="math inline">\(\operatorname{Var}\left[\bar{y}_{e
-s}\right]\)</span>.</p>
+<div id="exercicio-2." class="section level3">
+<h3>Exercicio 2.</h3>
+<p>Prove que <span class="math inline">\(\operatorname{var}\left[\overline{\mathrm{y}}_{\mathrm{c}
+2}\right]\)</span> é um estimador não viesado para <span class="math inline">\(\operatorname{Var}\left[\bar{y}^c\right]\)</span></p>
 </div>
-<div id="exercício-3" class="section level3">
-<h3>Exercício 3</h3>
-<p>Considere a seguinte estratificação:</p>
+<div id="exercícios-do-livro-bolfarini-bussab" class="section level2">
+<h2>Exercícios do livro BOLFARINI &amp; BUSSAB:</h2>
+<div id="section" class="section level3">
+<h3>7.1</h3>
+<p>Considere a população com <span class="math inline">\(N=6\)</span>
+indivíduos, onde <span class="math inline">\(\mathbf{D}=(2,6,8,10,10,12)\)</span>. Considere os
+conglomerados ” <span class="math inline">\(\mathcal{U}_C\)</span> ” e ”
+<span class="math inline">\(\mathcal{U}_D\)</span> ” abaixo:</p>
 <p><span class="math display">\[
-\begin{gathered}
-U_{1}=\{2,4,7\}, \boldsymbol{D}_{1}=\{17,5,19\} \\
-U_{2}=\{1,3,5,6,8\}, \boldsymbol{D}_{2}=\{13,6,10,12,6\}
-\end{gathered}
+  \mathcal{U}_C  : \begin{cases}C_1: &amp; \mathbf{D}_1=(2), \\ C_2:
+&amp; \mathbf{D}_2=(6,8,10), \\ C_3: &amp;
+\mathbf{D}_3=(10,12)\end{cases}
 \]</span></p>
-<p>com os seguintes parâmetros:</p>
 <p><span class="math display">\[
-\mu_{1}=13,67 \quad S_{1}^{2}=57,33 \quad \mu_{2}=9,40 \quad
-S_{2}^{2}=10,8 .
+\mathcal{U}_D  \begin{cases}C_1: &amp; \mathbf{D}_1=(2,6,8), \\ C_2:
+&amp; \mathbf{D}_2=(10,10), \\ C_3: &amp; \mathbf{D}_3=(12) .\end{cases}
 \]</span></p>
-<p>Em ambos os estratos usou-se AASs, com <span class="math inline">\(n_{1}=1\)</span> e <span class="math inline">\(n_{2}=2\)</span>, ou seja, <span class="math inline">\(n=3\)</span>.</p>
-<p>Calcule <span class="math inline">\(\operatorname{Var}\left[\bar{y}_{e
-s}\right]\)</span>.</p>
-<pre class="r"><code>u = c(13,17,6,5,10,12,19,6)
-N = length(u)
-mu = mean(u)
-mu1 = 13.67
-mu2 = 11.75
-s2 = var(u)*(N - 1) / N
-s21 = 57.33
-s22 = 9.40
-n = 3 #tamanho da amostra na populacao (como temos 2 estratos com n=2 fica igual a 4 i guess)
-n1 = 1 #tamanho das amostras no estrato 1
-n2 = 2 #tamanho das amostras no estrato 2
-w1 = 3/336 #tamanho da populacao no estrato dividido pela populacao total
-w2 = 20/336 
-
-
-
-var_bar_y = s2/n
-var_bar_y1 = s21/ne
-var_bar_y2 = s22/ne
-var_bar_yes = w1*var_bar_y1+w2*var_bar_y2
-
-
-EPA = var_bar_yes/var_bar_y</code></pre>
-<pre><code>## [1] &quot;Var Y barra es = 0.535699404761905&quot;</code></pre>
+<p>Para cada uma das divisões (conglomerados) acima, selecione um
+conglomerado segundo a AAS. Encontre a distribuição de <span class="math inline">\(\bar{y}_{c 1}\)</span>, sua média e variância.
+Qual das divisões apresenta uma estimativa mais precisa?</p>
 </div>
-<div id="exercício-4" class="section level3">
-<h3>Exercício 4</h3>
-<p>Uma população está dividida em 5 estratos. Os tamanhos dos estratos,
-médias e variâncias são dados na tabela abaixo.</p>
-<p>Obs: Vale lembrar que</p>
-<ul>
-<li><p><span class="math inline">\(h\)</span> é o estrato</p></li>
-<li><p><span class="math inline">\(N_h\)</span> é o tamanho do
-estrato</p></li>
-<li><p><span class="math inline">\(\mu_h\)</span> é a media do
-estrato</p></li>
-<li><p><span class="math inline">\(s^2_h\)</span> é a variancia do
-estrato</p></li>
-</ul>
-<ol style="list-style-type: lower-alpha">
-<li>Calcule <span class="math inline">\(\mu\)</span> e <span class="math inline">\(\sigma^{2}\)</span> para esta população.</li>
-</ol>
-<pre class="r"><code>h = c(1,2,3,4,5)
-Nh = c(117,98,74,41,45)
-muh = c(7.3,6.9,11.2,9.1,9.6)
-s2h = c(1.31,2.03,1.13,1.96,1.74)
-
-dados = data.frame(h,Nh,muh,s2h) 
-
-dados = dados %&gt;% 
-  mutate(total_pop = Nh*muh,
-         var_estrat = s2h*(Nh - 1)/Nh,
-         peso_estrat = Nh/sum(Nh),
-         var_dentro_estrat = peso_estrat * var_estrat)
-
-mu = sum(Nh*muh)/sum(Nh)
-
-dados = dados %&gt;% 
-   mutate(var_entre_estrat = peso_estrat * (muh - mu)^2)
-
-var_tot_dentro = sum(dados$var_dentro_estrat)
-var_tot_entre = sum(dados$var_entre_estrat)
-sigma2 = var_tot_dentro + var_tot_entre</code></pre>
-<pre><code>## [1] &quot;A media populacional é 8.43786666666667&quot;</code></pre>
-<pre><code>## [1] &quot;A variancia populacional é 4.30107278222222&quot;</code></pre>
-<ol start="2" style="list-style-type: lower-alpha">
-<li>Para uma amostra de tamanho 80, determine as alocações proporcional
-e ótima (de Neyman).</li>
-</ol>
-<ul>
-<li><span class="math inline">\(c_h\)</span> é o custo viavel</li>
-</ul>
-<p>Sabemos que a formual da amostragem otima é:</p>
-<p><span class="math display">\[
-n_{h}=n \frac{W_{h} \sigma_{h} / \sqrt{c_{h}}}{\sum_{h=1}^{H} W_{h}
-\sigma_{h} / \sqrt{c_{h}}}
-\]</span> para ajudar na montagem do codigo vamos chamar de <span class="math inline">\(g = W_{h} \sigma_{h} / \sqrt{c_{h}}\)</span> (é
-uma escolha completamente arbitraria somente para facilitar o
-calculo)</p>
-<pre class="r"><code>h = c(1,2,3,4,5)
-Nh = c(117,98,74,41,45)
-muh = c(7.3,6.9,11.2,9.1,9.6)
-s2h = c(1.31,2.03,1.13,1.96,1.74)
-ch = c(1,1,1,1,1)
-n = 80
-
-dados = data.frame(h,Nh,muh,s2h,ch) %&gt;%
-  mutate(peso_estrat = Nh/sum(Nh),
-         var_estrat = s2h*(Nh - 1)/Nh,
-         dp_estrat = sqrt(var_estrat),
-         g = (peso_estrat*dp_estrat)/sqrt(ch),
-         otima = (g/sum(g))*n,
-         prop = n*peso_estrat)</code></pre>
-<ol start="3" style="list-style-type: lower-alpha">
-<li>Compara as variâncias dos estimadores obtidos com a <span class="math inline">\(A A S c\)</span> e com a alocação
-proporcional.</li>
-</ol>
-<pre class="r"><code>var_prop = var_tot_dentro/n
-
-var_otima = (1/n)*(sum(dados$peso_estrat*dados$dp_estrat))^2
-  
-EPAprop = 1 - (var_tot_entre/sigma2)
-
-EPAotimo = 1 - (var_tot_entre/sigma2) - (var_prop/sigma2)</code></pre>
-<pre><code>## [1] &quot;A variancia porporcional é: 0.019544&quot;</code></pre>
-<pre><code>## [1] &quot;O efeito do planejamento Amostral (EPA) proporcional é: 0.363518610162226&quot;</code></pre>
-<ol start="4" style="list-style-type: lower-alpha">
-<li>Compara as variâncias dos estimadores obtidos com a <span class="math inline">\(A A S c\)</span> e com a alocação ótima.</li>
-</ol>
-<pre><code>## [1] &quot;A variancia otima é: 0.019544&quot;</code></pre>
-<pre><code>## [1] &quot;O efeito do planejamento Amostral (EPA) otimo é: 0.358974627535198&quot;</code></pre>
+<div id="section-1" class="section level3">
+<h3>7.7</h3>
+<p>Considere uma população <span class="math inline">\(\mathcal{U}\)</span> com <span class="math inline">\(N=12\)</span> elementos divididos em <span class="math inline">\(A=3\)</span> conglomerados. Os valores <span class="math inline">\(Y_{\alpha i}\)</span> correspondentes aos 3
+conglomerados são:</p>
+<table>
+<colgroup>
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center"><span class="math inline">\(\alpha\)</span></th>
+<th align="center"><span class="math inline">\(Y_{\alpha
+i}\)</span></th>
+<th align="center"><span class="math inline">\(B_\alpha\)</span></th>
+<th align="center"><span class="math inline">\(\mu_\alpha\)</span></th>
+<th align="center"><span class="math inline">\(\sigma_\alpha^2\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">1</td>
+<td align="center">0,1</td>
+<td align="center">2</td>
+<td align="center">0,5</td>
+<td align="center">0,25</td>
+</tr>
+<tr class="even">
+<td align="center">2</td>
+<td align="center"><span class="math inline">\(1,2,2,3\)</span></td>
+<td align="center">4</td>
+<td align="center">2,0</td>
+<td align="center">0,50</td>
+</tr>
+<tr class="odd">
+<td align="center">3</td>
+<td align="center"><span class="math inline">\(3,3,4,4,5,5\)</span></td>
+<td align="center">6</td>
+<td align="center">4,0</td>
+<td align="center"><span class="math inline">\(2 / 3\)</span></td>
+</tr>
+</tbody>
+</table>
+<div id="a.-encontre-sigma2." class="section level5">
+<h5>a. Encontre <span class="math inline">\(\sigma^2\)</span>.</h5>
 </div>
-<div id="exercício-5" class="section level3">
-<h3>Exercício 5</h3>
-<p>Considere uma população <span class="math inline">\(U=\{1,2,3\}\)</span> que apresenta os seguintes
-parâmetros populacionais:</p>
-<p><span class="math display">\[
-\boldsymbol{D}=\left(\begin{array}{c}
-F_{i} \\
-T_{i}
-\end{array}\right)=\left(\begin{array}{rrr}
-12 &amp; 30 &amp; 18 \\
-1 &amp; 3 &amp; 2
-\end{array}\right)
-\]</span></p>
-<p>Parâmetros populacionais: <span class="math inline">\(\mu_{F}=20 ;
-\mu_{T}=2\)</span></p>
-<p>Suponha que seja de interesse estimar a renda bruta média <span class="math inline">\(\mu_{E}\)</span> usando-se como variável auxiliar
-o número de trabalhadores <span class="math inline">\(T_{i}\)</span> por
-domicílio.</p>
-<ol style="list-style-type: lower-alpha">
-<li><p>Da seleção de uma amostra de tamanho <span class="math inline">\(n=2\)</span> da população de acordo com a <span class="math inline">\(A A S c\)</span>, encontre as distribuições
-amostrais de <span class="math inline">\(\bar{f}, \bar{t}\)</span> e
-<span class="math inline">\(\bar{f}_{R}\)</span> na AASc</p></li>
-<li><p>Calcule os seguintes estimadores:</p></li>
-</ol>
-<p><span class="math display">\[
-\begin{array}{c|c}
-\boldsymbol{E}[\cdot \boldsymbol{]} &amp; \boldsymbol{V}[\cdot
-\boldsymbol{]} \\
-\hline E[\bar{f}]=? &amp; V[\bar{f}]=? \\
-E\left[\bar{f}_{R}\right]=? &amp; V\left[\bar{f}_{R}\right]=? \\
-&amp; E Q M\left[\bar{f}_{R}\right]=?
-\end{array}
-\]</span></p>
+<div id="b.-desta-população-dois-conglomerados-são-selecionados-com-reposição.-considere-um-estimador-não-viciado-para-a-média-populacional-e-encontre-a-variância-do-estimador-proposto.-selecionando-uma-amostra-de-2-conglomerados-da-tabela-estime-a-variância." class="section level5">
+<h5>b. Desta população, dois conglomerados são selecionados com
+reposição. Considere um estimador não viciado para a média populacional
+e encontre a variância do estimador proposto. Selecionando uma amostra
+de 2 conglomerados da tabela, estime a variância.</h5>
 </div>
-<div id="exercicio-6" class="section level2">
-<h2>Exercicio 6</h2>
-<p>Considere uma população <span class="math inline">\(U=\{1,2,3\}\)</span> que apresenta os seguintes
-parâmetros populacionais:</p>
-<p><span class="math display">\[
-\boldsymbol{D}=\left(\begin{array}{c}
-F_{i} \\
-T_{i}
-\end{array}\right)=\left(\begin{array}{rrr}
-12 &amp; 30 &amp; 18 \\
-1 &amp; 3 &amp; 2
-\end{array}\right)
-\]</span></p>
-<p>Suponha que seja de interesse estimar a renda bruta média <span class="math inline">\(\mu_{E}\)</span> usando-se como variável auxiliar
-o número de trabalhadores <span class="math inline">\(T_{i}\)</span> por
-domicílio.</p>
-<p>Da seleção de uma amostra de tamanho <span class="math inline">\(n=2\)</span> da população de acordo com a <span class="math inline">\(A A S c\)</span> foram obtidos os seguintes
-resultados:</p>
-<p>Distribuições amostrais de <span class="math inline">\(\bar{f},
-\bar{t}\)</span> e <span class="math inline">\(\bar{f}_{R}\)</span> na
-AASc</p>
-<p>onde <span class="math inline">\(\bar{f}_{R}=(\bar{f} / \bar{t})
-\cdot \mu_{T}\)</span></p>
-<p>Parâmetros populacionais: <span class="math inline">\(\mu_{F}=20 ;
-\mu_{T}=2\)</span></p>
-<p><span class="math display">\[
-\begin{array}{c|c}
-\boldsymbol{E}[\cdot \boldsymbol{]} &amp; \boldsymbol{V}[\cdot
-\boldsymbol{]} \\
-\hline E[\bar{f}]=? &amp; V[\bar{f}]=? \\
-E\left[\bar{f}_{R}\right]=? &amp; V\left[\bar{f}_{R}\right]=? \\
-&amp; E Q M\left[\bar{f}_{R}\right]=?
-\end{array}
-\]</span></p>
-<pre class="r"><code>renda &lt;- c(12, 30, 18)
-ntrab = c(1,3,2)
-mut = mean(ntrab)
-resultsR = c()
-resultsD &lt;- c()
-resultsT &lt;- c()
-amostra &lt;- c(1,1,1, 2, 1, 3, 2, 1,2,2,2, 3, 3, 1, 3, 2,3,3)
-t= 0
-for (i in seq(1, length(amostra)/2)) {
-  d_bar &lt;- mean(c(renda[amostra[i+t]],renda[amostra[i+t+1]]))
-  t_bar &lt;- mean(c(ntrab[amostra[i+t]],ntrab[amostra[i+t+1]]))
-  r_bar = (d_bar/t_bar)*mut
-  
-  resultsR = append(resultsR, r_bar)
-  resultsD &lt;- append(resultsD, d_bar)
-  resultsT &lt;- append(resultsT, t_bar)
-  t=t+1
-}
-
-print(resultsD)</code></pre>
-<pre><code>## [1] 12 21 15 21 30 24 15 24 18</code></pre>
-<pre class="r"><code>print(resultsT)</code></pre>
-<pre><code>## [1] 1.0 2.0 1.5 2.0 3.0 2.5 1.5 2.5 2.0</code></pre>
-<pre class="r"><code>print(resultsR)</code></pre>
-<pre><code>## [1] 24.0 21.0 20.0 21.0 20.0 19.2 20.0 19.2 18.0</code></pre>
-<pre class="r"><code>#D - Renda Var e Esp
-
-espD = sum(resultsD * 1/9) #Esperanca
-esp_quadD = sum((resultsD^2) * 1/9)
-
-varD = esp_quadD - espD^2 #Variancia
-
-#T - numero de trab Var e Esp
-
-espT = sum(resultsT * 1/9) #Esperanca
-esp_quadT = sum((resultsT^2) * 1/9)
-
-varT = esp_quadT - espT^2 #Variancia
-
-#T - razao media entra renda e numero de trabalhadores Var e Esp
-
-espR = sum(resultsR * 1/9) #Esperanca
-esp_quadR = sum((resultsR^2) * 1/9)
-
-varR = esp_quadR - espR^2 #Variancia
-
-# Vies
-
-muD = mean(renda)
-
-vies = muD - espR
-
-# EQM
-
-
-eqmR = varR + vies^2</code></pre>
-<pre><code>## [1] &quot;Esperanca da Renda media: 20&quot;</code></pre>
-<pre><code>## [1] &quot;Variancia da Renda media: 28&quot;</code></pre>
-<pre><code>## [1] &quot;Esperanca do estimador razao: 20.2666666666667&quot;</code></pre>
-<pre><code>## [1] &quot;Variancia do estimador razao: 2.51555555555558&quot;</code></pre>
-<pre><code>## [1] &quot;Vies do estimador do tipo razao: -0.266666666666666&quot;</code></pre>
-<pre><code>## [1] &quot;Erro quadratico media do estimador tipo razao: 2.58666666666669&quot;</code></pre>
+<div id="c.-encontre-rho_text-int-exato-e-aproximado.-usando-a-amostra-dos-dois-conglomerados-selecionados-em-b-encontre-uma-estimativa-para-rho_text-int-." class="section level5">
+<h5>c. Encontre <span class="math inline">\(\rho_{\text {int }}\)</span>
+(exato e aproximado). Usando a amostra dos dois conglomerados
+selecionados em (b), encontre uma estimativa para <span class="math inline">\(\rho_{\text {int }}\)</span>.</h5>
+</div>
+</div>
+<div id="section-2" class="section level3">
+<h3>7.8</h3>
+<p>Uma população com <span class="math inline">\(N=2.000\)</span>
+elementos foi dividida em <span class="math inline">\(A=200\)</span>
+conglomerados de tamanhos iguais a <span class="math inline">\(B=10\)</span> elementos. Desta população uma
+amostra de <span class="math inline">\(a=20\)</span> conglomerados é
+selecionada de acordo com a AASc e todos os elementos nos conglomerados
+selecionados são observados com relação à determinada característica
+populacional. O número de indivíduos que possuem a característica <span class="math inline">\(\left(T_\alpha\right)\)</span>, na amostra
+foi:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="right">Conglomerado:</th>
+<th align="right">1</th>
+<th align="right">2</th>
+<th align="right">3</th>
+<th align="right">4</th>
+<th align="right">5</th>
+<th align="right">6</th>
+<th align="right">7</th>
+<th align="right">8</th>
+<th align="right">9</th>
+<th align="right">10</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right"><span class="math inline">\(T_\alpha:\)</span></td>
+<td align="right">5</td>
+<td align="right">3</td>
+<td align="right">2</td>
+<td align="right">9</td>
+<td align="right">3</td>
+<td align="right">1</td>
+<td align="right">6</td>
+<td align="right">10</td>
+<td align="right">4</td>
+<td align="right">4</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th align="right">Conglomerado:</th>
+<th align="right">11</th>
+<th align="right">12</th>
+<th align="right">13</th>
+<th align="right">14</th>
+<th align="right">15</th>
+<th align="right">16</th>
+<th align="right">17</th>
+<th align="right">18</th>
+<th align="right">19</th>
+<th align="right">20</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right"><span class="math inline">\(T_\alpha:\)</span></td>
+<td align="right">2</td>
+<td align="right">3</td>
+<td align="right">6</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">7</td>
+<td align="right">0</td>
+<td align="right">7</td>
+<td align="right">2</td>
+<td align="right">1</td>
+</tr>
+</tbody>
+</table>
+<div id="a.-encontre-uma-estimativa-para-o-número-total-de-indivíduos-na-população-que-possuem-a-característica-de-interesse-e-uma-estimativa-para-a-variância-da-estimativa-do-total." class="section level5">
+<h5>a. Encontre uma estimativa para o número total de indivíduos na
+população que possuem a característica de interesse e uma estimativa
+para a variância da estimativa do total.</h5>
+</div>
+<div id="b.-encontre-uma-estimativa-para-a-proporção-de-indivíduos-na-população-que-possuem-a-característica-de-interesse-e-uma-estimativa-para-a-variância-da-estimativa-da-proporção." class="section level5">
+<h5>b. Encontre uma estimativa para a proporção de indivíduos na
+população que possuem a característica de interesse e uma estimativa
+para a variância da estimativa da proporção.</h5>
+</div>
+<div id="c.-encontre-uma-estimativa-para-o-coeficiente-de-correlação-intraclasse." class="section level5">
+<h5>c. Encontre uma estimativa para o coeficiente de correlação
+intraclasse.</h5>
+</div>
+</div>
+<div id="section-3" class="section level3">
+<h3>7.11</h3>
+<p>Considere a população do Exemplo 7.7. Verifique que, conforme dado no
+exemplo, <span class="math inline">\(V_s \cong 30,7\)</span> e <span class="math inline">\(V_k \cong 11,6\)</span>. Encontre <span class="math inline">\(\rho_{\text {int }}\)</span>.</p>
+</div>
+<div id="section-4" class="section level3">
+<h3>7.19</h3>
+<p>Um supermercado deseja estimar qual a despesa média dos fregueses,
+usando uma amostra de <span class="math inline">\(20 \%\)</span> dos
+clientes. O estatístico encarregado da pesquisa decidiu usar um sorteio
+sistemático com quatro repetições. Assim, ele sorteou quatro números
+aleatórios entre 1 e 20 (sorteados <span class="math inline">\(4,6,13\)</span> e 17), dando origem à seguinte
+amostra:</p>
+<table>
+<colgroup>
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Réplica</th>
+<th align="center">Elementos</th>
+<th align="center"><span class="math inline">\(\mathrm{N}^{\circ}\)</span> de elementos</th>
+<th align="center">Despesa total</th>
+<th align="center">Soma de quadrados</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">1</td>
+<td align="center"><span class="math inline">\(4,24,44,
+\ldots\)</span></td>
+<td align="center">50</td>
+<td align="center">4.000</td>
+<td align="center">421.000</td>
+</tr>
+<tr class="even">
+<td align="center">2</td>
+<td align="center"><span class="math inline">\(6,26,46,
+\ldots\)</span></td>
+<td align="center">50</td>
+<td align="center">4.200</td>
+<td align="center">435.000</td>
+</tr>
+<tr class="odd">
+<td align="center">3</td>
+<td align="center"><span class="math inline">\(13,33,53,
+\ldots\)</span></td>
+<td align="center">50</td>
+<td align="center">3.800</td>
+<td align="center">400.000</td>
+</tr>
+<tr class="even">
+<td align="center">4</td>
+<td align="center"><span class="math inline">\(17,37,57,
+\ldots\)</span></td>
+<td align="center">50</td>
+<td align="center">3.900</td>
+<td align="center">405.000</td>
+</tr>
+</tbody>
+</table>
+<p>Usando estes dados, estime a despesa média por freguês e dê limites
+para o erro de estimação.</p>
+</div>
 </div>
 </div>
 

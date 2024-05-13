@@ -202,6 +202,17 @@ $$
 
 é um estimador não viesado para a variância populacional $S^2$ para o planejamento ASSs.
 
+Obs: Importante notar a diferenca entre $S^2$ e $\sigma^2$
+
+$$
+\begin{aligned}
+S^2 & =\frac{1}{N-1} \sum_{i=1}^N\left(Y_i-\bar{Y}\right)^2=\frac{1}{N-1}\left(\sum_{i=1}^N Y_i^2-N \bar{Y}^2\right) \\
+\sigma^2 & =\frac{1}{N} \sum_{i=1}^N\left(Y_i-\bar{Y}\right)^2=\frac{1}{N}\left(\sum_{i=1}^N Y_i^2-N \bar{Y}^2\right)
+\end{aligned}
+$$
+
+Para uma amostra sem reposicao usamos $S^2$ enquanto que para uma amostra com reposicao utilizamos $\sigma^2$
+
 ### Prova $s^2$
 
 $$

@@ -1,0 +1,104 @@
+---
+title: "Lista 2 - Amostragem"
+author: "Davi Wentrick Feijó"
+date: "2024-05-13"
+output: 
+  rmdformats::downcute:
+    self_contained: true
+    thumbnails: true
+    lightbox: true
+    gallery: true
+    highlight: tango
+    toc_depth : 4
+  html_document:
+    toc: false
+    toc_depth: 5
+    toc_float: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+
+### Exercicio 1. 
+
+Prove que $E\left[\bar{y}_{c 2}\right]=\mu+B\left[\bar{y}_{c 2}\right]$ e que $\operatorname{Var}\left[\bar{y}_{c 2}\right]=\frac{\sigma_{e q}^2}{a}$.
+
+### Exercicio 2.
+
+Prove que $\operatorname{var}\left[\overline{\mathrm{y}}_{\mathrm{c} 2}\right]$ é um estimador não viesado para $\operatorname{Var}\left[\bar{y}^c\right]$
+
+## Exercícios do livro BOLFARINI & BUSSAB:
+
+### 7.1
+
+Considere a população com $N=6$ indivíduos, onde $\mathbf{D}=(2,6,8,10,10,12)$. Considere os conglomerados " $\mathcal{U}_C$ " e " $\mathcal{U}_D$ " abaixo:
+
+$$
+  \mathcal{U}_C  : \begin{cases}C_1: & \mathbf{D}_1=(2), \\ C_2: & \mathbf{D}_2=(6,8,10), \\ C_3: & \mathbf{D}_3=(10,12)\end{cases}
+$$ 
+
+$$
+\mathcal{U}_D  \begin{cases}C_1: & \mathbf{D}_1=(2,6,8), \\ C_2: & \mathbf{D}_2=(10,10), \\ C_3: & \mathbf{D}_3=(12) .\end{cases}
+$$
+
+Para cada uma das divisões (conglomerados) acima, selecione um conglomerado segundo a AAS. Encontre a distribuição de $\bar{y}_{c 1}$, sua média e variância. Qual das divisões apresenta uma estimativa mais precisa?
+
+### 7.7
+
+Considere uma população $\mathcal{U}$ com $N=12$ elementos divididos em $A=3$ conglomerados. Os valores $Y_{\alpha i}$ correspondentes aos 3 conglomerados são:
+
+
+| $\alpha$ | $Y_{\alpha i}$ | $B_\alpha$ | $\mu_\alpha$ | $\sigma_\alpha^2$ |
+| :---: | :---: | :---: | :---: | :---: |
+| 1 | 0,1 | 2 | 0,5 | 0,25 |
+| 2 | $1,2,2,3$ | 4 | 2,0 | 0,50 |
+| 3 | $3,3,4,4,5,5$ | 6 | 4,0 | $2 / 3$ |
+
+
+##### a. Encontre $\sigma^2$.
+
+##### b. Desta população, dois conglomerados são selecionados com reposição. Considere um estimador não viciado para a média populacional e encontre a variância do estimador proposto. Selecionando uma amostra de 2 conglomerados da tabela, estime a variância.
+
+##### c. Encontre $\rho_{\text {int }}$ (exato e aproximado). Usando a amostra dos dois conglomerados selecionados em (b), encontre uma estimativa para $\rho_{\text {int }}$.
+
+### 7.8
+
+Uma população com $N=2.000$ elementos foi dividida em $A=200$ conglomerados de tamanhos iguais a $B=10$ elementos. Desta população uma amostra de $a=20$ conglomerados é selecionada de acordo com a AASc e todos os elementos nos conglomerados selecionados são observados com relação à determinada característica populacional. O número de indivíduos que possuem a característica $\left(T_\alpha\right)$, na amostra foi:
+
+| Conglomerado: | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 |
+| ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| $T_\alpha:$ | 5 | 3 | 2 | 9 | 3 | 1 | 6 | 10 | 4 | 4 |
+
+| Conglomerado: | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 |
+| ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| $T_\alpha:$ | 2 | 3 | 6 | 1 | 1 | 7 | 0 | 7 | 2 | 1 |
+
+
+
+
+##### a. Encontre uma estimativa para o número total de indivíduos na população que possuem a característica de interesse e uma estimativa para a variância da estimativa do total.
+
+##### b. Encontre uma estimativa para a proporção de indivíduos na população que possuem a característica de interesse e uma estimativa para a variância da estimativa da proporção.
+
+##### c. Encontre uma estimativa para o coeficiente de correlação intraclasse.
+
+### 7.11
+
+Considere a população do Exemplo 7.7. Verifique que, conforme dado no exemplo, $V_s \cong 30,7$ e $V_k \cong 11,6$. Encontre $\rho_{\text {int }}$.
+
+### 7.19
+
+Um supermercado deseja estimar qual a despesa média dos fregueses, usando uma amostra de $20 \%$ dos clientes. O estatístico encarregado da pesquisa decidiu usar um sorteio sistemático com quatro repetições. Assim, ele sorteou quatro números aleatórios entre 1 e 20 (sorteados $4,6,13$ e 17), dando origem à seguinte amostra:
+
+| Réplica | Elementos | $\mathrm{N}^{\circ}$ de elementos | Despesa total | Soma de quadrados |
+| :---: | :---: | :---: | :---: | :---: |
+| 1 | $4,24,44, \ldots$ | 50 | 4.000 | 421.000 |
+| 2 | $6,26,46, \ldots$ | 50 | 4.200 | 435.000 |
+| 3 | $13,33,53, \ldots$ | 50 | 3.800 | 400.000 |
+| 4 | $17,37,57, \ldots$ | 50 | 3.900 | 405.000 |
+
+Usando estes dados, estime a despesa média por freguês e dê limites para o erro de estimação.
+
