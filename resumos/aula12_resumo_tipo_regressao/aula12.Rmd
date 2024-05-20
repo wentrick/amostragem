@@ -1,0 +1,281 @@
+---
+title: "Aula 12 - Estimadores do Tipo Regressão"
+author: "Davi Wentrick Feijó"
+date: "2024-05-16"
+output: 
+  rmdformats::downcute:
+    self_contained: true
+    thumbnails: true
+    lightbox: true
+    gallery: true
+    highlight: tango
+    toc_depth : 4
+  html_document:
+    toc: false
+    toc_depth: 5
+    toc_float: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+## Estimadores do Tipo Regressão AASc
+
+### Definição
+
+- De uma população finita, a cada $i \in U$ tem-se associado o par $\left(X_{i}, Y_{i}\right), i=\overline{1, N}$, obedecendo uma relação que não passa pela origem, i. e.,
+
+$$
+Y_{i}=\alpha+\beta X_{i}+e_{i}
+$$
+
+onde $e_{i}$ representa o desvio em torno da reta, $i=$ $\overline{1, N}$.
+
+- Para uma amostra $s$ de tamanho $n$, produzindo médias amostrais $\bar{x}$ e $\bar{y}$, o estimador regressão da média populacional é dado por
+
+$$
+\bar{y}_{\text {Reg }}=\bar{y}+b\left(\mu_{X}-\bar{x}\right),
+$$
+
+onde $b$ representa o impacto ( $\beta$ ) em $Y$ decorrente da variação de uma unidade de $X$.
+
+### Total populacional
+
+
+- O estimador do total populacional, $\tau_{Y}$, é dado por
+
+$$
+T_{\text {Reg }}=\hat{\tau}_{\text {Reg }}=N \bar{y}_{\text {Reg }}
+$$
+
+
+
+### Teorema $E[\bar{y}_{\text {Reg }}]$
+
+Seja $\bar{y}_{\text {Reg }}$ conforme definido. Para o plano amostral $A A S$ tem-se que $\bar{y}_{\text {Reg }}$ é um estimador não viesado de $\mu_{Y}$, isto é,
+
+$$
+E\left[\bar{y}_{\text {Reg }}\right]=\mu_{Y} .
+$$
+
+### Prova $E[ \left.\bar{y}_{\text {Reg }}\right]=\mu_{Y}$
+
+$$
+\begin{aligned}
+E\left[\bar{y}_{\text {Reg }}\right] & =E\left[\bar{y}+b_{0}\left(\mu_{X}-\bar{x}\right)\right]= \\
+& =E[\bar{y}]+b_{0}\left(\mu_{X}-E[\bar{x}]\right)= \\
+& =\mu_{Y}+b_{0}\left(\mu_{X}-\mu_{X}\right)=\mu_{Y}
+\end{aligned}
+$$
+
+### Teorema $Var[\bar{y}_{\text {Reg }}]$
+
+Com relação à $A A S c$, tem-se que
+
+$$
+\begin{aligned}
+\operatorname{Var}\left[\bar{y}_{\text{Reg}}\right] & =\frac{1}{n N} \sum_{i=1}^{N}\left\{\left[Y_{i}-b_{0}\left(X_{i}-\mu_{X}\right)\right]-\mu_{Y}\right\}^{2}= \\
+                                                      & =\frac{1}{n}\left(\sigma_{Y}^{2}-2 b_{0} \sigma_{X Y}+b_{0}^{2} \sigma_{X}^{2}\right)
+\end{aligned}
+$$
+
+### Prova $Var[ \left.\bar{y}_{\text {Reg }}\right]$
+
+Seja
+
+$$
+D_{i}=Y_{i}-b_{0}\left(X_{i}-\mu_{X}\right), i=\overline{1, N}
+$$
+
+e
+
+$$
+\mu_{D}=\bar{D}=\bar{Y}=\mu_{Y}
+$$
+
+$$
+\operatorname{Var}[\bar{y}_{\text{Reg}}]=\frac{1}{n N} \sum_{i=1}^{N}\left\{\left[Y_{i}-b_{0}\left(X_{i}-\mu_{X}\right)\right]-\mu_{Y}\right\}^{2} \\
+\operatorname{Var}[\bar{d}]=\frac{1}{n N} \sum_{i=1}^{N}\left\{D_i-\mu_{Y}\right\}^{2} \\
+\operatorname{Var}[\bar{d}]=\frac{1}{N} \sum_{i=1}^{N}\left\{\frac{D_i}{n}-\mu_{Y}\right\}^{2} \\
+\operatorname{Var}[\bar{d}]=\frac{1}{N} \sum_{i=1}^{N}\left\{\bar{d}-\mu_{Y}\right\}^{2} \\
+$$
+
+
+Seja $\bar{d}=\sum_{i \in s} D_{i} / n$ a média de uma amostra de tamanho $n$ da população dos $D$ 's. Então,
+
+$$
+\operatorname{Var}[\bar{d}]=\frac{\sigma_{D}^{2}}{n}
+$$
+
+Entao
+
+$$
+\begin{aligned}
+\frac{\sigma_{D}^{2}}{n}&=\frac{1}{n N} \sum_{i=1}^{N}(Y_{i}-b_{0}\left(X_{i}-\mu_{X}\right)-\mu_{Y})^{2} \\
+n\frac{\sigma_{D}^{2}}{n}&=\frac{1}{N} \sum_{i=1}^{N}(Y_{i}-b_{0}\left(X_{i}-\mu_{X}\right)-\mu_{Y})^{2} \\
+\sigma_{D}^{2}&=\frac{1}{N} \sum_{i=1}^{N}\left(Y_{i}-b_{0}\left(X_{i}-\mu_{X}\right)-\mu_{Y}\right)^{2}= \\
+              &=\frac{1}{N} \sum_{i=1}^{N}\left\{\left(Y_{i}-\mu_{Y}\right)-b_{0}\left(X_{i}-\mu_{X}\right)\right\}^{2}= \\
+              &=\frac{1}{N} \sum_{i=1}^{N}\left\{\left(Y_{i}-\mu_{Y}\right)^{2}-2 b_{0}\left(X_{i}-\mu_{X}\right)\left(Y_{i}-\mu_{Y}\right)+b_{0}^{2}\left(X_{i}-\mu_{X}\right)^{2}\right\} \\
+              &=\sigma_{Y}^{2}-2 b_{0} \sigma_{X Y}+b_{0}^{2} \sigma_{X}^{2} \\
+\end{aligned}
+$$
+
+Note que $\bar{d}=\bar{y}_{\text {Reg }}$.
+
+
+### Estimador não viesado para $\operatorname{Var}_{\text {Reg }}
+
+Um estimador não viesado para $\operatorname{Var}_{\text {Reg }}=$ $\operatorname{Var}\left[\bar{y}_{\text {Reg }}\right] \operatorname{com} b_{0}$ fixado é dado por
+
+$$
+\begin{aligned}
+& \operatorname{var}\left[\bar{y}_{R e g}\right]=\frac{1}{n(n-1)} \sum_{i=1}^{N}\left\{\left[\left(Y_{i}-\bar{y}\right)-b_{0}\left(X_{i}-\mu_{X}\right)\right]\right\}^{2} \\
+& =\frac{1}{n}\left(s_{Y}^{2}-2 b_{0} s_{X Y}+b_{0}^{2} s_{X}^{2}\right)
+\end{aligned}
+$$
+
+
+### Teorema
+
+$O$ valor de $b_{0}$ que minimiza $\operatorname{Var}\left[\bar{y}_{\text {Reg }}\right]$ é dado por
+
+$$
+B_{0}=\frac{\sum_{i=1}^{N}\left(Y_{i}-\mu_{Y}\right)\left(X_{i}-\mu_{X}\right)}{\sum_{i=1}^{N}\left(X_{i}-\mu_{X}\right)^{2}}=\frac{\sigma_{X Y}}{\sigma_{X}^{2}}
+$$
+
+Além disso
+
+$$
+V_{\text {min }}\left[\bar{y}_{\text {Reg }}\right]=\frac{\sigma_{Y}^{2}}{n}\left(1-\rho^{2}[X, Y]\right)
+$$
+
+### Prova  
+
+Um estimador não viesado de $V_{D}=\operatorname{Var}[\bar{d}]$ é dado por
+
+$$
+\widehat{V}_{D}=\operatorname{var}[\bar{d}]=\frac{s_{D}^{2}}{n}
+$$
+
+onde
+
+$$
+s_{D}^{2}=\frac{1}{n-1} \sum_{i \in s}\left(D_{i}-\bar{y}_{R e g}\right)^{2}
+$$
+
+Seja $b_{0}=B_{0}+c$ onde $c$ é um número real qualquer. Tem-se que para este $b_{0}$ que
+
+$$
+\begin{aligned}
+& \operatorname{Var}\left[\bar{y}_{\text {Reg }}\right]=\frac{1}{n}\left\{\sigma_{Y}^{2}-2\left(B_{0}+c\right) \sigma_{X Y}+\left(B_{0}+c\right)^{2} \sigma_{X}^{2}\right\} \\
+& =\frac{1}{n}\left\{\sigma_{Y}^{2}-2 \frac{\sigma_{X Y}}{\sigma_{X}^{2}} \sigma_{X Y}-2 c \sigma_{X Y}+\left(\frac{\sigma_{X Y}}{\sigma_{X}^{2}}\right)^{2} \sigma_{X}^{2}+2 c \frac{\sigma_{X Y}}{\sigma_{X}^{2}} \sigma_{X}^{2}+c^{2} \sigma_{X}^{2}\right\}= \\
+& =\frac{1}{n}\left\{\sigma_{Y}^{2}-2 \frac{\sigma_{X Y}^{2}}{\sigma_{X}^{2}}-2 c \sigma_{X Y}+\frac{\sigma_{X Y}^{2}}{\sigma_{X}^{2}}+2 c \sigma_{X Y}+c^{2} \sigma_{X}^{2}\right\}=\frac{1}{n}\left\{\left(\sigma_{Y}^{2}-\frac{\sigma_{X Y}^{2}}{\sigma_{X}^{2}}\right)+c^{2} \sigma_{X}^{2}\right\} \\
+& =\frac{1}{n}\left\{\left(\sigma_{Y}^{2}-\rho^{2}[X, Y] \sigma_{Y}^{2}\right)+c^{2} \sigma_{X}^{2}\right\}=\frac{\sigma_{Y}^{2}}{n}\left(1-\rho^{2}[X, Y]\right)+\frac{c^{2} \sigma_{X}^{2}}{n}
+\end{aligned}
+$$
+
+$\operatorname{Var}\left[\bar{y}_{\text {Reg }}\right]$ é mínima quando $c=0$, o que prova o teorema pois $\rho[X, Y]=\frac{\sigma_{X Y}}{\sigma_{X} \sigma_{Y}}$.
+
+Na prática, estimador para $b_{0}$ é dado por
+
+$$
+\hat{B}_{0}=\frac{\sum_{i \in s}\left(Y_{i}-\bar{y}\right)\left(X_{i}-\bar{x}\right)}{\sum_{i \in s}\left(X_{i}-\bar{x}\right)^{2}}=\frac{s_{X Y}}{s_{X}^{2}}
+$$
+
+Como estimador de $V_{\text {Reg }}$ pode-se considerar a quantidade
+
+$\hat{V}_{\text {Reg }}=\frac{1}{n}\left(s_{Y}^{2}-2 \widehat{B}_{0} s_{X Y}+\hat{B}_{0}^{2} s_{X}^{2}\right)=\frac{1}{n}\left(s_{Y}^{2}-2 \frac{s_{X Y}^{2}}{s_{X}^{2}}+\frac{s_{X Y}^{2}}{s_{X}^{2}}\right)$
+
+$=\frac{1}{n}\left(s_{Y}^{2}-\frac{s_{X Y}^{2}}{s_{X}^{2}}\right)=\frac{1}{n}\left(s_{Y}^{2}-\hat{\rho}^{2}[X, Y] s_{Y}^{2}\right)=\frac{s_{Y}^{2}}{n}\left(1-\hat{\rho}^{2}[X, Y]\right)$,
+
+onde $\hat{\rho}^{2}[X, Y]=\frac{s_{X Y}}{s_{X} s_{Y}}$.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Estimadores do Tipo Regressão AASs
+
+### Teorema
+
+Com relação à $A A S s$, tem-se que
+
+$$
+\operatorname{Var}\left[\overline{\bar{y}}_{\text {Reg }}\right]=\frac{(1-f)}{n}\left(S_{Y}^{2}-2 b_{0} S_{X Y}+b_{0}^{2} S_{X}^{2}\right)
+$$
+
+
+Um estimador não tendencioso para $\operatorname{Var}\left[\bar{y}_{\text {Reg }}\right]$ é dado por
+
+$$
+\operatorname{var}\left[\bar{y}_{\text {Reg }}\right]=\frac{(1-f)}{n}\left(s_{Y}^{2}-2 b_{0} s_{X Y}+b_{0}^{2} s_{X}^{2}\right)
+$$
+
+Para uma AASs o valor de $b_{0}$ que minimiza $\operatorname{Var}\left[\bar{y}_{R e g}\right]$ é dado por
+
+$$
+B_{0}=\frac{\sum_{i=1}^{N}\left(Y_{i}-\bar{y}\right)\left(X_{i}-\bar{x}\right)}{\sum_{i=1}^{N}\left(X_{i}-\bar{x}\right)^{2}}=\frac{S_{X Y}}{S_{X}^{2}}
+$$
+
+Além disso
+
+$$
+V_{\min }\left[\bar{y}_{\text {Reg }}\right]=\frac{(1-f)}{n} S_{Y}^{2}\left(1-\rho^{2}[X, Y]\right)
+$$
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

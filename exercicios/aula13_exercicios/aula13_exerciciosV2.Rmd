@@ -1,0 +1,161 @@
+---
+title: "Aula 13 -  Exercicios"
+author: "Davi Wentrick Feijó"
+date: "2024-05-20"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+pacman::p_load(tidyverse,utils,RcppAlgos,gtools,matrixStats)
+```
+
+
+### Exercício 1 
+
+Sejam $V_{\text {mín }\left[\bar{y}_{\text {Reges }}\right]}$ e $V_{\text {min }\left[\bar{y}_{\text {Regc }}\right]}$ as variâncias com os correspondentes $B_{o h}$ e $B_{o c}$ ótimos. Para uma $A A S c$, mostre que
+
+$$
+V_{\min \left[\bar{y}_{\text {Regc }}\right]}-V_{\text {mín }\left[\bar{y}_{\text {Reges }}\right]}=\sum_{h=1}^{H} a_{h}\left(B_{o h}-B_{o c}\right)^{2}
+$$
+
+onde
+
+$$
+B_{0 c}=\frac{\sum_{h=1}^{H} a_{h} B_{o h}}{\sum_{h=1}^{H} a_{h}}
+$$
+
+e
+
+$$
+a_{h}=\frac{W_{h}^{2}}{n_{h}} \sigma_{X h}^{2}, h=\overline{1, N}
+$$
+
+Resolucao:
+
+$$
+\begin{aligned}
+& V_{\text {mín }\left[\bar{y}_{\text {Regc }}\right]}-V_{\text {minn }\left[\bar{y}_{\text {Reges }}\right]}= \\
+& =\sum_{h=1}^H \frac{W_h^2}{n_h}\left\{\sigma_{Y h}^2-2 B_{0 c} \sigma_{X Y h}+B_{0 c}{ }^2 \sigma_{X h}^2\right\}-\sum_{h=1}^H \frac{W_h^2}{n_h}\left\{\sigma_{Y h}^2-2 B_{0 h} \sigma_{X Y h}+B_{0 h}^2 \sigma_{X h}^2\right\} \\
+& =\sum_{h=1}^H \frac{W_h^2}{n_h}\left\{2\left(B_{0 h}-B_{0 c}\right) \sigma_{X Y h}+\left(B_{0 c}{ }^2-B_{0 h}^2\right) \sigma_{X h}^2\right\} \\
+& =\sum_{h=1}^H \frac{W_h^2}{n_h}\left\{2\left(B_{0 h}-B_{0 c}\right) B_{0 h} \sigma_{X h}^2+\left(B_{0 c}{ }^2-B_{0 h}^2\right) \sigma_{X h}^2\right\} \\
+& =\sum_{h=1}^H \frac{W_h^2}{n_h} \sigma_{X h}^2\left\{2\left(B_{o h}^2-B_{0 c} B_{0 h}\right)+B_{o c}^2-B_{o h}^2\right\} \\
+& =\sum_{h=1}^H \frac{W_h^2}{n_h} \sigma_{X h}^2\left\{B_{o h}^2-2 B_{0 c} B_{0 h}+B_{o c}^2\right\}=\sum_{h=1}^H a_h\left(B_{o h}-B_{o c}\right)^2
+\end{aligned}
+$$
+
+
+### Exercício 2 
+
+Deseja-se estimar a quantidade de açúcar que se pode extrair de um caminhão carregado de laranjas. Sorteiam-se 10 laranjas, pesa-se cada uma (Xi), extrai-se o suco e dosa-se a quantidade de açúcar em cada laranja (Yi). Os resultados estão na tabela.
+
+| Laranja | $\boldsymbol{X} \boldsymbol{i}$ | $\boldsymbol{Y i}$ |
+| :---: | :---: | :---: |
+| 1 | 0,2000 | 0,0105 |
+| 2 | 0,2400 | 0,0150 |
+| 3 | 0,2150 | 0,0125 |
+| 4 | 0,2100 | 0,0110 |
+| 5 | 0,2500 | 0,0155 |
+| 6 | 0,2300 | 0,0135 |
+| 7 | 0,1950 | 0,0095 |
+| 8 | 0,2050 | 0,0105 |
+| 9 | 0,2100 | 0,0115 |
+| 10 | 0,2200 | 0,0125 |
+
+O peso total das laranjas é de $900 \mathrm{~kg}$ e foi obtido pela diferença do caminhão cheio para o caminhão vazio. Qual seria o total esperado de açúcar que esta carga de laranjas produziria? Dê um intervalo de confiança para o total de suco de laranja que será obtido com caminhão em questão.
+
+Resolucao:
+
+```{r}
+# Criando o dataframe a partir dos dados fornecidos
+Xi = c(0.2000, 0.2400, 0.2150, 0.2100, 0.2500, 0.2300, 0.1950, 0.2050, 0.2100, 0.2200)
+Yi = c(0.0105, 0.0150, 0.0125, 0.0110, 0.0155, 0.0135, 0.0095, 0.0105, 0.0115, 0.0125)
+
+
+dados <- data.frame(Laranja = 1:10,Xi,Yi)
+```
+
+```{r}
+# Visualizando o dataframe
+print(dados)
+```
+
+Primeiro passo é estimar quantas laranjas tem no caminhao (ou seja nosso N), para isso vamos calcular a media de peso das 10 laranjas e usando o peso total do caminhao podemos dividir um pelo outro e sabe quantas laranjas caberiam em media em cada caminhao.
+
+
+```{r}
+muX = mean(Xi) #peso medio de uma laranja da nosso amostra de 10
+tx = 900 #Peso total das laranjas 
+
+N = tx/muX
+```
+
+```{r echo=FALSE}
+N
+```
+
+Agora que temos nosso N podemos seguir para o calculo do B0
+
+$$
+\hat{B}_0=\frac{\sum_{i \in s}\left(Y_i-\bar{y}\right)\left(X_i-\bar{x}\right)}{\sum_{i \in s}\left(X_i-\bar{x}\right)^2}=\frac{s_{X Y}}{s_X^2} .
+$$
+
+```{r}
+Sxy = sum((Yi-mean(Yi))*((Xi-mean(Xi))))
+
+S2x = sum((Xi-mean(Xi))^2)
+
+B0 = Sxy/S2x
+```
+
+```{r echo=FALSE}
+B0
+```
+Com nosso $\beta_0$ estimado podemos calcular o estimador do tipo regressao:
+
+$$
+\bar{y}_{\text {Reg }}=\bar{y}+\beta_0\left(\mu_X-\bar{x}\right)
+$$
+
+```{r}
+yreg = mean(Yi) + B0*sum(Xi-mean(Xi)) #Media
+```
+
+```{r echo=FALSE}
+yreg
+```
+
+Em seguida podemos calcular o estimador do total usando a formula:
+
+$$
+T_{\text {Reg }}=\hat{\tau}_{\text {Reg }}=N \bar{y}_{\text {Reg }}
+$$
+
+```{r}
+Tyreg = N*yreg #Total
+```
+
+```{r echo=FALSE}
+Tyreg
+```
+
+
+
+### Exercício 3 
+
+Um engenheiro florestal quer estimar a altura média das árvores de uma floresta, que está dividida em áreas de $100 \times 100 \mathrm{~m} 2$, com base em uma amostra de 10 áreas, de um total de 500 áreas. Todas as árvores da área sorteada são medidas o obtém-se os resultados abaixo.
+
+
+| Área | $\mathbf{1}$ | $\mathbf{2}$ | $\mathbf{3}$ | $\mathbf{4}$ | $\mathbf{5}$ | $\mathbf{6}$ | $\mathbf{7}$ | $\mathbf{8}$ | $\mathbf{9}$ | $\mathbf{1 0}$ |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| $X_i$ | 42 | 51 | 49 | 55 | 47 | 58 | 43 | 59 | 48 | 41 |
+| $Y_i$ | 8,89 | 8,76 | 9,04 | 8,49 | 8,58 | 9,10 | 8,31 | 8,58 | 8,73 | 8,86 |
+
+
+a) Estima a altura média das árvores usando estimadores do tipo regressão e razão.
+
+b) Dê as variâncias respectivas dos estimadores usados.
+
+c) Compare as propriedades dos estimadores. Neste caso, qual o mais recomendado?
+
+

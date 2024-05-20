@@ -1,0 +1,216 @@
+---
+title: "Aula 12 - Versao 2"
+author: "Davi Wentrick Feijó"
+date: "2024-05-20"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Exercicio 1
+
+
+Considere uma população $U=\{1,2,3\}$ que apresenta os seguintes parâmetros populacionais:
+
+$$
+\boldsymbol{D}=\binom{F_{i}}{T_{i}}=\left(\begin{array}{rrr}
+12 & 30 & 18 \\
+1 & 3 & 2
+\end{array}\right)
+$$
+Vamos calcular nosso $B_0$
+
+```{r}
+renda <- c(12, 30, 18)
+ntrab = c(1,3,2)
+N = length(renda)
+n = 2
+```
+
+Para esta população temos:
+
+- $\mu_{T}=2$ 
+
+```{r}
+mean(ntrab)
+```
+
+- $\mu_{F}=20$ 
+
+```{r}
+mean(renda)
+```
+
+
+- $\sum_{i=1}^{3} F_{i} T_{i}=138$
+
+```{r}
+sum(renda*ntrab)
+```
+
+- $\sum_{i=1}^{3} F_{i}^{2}=1.368$
+
+```{r}
+sum(renda^2)
+```
+
+- $\quad \sum_{i=1}^{3} T_{i}^{2}=14$
+
+```{r}
+sum(ntrab^2)
+```
+
+Com isso podemos partir para o calculo do $B_0$
+
+$$
+B_{0}=\frac{\sum_{i=1}^{N} F_{i} T_{i}-N \bar{T} \bar{F}}{\sum_{i=1}^{N} T_{i}^{2}-N \bar{T}^{2}}=\frac{18}{2}=9
+$$
+
+```{r}
+B0 = (sum(renda*ntrab) - N*mean(renda)*mean(ntrab))/(sum(ntrab^2)-N*mean(ntrab)^2)
+```
+
+```{r echo=FALSE}
+B0
+```
+
+Em seguida vamos calcular nossos parametros amostrais com $n=2$ (ou seja pegando 2 amostra de cada vez):
+
+```{r}
+mut = mean(ntrab)
+resultsF = c()
+resultsD <- c()
+resultsT <- c()
+amostra <- c(1,1,1, 2, 1, 3, 2, 1,2,2,2, 3, 3, 1, 3, 2,3,3)
+t= 0
+for (i in seq(1, length(amostra)/2)) {
+  d_bar <- mean(c(renda[amostra[i+t]],renda[amostra[i+t+1]]))
+  t_bar <- mean(c(ntrab[amostra[i+t]],ntrab[amostra[i+t+1]]))
+  f_reg = d_bar+B0*(mean(ntrab) - t_bar)
+  
+  resultsF = append(resultsF, f_reg)
+  resultsD <- append(resultsD, d_bar)
+  resultsT <- append(resultsT, t_bar)
+  t=t+1
+}
+```
+
+- `d_bar` = Média $F_i$ = $\bar f$
+
+```{r}
+print(resultsD)
+```
+
+- `t_bar` = Média $T_i$ = $\bar t$
+
+```{r}
+print(resultsT)
+```
+
+- `f_reg` = Media do estimador tipo regressao = $\bar f_{reg}$
+
+```{r}
+print(resultsF)
+```
+
+
+
+
+| $\mathbf{s}$ | $\mathbf{1 1}$ | $\mathbf{1 2}$ | $\mathbf{1 3}$ | $\mathbf{2 1}$ | $\mathbf{2 2}$ | $\mathbf{2 3}$ | $\mathbf{3 1}$ | $\mathbf{3 2}$ | $\mathbf{3 3}$ |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| $P(\boldsymbol{s})$ | $1 / 9$ | $1 / 9$ | $1 / 9$ | $1 / 9$ | $1 / 9$ | $1 / 9$ | $1 / 9$ | $1 / 9$ | $1 / 9$ |
+| $\bar{f}$ | 12 | 21 | 15 | 21 | 30 | 24 | 15 | 24 | 18 |
+| $\bar{t}$ | 1 | 2 | 1,5 | 2 | 3 | 2,5 | 1,5 | 2,5 | 2 |
+| $\bar{f}_{\text {Reg }}$ | 21,0 | 21,0 | 19,5 | 21,0 | 21,0 | 19,5 | 19,5 | 19,5 | 18,0 |
+
+
+Agora podemos ir calcular $Var[\bar f_{Reg}]$
+
+Para isso vamos usar a funcao `var()` do R, porem ela sempre calcula a variancia amostral (no caso dividindo sempre por $n-1$) para isso temos que fazer uma correcao e multiplicar por $(N-1)/N$ para cancela o $n-1$ e assim dividir por $N$
+
+
+- $\sigma^{2}_{F}=56$
+
+```{r}
+sigma2f = var(renda)*(N - 1) / N
+```
+```{r echo=FALSE}
+sigma2f
+```
+
+
+- $\sigma^{2}_{T}=2/3$
+
+```{r}
+sigma2t = var(ntrab)*(N - 1) / N
+```
+
+```{r echo=FALSE}
+sigma2t
+```
+
+
+- $\sigma^{2}_{FT}= 6$
+
+```{r}
+sigma2ft = var(ntrab,renda)*(N - 1) / N
+```
+
+```{r echo=FALSE}
+sigma2ft
+```
+
+
+Agora pode partir para o calculo da $Var[\bar f_{Reg}]$
+
+
+$$
+\operatorname{Var}\left[\bar{f}_{\text {Reg }}\right]=\frac{1}{n}\left(\sigma_{F}^{2}-2 b_{0} \sigma^{2}_{F T}+b_{0}^{2} \sigma_{T}^{2}\right)=1
+$$
+
+```{r}
+varF_reg = 1/n * (sigma2f - 2*B0*sigma2ft+B0^2*sigma2t )
+```
+
+
+```{r echo=FALSE}
+varF_reg
+```
+
+```{r}
+#D - Renda Var e Esp
+
+espD = sum(resultsD * 1/9) #Esperanca
+esp_quadD = sum((resultsD^2) * 1/9)
+
+varD = esp_quadD - espD^2 #Variancia
+
+#T - numero de trab Var e Esp
+
+espT = sum(resultsT * 1/9) #Esperanca
+esp_quadT = sum((resultsT^2) * 1/9)
+
+varT = esp_quadT - espT^2 #Variancia
+
+#T - regressao entre renda e numero de trabalhadores Var e Esp
+
+espF = sum(resultsF * 1/9) #Esperanca
+esp_quadF = sum((resultsF^2) * 1/9)
+
+varF = esp_quadF - espF^2 #Variancia
+
+```
+
+```{r echo=FALSE}
+paste("Esperanca da Renda media:",espD)
+paste("Variancia da Renda media:",varD)
+paste("Esperanca do estimador tipo regressao:",espF)
+paste("Variancia do estimador tipo regressao:",varF)
+```
+
+
+
