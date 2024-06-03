@@ -148,6 +148,7 @@ Para isso vamos usar a funcao `var()` do R, porem ela sempre calcula a variancia
 ```{r}
 sigma2f = var(renda)*(N - 1) / N
 ```
+
 ```{r echo=FALSE}
 sigma2f
 ```

@@ -1876,6 +1876,77 @@ conglomerados ” <span class="math inline">\(\mathcal{U}_C\)</span> ” e ”
 <p>Para cada uma das divisões (conglomerados) acima, selecione um
 conglomerado segundo a AAS. Encontre a distribuição de <span class="math inline">\(\bar{y}_{c 1}\)</span>, sua média e variância.
 Qual das divisões apresenta uma estimativa mais precisa?</p>
+<pre class="r"><code>#parametros populacionais
+D = c(2,6,8,10,10,12,2,6,8,10,10,12)
+N = length(D)
+
+mean(D)</code></pre>
+<pre><code>## [1] 8</code></pre>
+<pre class="r"><code>var(D) #S2</code></pre>
+<pre><code>## [1] 11.63636</code></pre>
+<pre class="r"><code>var(D)* (N - 1) / N #sigma2</code></pre>
+<pre><code>## [1] 10.66667</code></pre>
+<pre class="r"><code>#Parametros dos conglomerados
+# Criação do data frame inicial
+df &lt;- data.frame(
+  conglo = c(&quot;C&quot;,&quot;C&quot;,&quot;C&quot;,&quot;D&quot;,&quot;D&quot;,&quot;D&quot;),
+  id =  c(1,2,3,1,2,3)
+)
+
+# Adicionando manualmente a coluna com vetores
+df$new_column &lt;- I(list(
+  c(2),
+  c(6,8,10),
+  c(10,12),
+  c(2,6,8),
+  c(10,10),
+  c(12)
+))</code></pre>
+<pre class="r"><code>df</code></pre>
+<pre><code>##   conglo id new_column
+## 1      C  1          2
+## 2      C  2   6, 8, 10
+## 3      C  3     10, 12
+## 4      D  1    2, 6, 8
+## 5      D  2     10, 10
+## 6      D  3         12</code></pre>
+<pre class="r"><code># Usando dplyr para calcular a média dos vetores e outros indicadores
+df &lt;- df %&gt;%
+  rowwise() %&gt;%
+  mutate(conglo = as.factor(conglo), #coluna para identificar os conglomerados
+         b = length(new_column), #tamanho de cada conglomerado
+         mu = mean(new_column), #media de cada conglomerado
+         sigma2 = var(new_column)*(b - 1) / b, #variancia de cada conglomerado
+         sigma2 = replace_na(sigma2, 0), #susbtituindo os NA por 0
+         t = sum(new_column)) # total de cada conglomerado</code></pre>
+<pre class="r"><code>#eu tentei colcar tudo no mesmo pipe mas ficaba dando um erro ent separei mas ficaria melhor se ficasse tudo junto
+df &lt;- df %&gt;%
+  ungroup() %&gt;%
+  mutate(b_bar = ave(df$b,df$conglo,FUN = mean), #tamanho medio de cada conglomerado
+         y_barc = t/b_bar) #é um tipo de media usando o tamanho medio de cada conglomerado</code></pre>
+<pre><code>## # A tibble: 6 × 9
+##   conglo    id new_column     b    mu sigma2     t b_bar y_barc
+##   &lt;fct&gt;  &lt;dbl&gt; &lt;I&lt;list&gt;&gt;  &lt;int&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
+## 1 C          1 &lt;dbl [1]&gt;      1  2      0        2     2      1
+## 2 C          2 &lt;dbl [3]&gt;      3  8      2.67    24     2     12
+## 3 C          3 &lt;dbl [2]&gt;      2 11      1       22     2     11
+## 4 D          1 &lt;dbl [3]&gt;      3  5.33   6.22    16     2      8
+## 5 D          2 &lt;dbl [2]&gt;      2 10      0       20     2     10
+## 6 D          3 &lt;dbl [1]&gt;      1 12      0       12     2      6</code></pre>
+<pre class="r"><code>#informacoes resumidas por conglomerado
+
+df2 &lt;- as.data.frame(df) %&gt;%
+  group_by(conglo) %&gt;%
+  summarize(n = n(), #numero de obs
+            sigma2_bar = mean(sigma2), #media das variancias por conglomerado
+            t_bar = mean(t), # media dos totais por conglomerado
+            y_bar = mean(y_barc), # media das medias do conglomerado???
+            var_y = var(y_barc)*(n - 1) / n) #variancia da media das medias do conglomerado?</code></pre>
+<pre><code>## # A tibble: 2 × 6
+##   conglo     n sigma2_bar t_bar y_bar var_y
+##   &lt;fct&gt;  &lt;int&gt;      &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 C          3       1.22    16     8 24.7 
+## 2 D          3       2.07    16     8  2.67</code></pre>
 </div>
 <div id="section-1" class="section level3">
 <h3>7.7</h3>
@@ -1902,7 +1973,7 @@ i}\)</span></th>
 <tbody>
 <tr class="odd">
 <td align="center">1</td>
-<td align="center">0,1</td>
+<td align="center"><span class="math inline">\(0,1\)</span></td>
 <td align="center">2</td>
 <td align="center">0,5</td>
 <td align="center">0,25</td>
@@ -1925,17 +1996,85 @@ i}\)</span></th>
 </table>
 <div id="a.-encontre-sigma2." class="section level5">
 <h5>a. Encontre <span class="math inline">\(\sigma^2\)</span>.</h5>
+<pre class="r"><code>#parametros populacionais
+D = c(c(0,1),c(1,2,2,3),c(3,3,4,4,5,5)) #populacao
+N = 12
+A = 3
+mean(D)</code></pre>
+<pre><code>## [1] 2.75</code></pre>
+<pre class="r"><code>var(D) #S2</code></pre>
+<pre><code>## [1] 2.568182</code></pre>
+<pre class="r"><code>var(D)* (N - 1) / N #sigma2</code></pre>
+<pre><code>## [1] 2.354167</code></pre>
+<pre class="r"><code>B = c(2,4,6) #tamanho dos conglomerados
+b_bar = mean(B) #tamanho medio dos conglomerados
+mua = c(0.5,2,4) #medias dos conglomerados
+sigma2a = c(0.25,0.50,0.67) #variancia dos conglomerados</code></pre>
+<pre class="r"><code>sigma2ect = 1/A * sum((B/mean(B)*mua - mean(D))^2) 
+
+sigma2ec = 1/A * sum(B/mean(B)*(mua - mean(D))^2)
+
+sigma2dc = 1/A * sum(B/mean(B)*sigma2a)
+
+sigma2eq = 1/A * sum((B/mean(B))^2*(mua-mean(D))^2)
+
+sigma2 = sigma2dc + sigma2ec</code></pre>
+<pre class="r"><code>sigma2</code></pre>
+<pre><code>## [1] 2.355833</code></pre>
 </div>
 <div id="b.-desta-população-dois-conglomerados-são-selecionados-com-reposição.-considere-um-estimador-não-viciado-para-a-média-populacional-e-encontre-a-variância-do-estimador-proposto.-selecionando-uma-amostra-de-2-conglomerados-da-tabela-estime-a-variância." class="section level5">
 <h5>b. Desta população, dois conglomerados são selecionados com
 reposição. Considere um estimador não viciado para a média populacional
 e encontre a variância do estimador proposto. Selecionando uma amostra
 de 2 conglomerados da tabela, estime a variância.</h5>
+<pre class="r"><code>dados &lt;- I(list(c(0,1),c(1,2,2,3),c(3,3,4,4,5,5)))
+
+resultsT &lt;- c()
+resultsYc1 = c()
+resultsYc1_quad = c()
+
+amostra &lt;- c(1,1,1, 2, 1, 3, 2, 1,2,2,2, 3, 3, 1, 3, 2,3,3)
+t= 0
+
+for (i in seq(1, length(amostra)/2)) {
+  t_bar &lt;- mean(c(sum(unlist(dados[amostra[i+t]])),sum(unlist(dados[amostra[i+t+1]]))))
+  yc1 = t_bar/b_bar
+  yc1_quad = yc1^2
+  resultsT &lt;- append(resultsT, t_bar)
+  resultsYc1 = append(resultsYc1, yc1)
+  resultsYc1_quad = append(resultsYc1_quad, yc1_quad)
+  t=t+1
+}
+
+print(resultsT)</code></pre>
+<pre><code>## [1]  1.0  4.5 12.5  4.5  8.0 16.0 12.5 16.0 24.0</code></pre>
+<pre class="r"><code>print(resultsYc1)</code></pre>
+<pre><code>## [1] 0.250 1.125 3.125 1.125 2.000 4.000 3.125 4.000 6.000</code></pre>
+<pre class="r"><code>print(resultsYc1_quad)</code></pre>
+<pre><code>## [1]  0.062500  1.265625  9.765625  1.265625  4.000000 16.000000  9.765625
+## [8] 16.000000 36.000000</code></pre>
+<pre class="r"><code>#D - Renda Var e Esp
+
+espD = sum(resultsYc1 * 1/9) #Esperanca
+esp_quadD = sum((resultsYc1^2) * 1/9)
+
+varD = esp_quadD - espD^2 #Variancia</code></pre>
+<pre><code>## [1] 2.75</code></pre>
+<pre><code>## [1] 2.895833</code></pre>
 </div>
 <div id="c.-encontre-rho_text-int-exato-e-aproximado.-usando-a-amostra-dos-dois-conglomerados-selecionados-em-b-encontre-uma-estimativa-para-rho_text-int-." class="section level5">
 <h5>c. Encontre <span class="math inline">\(\rho_{\text {int }}\)</span>
 (exato e aproximado). Usando a amostra dos dois conglomerados
 selecionados em (b), encontre uma estimativa para <span class="math inline">\(\rho_{\text {int }}\)</span>.</h5>
+<pre class="r"><code>dados &lt;- I(list(c(0,1),c(1,2,2,3),c(3,3,4,4,5,5)))
+conglo23 = unlist(dados[2:3])
+
+pares = as.data.frame(t(combn(conglo23,2)))</code></pre>
+<pre class="r"><code>cor(pares$V1,pares$V2)</code></pre>
+<pre><code>## [1] 0.4524033</code></pre>
+<pre class="r"><code>pc2 = (sigma2eq - (sigma2dc/(b_bar-1)))/(sigma2eq+sigma2dc)</code></pre>
+<pre class="r"><code>pc2</code></pre>
+<pre><code>## [1] 0.6883551</code></pre>
 </div>
 </div>
 <div id="section-2" class="section level3">
@@ -2016,21 +2155,83 @@ foi:</p>
 <h5>a. Encontre uma estimativa para o número total de indivíduos na
 população que possuem a característica de interesse e uma estimativa
 para a variância da estimativa do total.</h5>
+<pre class="r"><code>N = 2000
+A = 200
+B = 10
+a = 20
+b_bar = 200/20
+Ta = c(5,3,2,9,3,1,6,10,4,4,2,3,6,1,1,7,0,7,2,1)
+
+T_bar = sum(Ta)/a
+
+var_T = (A^2/a) * (1/(a-1)) * sum((Ta-T_bar)^2) </code></pre>
 </div>
 <div id="b.-encontre-uma-estimativa-para-a-proporção-de-indivíduos-na-população-que-possuem-a-característica-de-interesse-e-uma-estimativa-para-a-variância-da-estimativa-da-proporção." class="section level5">
 <h5>b. Encontre uma estimativa para a proporção de indivíduos na
 população que possuem a característica de interesse e uma estimativa
 para a variância da estimativa da proporção.</h5>
+<pre class="r"><code>pc1 = T_bar/b_bar
+
+var_pc1 = 1/(a*(a-1)*b_bar^2)* sum((Ta-pc1*B)^2)</code></pre>
 </div>
 <div id="c.-encontre-uma-estimativa-para-o-coeficiente-de-correlação-intraclasse." class="section level5">
 <h5>c. Encontre uma estimativa para o coeficiente de correlação
 intraclasse.</h5>
+<pre class="r"><code>s2ec = 1/((a-1)*b_bar^2) * sum((Ta-pc1*B)^2)
+#s2dc = 1/ * sum(B/b_bar*) #falta o alpha como fazer?
+
+
+#rint = (s2ec - (s2dc/(b_bar-1)))/(s2ec+s2dc)</code></pre>
 </div>
 </div>
 <div id="section-3" class="section level3">
 <h3>7.11</h3>
 <p>Considere a população do Exemplo 7.7. Verifique que, conforme dado no
 exemplo, <span class="math inline">\(V_s \cong 30,7\)</span> e <span class="math inline">\(V_k \cong 11,6\)</span>. Encontre <span class="math inline">\(\rho_{\text {int }}\)</span>.</p>
+<p>Considere uma população <span class="math inline">\(\mathcal{U}\)</span> com <span class="math inline">\(N=12\)</span> elementos divididos em <span class="math inline">\(A=3\)</span> conglomerados. Os valores <span class="math inline">\(Y_{\alpha i}\)</span> correspondentes aos 3
+conglomerados são:</p>
+<table>
+<colgroup>
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center"><span class="math inline">\(\alpha\)</span></th>
+<th align="center"><span class="math inline">\(Y_{\alpha
+i}\)</span></th>
+<th align="center"><span class="math inline">\(B_\alpha\)</span></th>
+<th align="center"><span class="math inline">\(\mu_\alpha\)</span></th>
+<th align="center"><span class="math inline">\(\sigma_\alpha^2\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">1</td>
+<td align="center"><span class="math inline">\(0,1\)</span></td>
+<td align="center">2</td>
+<td align="center">0,5</td>
+<td align="center">0,25</td>
+</tr>
+<tr class="even">
+<td align="center">2</td>
+<td align="center"><span class="math inline">\(1,2,2,3\)</span></td>
+<td align="center">4</td>
+<td align="center">2,0</td>
+<td align="center">0,50</td>
+</tr>
+<tr class="odd">
+<td align="center">3</td>
+<td align="center"><span class="math inline">\(3,3,4,4,5,5\)</span></td>
+<td align="center">6</td>
+<td align="center">4,0</td>
+<td align="center"><span class="math inline">\(2 / 3\)</span></td>
+</tr>
+</tbody>
+</table>
 </div>
 <div id="section-4" class="section level3">
 <h3>7.19</h3>

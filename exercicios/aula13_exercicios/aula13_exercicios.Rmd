@@ -84,6 +84,8 @@ Yi = c(0.0105, 0.0150, 0.0125, 0.0110, 0.0155, 0.0135, 0.0095, 0.0105, 0.0115, 0
 
 
 dados <- data.frame(Laranja = 1:10,Xi,Yi)
+
+n = 10
 ```
 
 ```{r}
@@ -107,9 +109,19 @@ N
 
 Agora que temos nosso N podemos seguir para o calculo do B0
 
+- Opcao 1 
+
 $$
 \hat{B}_0=\frac{\sum_{i \in s}\left(Y_i-\bar{y}\right)\left(X_i-\bar{x}\right)}{\sum_{i \in s}\left(X_i-\bar{x}\right)^2}=\frac{s_{X Y}}{s_X^2} .
 $$
+
+- Opcao 2
+
+$$
+B_{0}=\frac{\sum_{i=1}^{n} Y_{i} X_{i}-n \bar{X} \bar{Y}}{\sum_{i=1}^{N} X_{i}^{2}-N \bar{X}^{2}}
+$$
+
+Usando a 1 formula
 
 ```{r}
 Sxy = sum((Yi-mean(Yi))*((Xi-mean(Xi))))
@@ -122,6 +134,19 @@ B0 = Sxy/S2x
 ```{r echo=FALSE}
 B0
 ```
+
+Usando a 2 formula
+
+```{r}
+B0 = (sum(Yi*Xi) - n*mean(Yi)*mean(Xi))/(sum(Xi^2)-n*mean(Xi)^2)
+```
+
+
+```{r echo=FALSE}
+B0
+```
+
+
 Com nosso $\beta_0$ estimado podemos calcular o estimador do tipo regressao:
 
 $$
@@ -172,6 +197,8 @@ Xi = c(42, 51, 49, 55, 47, 58, 43, 59, 48, 41)
 Yi = c(8.89, 8.76, 9.04, 8.49, 8.58, 9.10, 8.31, 8.58, 8.73, 8.86)
 
 dados_area <- data.frame(Area = 1:10, Xi, Yi)
+
+N = 10
 ```
 
 ```{r echo=FALSE}
@@ -179,12 +206,149 @@ dados_area <- data.frame(Area = 1:10, Xi, Yi)
 print(dados_area)
 ```
 
-```{r}
+Estimador do Tipo Regressao
 
+```{r}
+Sxy = sum((Yi-mean(Yi))*((Xi-mean(Xi))))
+
+S2x = sum((Xi-mean(Xi))^2)
+
+B0 = Sxy/S2x
+```
+
+```{r echo=FALSE}
+B0
+```
+
+```{r}
+yreg = mean(Yi) + B0*sum(Xi-mean(Xi)) #Media
+```
+
+```{r echo=FALSE}
+yreg
+```
+
+Estimador do tipo Razao
+
+Como nos temos interesse em estimar a altura media da arvore, vamos utilizar a seguinte formula para encontrar o valor do estimador da media da altura (media de $Yi$)
+
+
+- Estimador da Razao
+$$
+R \rightarrow r=\hat{R}=\frac{\bar{y}}{\bar{x}}
+$$
+
+- Estimador da media por meio do estimador da Razao
+
+$$
+\mu_Y \rightarrow  \bar{y}_R=\hat{R} \mu_X=r \mu_X
+$$
+
+$$
+\bar{y}_R=(\bar{y} / \bar{x}) \cdot \mu_X
+$$
+
+```{r}
+y_r = (sum(Yi)/sum(Xi))*mean(Xi)
+```
+
+```{r}
+y_r
 ```
 
 
 b) Dê as variâncias respectivas dos estimadores usados.
+
+
+Variancia do estimador do tipo regressao
+
+- $s^{2}_{F}$
+
+```{r}
+s2x = var(Xi)
+```
+
+```{r echo=FALSE}
+s2x
+```
+
+
+- $s^{2}_{T}$
+
+```{r}
+s2y = var(Yi)
+```
+
+```{r echo=FALSE}
+s2y
+```
+
+
+- $s^{2}_{FT}$
+
+```{r}
+s2xy = var(Yi,Xi)
+```
+
+```{r echo=FALSE}
+s2xy
+```
+
+Agora podemos partir para o calculo da $Var[\bar f_{Reg}]$
+
+$$
+\operatorname{Var}\left[\bar{f}_{\text {Reg }}\right]=\frac{1}{n}\left(s_{F}^{2}-2 b_{0} s^{2}_{F T}+b_{0}^{2} s_{T}^{2}\right)=1
+$$
+
+```{r}
+varY_reg = 1/N * (s2y - 2*B0*s2xy+B0^2*s2x )
+```
+
+
+```{r echo=FALSE}
+varY_reg
+```
+
+Variancia do estimador tipo razao
+
+$$
+s_R^2=\frac{1}{n-1} \sum_{i \in s}\left(Y_i-r X_i\right)^2
+$$
+
+$$
+r=\frac{\bar{y}}{\bar{x}}
+$$
+
+```{r}
+r = mean(Yi)/mean(Xi)
+```
+
+```{r echo=FALSE}
+r
+```
+
+
+```{r}
+s2r = 1/(n-1)*sum((Yi-r*Xi)^2)
+```
+
+```{r echo=FALSE}
+s2r
+```
+
+Sabemos que:
+
+$$
+\operatorname{Var}\left[\bar{y}_R\right]=\operatorname{Var}\left[r \mu_x\right] \approx\frac{s_R^2}{n}
+$$
+
+```{r}
+varyR = s2r/n
+```
+
+```{r echo=FALSE}
+varyR
+```
 
 c) Compare as propriedades dos estimadores. Neste caso, qual o mais recomendado?
 

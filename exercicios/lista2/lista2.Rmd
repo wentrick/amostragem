@@ -18,6 +18,7 @@ output:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+pacman::p_load(tidyverse,utils,RcppAlgos,gtools,matrixStats,dplyr,tidyr)
 ```
 
 
@@ -46,6 +47,87 @@ $$
 
 Para cada uma das divisões (conglomerados) acima, selecione um conglomerado segundo a AAS. Encontre a distribuição de $\bar{y}_{c 1}$, sua média e variância. Qual das divisões apresenta uma estimativa mais precisa?
 
+```{r}
+#parametros populacionais
+D = c(2,6,8,10,10,12,2,6,8,10,10,12)
+N = length(D)
+
+mean(D)
+var(D) #S2
+var(D)* (N - 1) / N #sigma2
+```
+
+
+```{r}
+#Parametros dos conglomerados
+# Criação do data frame inicial
+df <- data.frame(
+  conglo = c("C","C","C","D","D","D"),
+  id =  c(1,2,3,1,2,3)
+)
+
+# Adicionando manualmente a coluna com vetores
+df$new_column <- I(list(
+  c(2),
+  c(6,8,10),
+  c(10,12),
+  c(2,6,8),
+  c(10,10),
+  c(12)
+))
+```
+
+```{r}
+df
+```
+
+```{r}
+# Usando dplyr para calcular a média dos vetores e outros indicadores
+df <- df %>%
+  rowwise() %>%
+  mutate(conglo = as.factor(conglo), #coluna para identificar os conglomerados
+         b = length(new_column), #tamanho de cada conglomerado
+         mu = mean(new_column), #media de cada conglomerado
+         sigma2 = var(new_column)*(b - 1) / b, #variancia de cada conglomerado
+         sigma2 = replace_na(sigma2, 0), #susbtituindo os NA por 0
+         t = sum(new_column)) # total de cada conglomerado
+```
+
+```{r}
+#eu tentei colcar tudo no mesmo pipe mas ficaba dando um erro ent separei mas ficaria melhor se ficasse tudo junto
+df <- df %>%
+  ungroup() %>%
+  mutate(b_bar = ave(df$b,df$conglo,FUN = mean), #tamanho medio de cada conglomerado
+         y_barc = t/b_bar) #é um tipo de media usando o tamanho medio de cada conglomerado
+
+```
+
+
+
+```{r echo=FALSE}
+df
+```
+
+
+```{r}
+#informacoes resumidas por conglomerado
+
+df2 <- as.data.frame(df) %>%
+  group_by(conglo) %>%
+  summarize(n = n(), #numero de obs
+            sigma2_bar = mean(sigma2), #media das variancias por conglomerado
+            t_bar = mean(t), # media dos totais por conglomerado
+            y_bar = mean(y_barc), # media das medias do conglomerado???
+            var_y = var(y_barc)*(n - 1) / n) #variancia da media das medias do conglomerado?
+```
+
+
+```{r echo=FALSE}
+df2  
+```
+
+
+
 ### 7.7
 
 Considere uma população $\mathcal{U}$ com $N=12$ elementos divididos em $A=3$ conglomerados. Os valores $Y_{\alpha i}$ correspondentes aos 3 conglomerados são:
@@ -53,16 +135,113 @@ Considere uma população $\mathcal{U}$ com $N=12$ elementos divididos em $A=3$ 
 
 | $\alpha$ | $Y_{\alpha i}$ | $B_\alpha$ | $\mu_\alpha$ | $\sigma_\alpha^2$ |
 | :---: | :---: | :---: | :---: | :---: |
-| 1 | 0,1 | 2 | 0,5 | 0,25 |
+| 1 | $0,1$ | 2 | 0,5 | 0,25 |
 | 2 | $1,2,2,3$ | 4 | 2,0 | 0,50 |
 | 3 | $3,3,4,4,5,5$ | 6 | 4,0 | $2 / 3$ |
 
 
 ##### a. Encontre $\sigma^2$.
 
+
+```{r}
+#parametros populacionais
+D = c(c(0,1),c(1,2,2,3),c(3,3,4,4,5,5)) #populacao
+N = 12
+A = 3
+mean(D)
+var(D) #S2
+var(D)* (N - 1) / N #sigma2
+
+B = c(2,4,6) #tamanho dos conglomerados
+b_bar = mean(B) #tamanho medio dos conglomerados
+mua = c(0.5,2,4) #medias dos conglomerados
+sigma2a = c(0.25,0.50,0.67) #variancia dos conglomerados
+```
+
+
+```{r}
+sigma2ect = 1/A * sum((B/mean(B)*mua - mean(D))^2) 
+
+sigma2ec = 1/A * sum(B/mean(B)*(mua - mean(D))^2)
+
+sigma2dc = 1/A * sum(B/mean(B)*sigma2a)
+
+sigma2eq = 1/A * sum((B/mean(B))^2*(mua-mean(D))^2)
+
+sigma2 = sigma2dc + sigma2ec
+```
+
+```{r}
+sigma2
+```
+
+
 ##### b. Desta população, dois conglomerados são selecionados com reposição. Considere um estimador não viciado para a média populacional e encontre a variância do estimador proposto. Selecionando uma amostra de 2 conglomerados da tabela, estime a variância.
 
+
+```{r}
+dados <- I(list(c(0,1),c(1,2,2,3),c(3,3,4,4,5,5)))
+
+resultsT <- c()
+resultsYc1 = c()
+resultsYc1_quad = c()
+
+amostra <- c(1,1,1, 2, 1, 3, 2, 1,2,2,2, 3, 3, 1, 3, 2,3,3)
+t= 0
+
+for (i in seq(1, length(amostra)/2)) {
+  t_bar <- mean(c(sum(unlist(dados[amostra[i+t]])),sum(unlist(dados[amostra[i+t+1]]))))
+  yc1 = t_bar/b_bar
+  yc1_quad = yc1^2
+  resultsT <- append(resultsT, t_bar)
+  resultsYc1 = append(resultsYc1, yc1)
+  resultsYc1_quad = append(resultsYc1_quad, yc1_quad)
+  t=t+1
+}
+
+print(resultsT)
+print(resultsYc1)
+print(resultsYc1_quad)
+
+
+#D - Renda Var e Esp
+
+espD = sum(resultsYc1 * 1/9) #Esperanca
+esp_quadD = sum((resultsYc1^2) * 1/9)
+
+varD = esp_quadD - espD^2 #Variancia
+```
+
+```{r echo=FALSE}
+espD
+varD
+```
+
+
+
 ##### c. Encontre $\rho_{\text {int }}$ (exato e aproximado). Usando a amostra dos dois conglomerados selecionados em (b), encontre uma estimativa para $\rho_{\text {int }}$.
+
+
+```{r}
+dados <- I(list(c(0,1),c(1,2,2,3),c(3,3,4,4,5,5)))
+conglo23 = unlist(dados[2:3])
+
+pares = as.data.frame(t(combn(conglo23,2)))
+```
+
+```{r}
+cor(pares$V1,pares$V2)
+```
+
+```{r}
+pc2 = (sigma2eq - (sigma2dc/(b_bar-1)))/(sigma2eq+sigma2dc)
+```
+
+```{r}
+pc2
+```
+
+
 
 ### 7.8
 
@@ -77,17 +256,52 @@ Uma população com $N=2.000$ elementos foi dividida em $A=200$ conglomerados de
 | $T_\alpha:$ | 2 | 3 | 6 | 1 | 1 | 7 | 0 | 7 | 2 | 1 |
 
 
-
-
 ##### a. Encontre uma estimativa para o número total de indivíduos na população que possuem a característica de interesse e uma estimativa para a variância da estimativa do total.
+
+```{r}
+N = 2000
+A = 200
+B = 10
+a = 20
+b_bar = 200/20
+Ta = c(5,3,2,9,3,1,6,10,4,4,2,3,6,1,1,7,0,7,2,1)
+
+T_bar = sum(Ta)/a
+
+var_T = (A^2/a) * (1/(a-1)) * sum((Ta-T_bar)^2) 
+```
 
 ##### b. Encontre uma estimativa para a proporção de indivíduos na população que possuem a característica de interesse e uma estimativa para a variância da estimativa da proporção.
 
+```{r}
+pc1 = T_bar/b_bar
+
+var_pc1 = 1/(a*(a-1)*b_bar^2)* sum((Ta-pc1*B)^2)
+```
+
 ##### c. Encontre uma estimativa para o coeficiente de correlação intraclasse.
+
+```{r}
+s2ec = 1/((a-1)*b_bar^2) * sum((Ta-pc1*B)^2)
+#s2dc = 1/ * sum(B/b_bar*) #falta o alpha como fazer?
+
+
+#rint = (s2ec - (s2dc/(b_bar-1)))/(s2ec+s2dc)
+```
+
 
 ### 7.11
 
 Considere a população do Exemplo 7.7. Verifique que, conforme dado no exemplo, $V_s \cong 30,7$ e $V_k \cong 11,6$. Encontre $\rho_{\text {int }}$.
+
+Considere uma população $\mathcal{U}$ com $N=12$ elementos divididos em $A=3$ conglomerados. Os valores $Y_{\alpha i}$ correspondentes aos 3 conglomerados são:
+
+
+| $\alpha$ | $Y_{\alpha i}$ | $B_\alpha$ | $\mu_\alpha$ | $\sigma_\alpha^2$ |
+| :---: | :---: | :---: | :---: | :---: |
+| 1 | $0,1$ | 2 | 0,5 | 0,25 |
+| 2 | $1,2,2,3$ | 4 | 2,0 | 0,50 |
+| 3 | $3,3,4,4,5,5$ | 6 | 4,0 | $2 / 3$ |
 
 ### 7.19
 

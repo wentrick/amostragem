@@ -48,8 +48,12 @@ Tyreg
 
 
 
+n = 10
 
 
+B0 = (sum(Yi*Xi) - n*mean(Yi)*mean(Xi))/(sum(Xi^2)-N*mean(Xi)^2)
+
+B0
 
 
 

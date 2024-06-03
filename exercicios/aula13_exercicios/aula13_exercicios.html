@@ -1960,7 +1960,9 @@ Xi = c(0.2000, 0.2400, 0.2150, 0.2100, 0.2500, 0.2300, 0.1950, 0.2050, 0.2100, 0
 Yi = c(0.0105, 0.0150, 0.0125, 0.0110, 0.0155, 0.0135, 0.0095, 0.0105, 0.0115, 0.0125)
 
 
-dados &lt;- data.frame(Laranja = 1:10,Xi,Yi)</code></pre>
+dados &lt;- data.frame(Laranja = 1:10,Xi,Yi)
+
+n = 10</code></pre>
 <pre class="r"><code># Visualizando o dataframe
 print(dados)</code></pre>
 <pre><code>##    Laranja    Xi     Yi
@@ -1984,16 +1986,30 @@ tx = 900 #Peso total das laranjas
 N = tx/muX</code></pre>
 <pre><code>## [1] 4137.931</code></pre>
 <p>Agora que temos nosso N podemos seguir para o calculo do B0</p>
+<ul>
+<li>Opcao 1</li>
+</ul>
 <p><span class="math display">\[
 \hat{B}_0=\frac{\sum_{i \in
 s}\left(Y_i-\bar{y}\right)\left(X_i-\bar{x}\right)}{\sum_{i \in
 s}\left(X_i-\bar{x}\right)^2}=\frac{s_{X Y}}{s_X^2} .
 \]</span></p>
+<ul>
+<li>Opcao 2</li>
+</ul>
+<p><span class="math display">\[
+B_{0}=\frac{\sum_{i=1}^{n} Y_{i} X_{i}-n \bar{X} \bar{Y}}{\sum_{i=1}^{N}
+X_{i}^{2}-N \bar{X}^{2}}
+\]</span></p>
+<p>Usando a 1 formula</p>
 <pre class="r"><code>Sxy = sum((Yi-mean(Yi))*((Xi-mean(Xi))))
 
 S2x = sum((Xi-mean(Xi))^2)
 
 B0 = Sxy/S2x</code></pre>
+<pre><code>## [1] 0.1111111</code></pre>
+<p>Usando a 2 formula</p>
+<pre class="r"><code>B0 = (sum(Yi*Xi) - n*mean(Yi)*mean(Xi))/(sum(Xi^2)-n*mean(Xi)^2)</code></pre>
 <pre><code>## [1] 0.1111111</code></pre>
 <p>Com nosso <span class="math inline">\(\beta_0\)</span> estimado
 podemos calcular o estimador do tipo regressao:</p>
@@ -2076,11 +2092,104 @@ uma amostra de 10 áreas, de um total de 500 áreas. Todas as árvores da
 </tbody>
 </table>
 <ol style="list-style-type: lower-alpha">
-<li><p>Estima a altura média das árvores usando estimadores do tipo
-regressão e razão.</p></li>
-<li><p>Dê as variâncias respectivas dos estimadores usados.</p></li>
-<li><p>Compare as propriedades dos estimadores. Neste caso, qual o mais
-recomendado?</p></li>
+<li>Estima a altura média das árvores usando estimadores do tipo
+regressão e razão.</li>
+</ol>
+<pre class="r"><code># Criando o dataframe a partir dos dados fornecidos
+
+Xi = c(42, 51, 49, 55, 47, 58, 43, 59, 48, 41)
+Yi = c(8.89, 8.76, 9.04, 8.49, 8.58, 9.10, 8.31, 8.58, 8.73, 8.86)
+
+dados_area &lt;- data.frame(Area = 1:10, Xi, Yi)
+
+N = 10</code></pre>
+<pre><code>##    Area Xi   Yi
+## 1     1 42 8.89
+## 2     2 51 8.76
+## 3     3 49 9.04
+## 4     4 55 8.49
+## 5     5 47 8.58
+## 6     6 58 9.10
+## 7     7 43 8.31
+## 8     8 59 8.58
+## 9     9 48 8.73
+## 10   10 41 8.86</code></pre>
+<p>Estimador do Tipo Regressao</p>
+<pre class="r"><code>Sxy = sum((Yi-mean(Yi))*((Xi-mean(Xi))))
+
+S2x = sum((Xi-mean(Xi))^2)
+
+B0 = Sxy/S2x</code></pre>
+<pre><code>## [1] 0.002935044</code></pre>
+<pre class="r"><code>yreg = mean(Yi) + B0*sum(Xi-mean(Xi)) #Media</code></pre>
+<pre><code>## [1] 8.734</code></pre>
+<p>Estimador do tipo Razao</p>
+<p>Como nos temos interesse em estimar a altura media da arvore, vamos
+utilizar a seguinte formula para encontrar o valor do estimador da media
+da altura (media de <span class="math inline">\(Yi\)</span>)</p>
+<ul>
+<li><p>Estimador da Razao <span class="math display">\[
+R \rightarrow r=\hat{R}=\frac{\bar{y}}{\bar{x}}
+\]</span></p></li>
+<li><p>Estimador da media por meio do estimador da Razao</p></li>
+</ul>
+<p><span class="math display">\[
+\mu_Y \rightarrow  \bar{y}_R=\hat{R} \mu_X=r \mu_X
+\]</span></p>
+<p><span class="math display">\[
+\bar{y}_R=(\bar{y} / \bar{x}) \cdot \mu_X
+\]</span></p>
+<pre class="r"><code>y_r = (sum(Yi)/sum(Xi))*mean(Xi)</code></pre>
+<pre class="r"><code>y_r</code></pre>
+<pre><code>## [1] 8.734</code></pre>
+<ol start="2" style="list-style-type: lower-alpha">
+<li>Dê as variâncias respectivas dos estimadores usados.</li>
+</ol>
+<p>Variancia do estimador do tipo regressao</p>
+<ul>
+<li><span class="math inline">\(s^{2}_{F}\)</span></li>
+</ul>
+<pre class="r"><code>s2x = var(Xi)</code></pre>
+<pre><code>## [1] 41.56667</code></pre>
+<ul>
+<li><span class="math inline">\(s^{2}_{T}\)</span></li>
+</ul>
+<pre class="r"><code>s2y = var(Yi)</code></pre>
+<pre><code>## [1] 0.06169333</code></pre>
+<ul>
+<li><span class="math inline">\(s^{2}_{FT}\)</span></li>
+</ul>
+<pre class="r"><code>s2xy = var(Yi,Xi)</code></pre>
+<pre><code>## [1] 0.122</code></pre>
+<p>Agora podemos partir para o calculo da <span class="math inline">\(Var[\bar f_{Reg}]\)</span></p>
+<p><span class="math display">\[
+\operatorname{Var}\left[\bar{f}_{\text {Reg
+}}\right]=\frac{1}{n}\left(s_{F}^{2}-2 b_{0} s^{2}_{F T}+b_{0}^{2}
+s_{T}^{2}\right)=1
+\]</span></p>
+<pre class="r"><code>varY_reg = 1/N * (s2y - 2*B0*s2xy+B0^2*s2x )</code></pre>
+<pre><code>## [1] 0.006133526</code></pre>
+<p>Variancia do estimador tipo razao</p>
+<p><span class="math display">\[
+s_R^2=\frac{1}{n-1} \sum_{i \in s}\left(Y_i-r X_i\right)^2
+\]</span></p>
+<p><span class="math display">\[
+r=\frac{\bar{y}}{\bar{x}}
+\]</span></p>
+<pre class="r"><code>r = mean(Yi)/mean(Xi)</code></pre>
+<pre><code>## [1] 0.1771602</code></pre>
+<pre class="r"><code>s2r = 1/(n-1)*sum((Yi-r*Xi)^2)</code></pre>
+<pre><code>## [1] 1.323067</code></pre>
+<p>Sabemos que:</p>
+<p><span class="math display">\[
+\operatorname{Var}\left[\bar{y}_R\right]=\operatorname{Var}\left[r
+\mu_x\right] \approx\frac{s_R^2}{n}
+\]</span></p>
+<pre class="r"><code>varyR = s2r/n</code></pre>
+<pre><code>## [1] 0.1323067</code></pre>
+<ol start="3" style="list-style-type: lower-alpha">
+<li>Compare as propriedades dos estimadores. Neste caso, qual o mais
+recomendado?</li>
 </ol>
 </div>
 </div>
